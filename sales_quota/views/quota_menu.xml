@@ -40,4 +40,21 @@
           parent="sale.menu_sale_report"
           action="action_customer_quota_report"
           sequence="30"/>
+  
+  <menuitem id="menu_batch_processing"
+            name="Batch Processing"
+            parent="menu_quota_management"
+            sequence="50"/>
+
+  <menuitem id="menu_quota_period"
+            name="Period Control"
+            parent="menu_batch_processing"
+            action="action_quota_period" 
+            sequence="10"/>
+
+  <menuitem id="menu_quota_over_limit"
+            name="Over Quota Records"
+            parent="menu_batch_processing"
+            action="action_quota_over_limit" 
+            sequence="20"/>
 </odoo>

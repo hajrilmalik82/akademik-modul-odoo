@@ -10,6 +10,5 @@ class CustomerQuota(models.Model):
     
     year = fields.Integer(string="Year", required=True, default=2025)
     month = fields.Integer(string="Month", required=True)
-    
-    # HANYA LIMIT (Master Data)
+
     quantity = fields.Float(string="Limit Quantity", required=True, default=0.0)

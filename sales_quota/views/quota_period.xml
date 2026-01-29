@@ -1,0 +1,51 @@
+<odoo>
+    <record id="view_quota_period_tree" model="ir.ui.view">
+        <field name="name">quota.period.tree</field>
+        <field name="model">quota.period</field>
+        <field name="arch" type="xml">
+            <tree decoration-success="state == 'done'">
+                <field name="display_name"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" decoration-success="state == 'done'"/>
+                <field name="processed_at"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_quota_period_form" model="ir.ui.view">
+        <field name="name">quota.period.form</field>
+        <field name="model">quota.period</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="%(sales_quota.action_quota_batch_wizard)d" 
+                            string="Process Batch" 
+                            type="action" 
+                            class="oe_highlight" 
+                            invisible="state == 'done'"/>
+                            
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="display_name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="year"/>
+                            <field name="month"/>
+                        </group>
+                        <group>
+                            <field name="processed_at"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_quota_period" model="ir.actions.act_window">
+        <field name="name">Period Control (Batch)</field>
+        <field name="res_model">quota.period</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>

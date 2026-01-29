@@ -1,0 +1,32 @@
+{
+'name': "Hostel Management",
+'summary': "Manage Hostel easily",
+'description': "Efficiently manage the entire residential facility in the school.",
+'author': "Hajril Malik",
+'website': "http://www.example.com",
+'category': 'Uncategorized',
+'version': '17.0.1.1.0',
+'depends': ['base'],
+'data': [
+    "security/ir.model.access.csv",
+    "security/hostel_security.xml",
+    'views/hostel.xml',
+    'views/hostel_room.xml',
+    'views/hostel_amenities.xml',
+    "views/hostel_student.xml",
+    "views/hostel_categ.xml",
+    'data/data.xml',
+    'data/demo.xml',
+    'data/hostel.category.csv',
+    "wizards/assign_room_student.xml",
+    "views/hostel_room_availability.xml",
+    ],
+'assets': {
+'web.assets_backend': 
+    ['web/static/src/xml/**/*',],
+},
+'demo': [],
+"installable": True,
+'application': True,
+'license': 'LGPL-3',
+}

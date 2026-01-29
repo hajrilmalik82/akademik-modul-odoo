@@ -1,0 +1,13 @@
+**/__pycache__
+**/**/__pycache__ */
+*:Zone.Identifier
+**/*:Zone.Identifier
+*.pyc
+*.vscode
+.idea/
+venv/
+.qodo
+*.bak
+prestaterre_dashboard/
+email_sync/.cursor/
+doc/

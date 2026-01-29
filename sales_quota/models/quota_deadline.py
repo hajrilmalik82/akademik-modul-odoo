@@ -6,7 +6,7 @@ class QuotaDeadline(models.Model):
     _description = "Monthly Quota Deadline Configuration"
 
     name = fields.Char(default="Monthly Configuration")
-    deadline_day = fields.Integer(string="Deadline Day", required=True, default=25)
+    deadline_day = fields.Integer(string="Deadline", required=True, default=25)
 
     @api.constrains('deadline_day')
     def _check_day(self):
