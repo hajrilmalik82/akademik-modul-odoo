@@ -97,4 +97,4 @@ class SaleOrder(models.Model):
             if d and d.year == year and d.month == month:
                 total_used += line.product_uom_qty
                     
-        return {'type': 'ir.actions.act_window_close'}
+        return total_used

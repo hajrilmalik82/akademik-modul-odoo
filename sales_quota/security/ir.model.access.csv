@@ -7,5 +7,5 @@ access_customer_quota,customer.quota,model_customer_quota,base.group_user,1,1,1,
 access_quota_deadline,quota.deadline,model_quota_deadline,base.group_user,1,1,1,1
 access_customer_quota_report,customer.quota.report,model_customer_quota_report,base.group_user,1,0,0,0
 access_quota_period,quota.period,model_quota_period,base.group_user,1,1,1,1
-access_quota_over_limit,quota.over.limit,model_quota_over_limit,base.group_user,1,0,0,0
+access_quota_over_limit,quota.over.limit,model_quota_over_limit,base.group_user,1,1,1,1
 access_quota_batch_wizard,quota.batch.wizard,model_quota_batch_wizard,base.group_user,1,1,1,1
