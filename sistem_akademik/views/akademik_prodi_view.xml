@@ -4,7 +4,7 @@
         <field name="name">akademik.prodi.tree</field>
         <field name="model">akademik.prodi</field>
         <field name="arch" type="xml">
-            <tree string="Program Studi">
+            <tree string="Study Program">
                 <field name="nama_prodi"/>
             </tree>
         </field>
@@ -14,7 +14,7 @@
         <field name="name">akademik.prodi.form</field>
         <field name="model">akademik.prodi</field>
         <field name="arch" type="xml">
-            <form string="Program Studi">
+            <form string="Study Program">
                 <sheet>
                     <group>
                         <group>
@@ -27,7 +27,7 @@
     </record>
 
     <record id="action_akademik_prodi" model="ir.actions.act_window">
-        <field name="name">Program Studi</field>
+        <field name="name">Study Program</field>
         <field name="res_model">akademik.prodi</field>
         <field name="view_mode">tree,form</field>
     </record>

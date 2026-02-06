@@ -1,0 +1,221 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 18.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-06 00:00+0000\n"
+"PO-Revision-Date: 2026-02-06 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. module: sistem_akademik
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_root
+msgid "Academic"
+msgstr "Akademik"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__dosen_pembimbing_id
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__dosen_pembimbing_id
+msgid "Academic Advisor"
+msgstr "Dosen Pembimbing"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
+msgid "Academic Data"
+msgstr "Data Akademik"
+
+#. module: sistem_akademik
+#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_tahun
+#: model:ir.model,name:sistem_akademik.model_akademik_tahun
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_tahun__tahun_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_tahun_form
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_tahun_tree
+msgid "Academic Year"
+msgstr "Tahun Akademik"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__level_prestasi
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__level_prestasi
+msgid "Achievement Level"
+msgstr "Level Prestasi"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__aktif
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+msgid "Active"
+msgstr "Aktif"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+msgid "Active Student"
+msgstr "Mahasiswa Aktif"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__jenjang__s1
+msgid "Bachelor"
+msgstr "S1"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__kode_prodi
+msgid "Code"
+msgstr "Kode Prodi"
+
+#. module: sistem_akademik
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_config
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+#. module: sistem_akademik
+#: model:ir.model,name:sistem_akademik.model_res_partner
+msgid "Contact"
+msgstr "Kontak"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
+msgid "Contact & Category"
+msgstr "Kontak & Kategori"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__draft
+msgid "Draft"
+msgstr "Draft"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__dropout
+msgid "Drop Out"
+msgstr "Drop Out"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+msgid "Dropped Out"
+msgstr "Drop Out"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__tahun_masuk
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__tahun_masuk
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_tahun
+msgid "Entry Year"
+msgstr "Tahun Masuk"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
+msgid "Generate NIM"
+msgstr "Generate NIM"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__lulus
+msgid "Graduated"
+msgstr "Lulus"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
+msgid "Identity Data"
+msgstr "Data Identitas"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__jenjang
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__jenjang
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__jenjang
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+msgid "Level"
+msgstr "Jenjang"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
+msgid "history or academic advisor observation"
+msgstr "riwayat atau observasi dosen wali"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+msgid "Name"
+msgstr "Nama"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__nim
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__nim
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+msgid "NIM"
+msgstr "NIM"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
+msgid "Notes"
+msgstr "Catatan"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__jenjang__pasca
+msgid "Postgraduate"
+msgstr "Pasca"
+
+#. module: sistem_akademik
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_mahasiswa_pasca
+msgid "Postgraduate Student"
+msgstr "Mahasiswa Pascasarjana"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__topik_riset
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__topik_riset
+msgid "Research Topic"
+msgstr "Topik Riset"
+
+#. module: sistem_akademik
+#: model:ir.actions.act_window,name:sistem_akademik.action_mahasiswa_list
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_mahasiswa
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_tree_mahasiswa
+msgid "Student"
+msgstr "Mahasiswa"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__identitas_mahasiswa
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__identitas_mahasiswa
+msgid "Student Identity"
+msgstr "Identitas Mahasiswa"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
+msgid "Student Name"
+msgstr "Nama Mahasiswa"
+
+#. module: sistem_akademik
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_mahasiswa_s1
+msgid "Student S1"
+msgstr "Mahasiswa S1"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+msgid "Student Search"
+msgstr "Pencarian Mahasiswa"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__status
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__status
+msgid "Student Status"
+msgstr "Status Mahasiswa"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__tag_mahasiswa
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__tag_mahasiswa
+msgid "Student Tags"
+msgstr "Tag Mahasiswa"
+
+#. module: sistem_akademik
+#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_prodi
+#: model:ir.model,name:sistem_akademik.model_akademik_prodi
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__prodi_id
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__prodi_id
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_prodi
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_prodi_form
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_prodi_tree
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+msgid "Study Program"
+msgstr "Program Studi"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__nama_prodi
+msgid "Study Program Name"
+msgstr "Nama Program Studi"

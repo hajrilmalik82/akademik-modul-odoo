@@ -3,9 +3,9 @@ from odoo import models, fields
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
-    is_dosen = fields.Boolean(string='Adalah Dosen', default=False)
+    is_dosen = fields.Boolean(string='Is Lecturer', default=False)
     nidn = fields.Char(string='NIDN')
-    gelar_akademik = fields.Char(string='Gelar Akademik')
+    gelar_akademik = fields.Char(string='Academic Degree')
     
     def action_generate_user(self):
         for employee in self:
@@ -13,7 +13,7 @@ class HrEmployee(models.Model):
                 continue
             
             if not employee.work_email:
-                raise models.ValidationError('Email isi oi')
+                raise models.ValidationError('fill in the email')
                 
             user_vals = {
                 'name': employee.name,

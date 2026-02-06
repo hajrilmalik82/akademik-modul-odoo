@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <menuitem id="menu_akademik_root" name="Akademik" sequence="10"/>
+    <menuitem id="menu_akademik_root" name="Academic" sequence="10"/>
 
     <menuitem id="menu_akademik_mahasiswa"
-              name="Mahasiswa"
+              name="Student"
               parent="menu_akademik_root"
               sequence="10"/>
 
     <menuitem id="menu_akademik_mahasiswa_s1"
-              name="Mahasiswa S1"
+              name="Student S1"
               parent="menu_akademik_mahasiswa"
               action="action_mahasiswa_s1_list"
               sequence="10"/>
 
     <menuitem id="menu_akademik_mahasiswa_pasca"
-              name="Mahasiswa Pascasarjana"
+              name="Postgraduate Student"
               parent="menu_akademik_mahasiswa"
               action="action_mahasiswa_pasca_list"
               sequence="20"/>
 
     <menuitem id="menu_akademik_config"
-              name="Konfigurasi"
+              name="Configuration"
               parent="menu_akademik_root"
               sequence="100"/>
 
     <menuitem id="menu_akademik_tahun"
-              name="Tahun Masuk"
+              name="Entry Year"
               parent="menu_akademik_config"
               action="action_akademik_tahun"
               sequence="10"/>
 
     <menuitem id="menu_akademik_prodi"
-              name="Program Studi"
+              name="Study Program"
               parent="menu_akademik_config"
               action="action_akademik_prodi"
               sequence="20"/>

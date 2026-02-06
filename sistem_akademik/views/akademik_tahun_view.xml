@@ -4,7 +4,7 @@
         <field name="name">akademik.tahun.tree</field>
         <field name="model">akademik.tahun</field>
         <field name="arch" type="xml">
-            <tree string="Tahun Akademik">
+            <tree string="Academic Year">
                 <field name="tahun_akademik"/>
             </tree>
         </field>
@@ -14,7 +14,7 @@
         <field name="name">akademik.tahun.form</field>
         <field name="model">akademik.tahun</field>
         <field name="arch" type="xml">
-            <form string="Tahun Akademik">
+            <form string="Academic Year">
                 <sheet>
                     <group>
                         <field name="tahun_akademik"/>
@@ -25,7 +25,7 @@
     </record>
 
     <record id="action_akademik_tahun" model="ir.actions.act_window">
-        <field name="name">Tahun Akademik</field>
+        <field name="name">Academic Year</field>
         <field name="res_model">akademik.tahun</field>
         <field name="view_mode">tree,form</field>
     </record>

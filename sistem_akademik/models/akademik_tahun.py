@@ -5,4 +5,4 @@ class AkademikTahun(models.Model):
     _description = 'Tahun Akademik'
     _rec_name = 'tahun_akademik'
 
-    tahun_akademik = fields.Char(string='Tahun Akademik', required=True)
+    tahun_akademik = fields.Char(string='Academic Year', required=True)
