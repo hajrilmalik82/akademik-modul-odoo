@@ -39,6 +39,24 @@ class AkademikThesis(models.Model):
         ('graduation', 'Graduation'),
         ('done', 'Done')
     ], string='Stage', default='title_submission', group_expand='_expand_stage')
+    
+    # Analytics fields
+    completion_duration_days = fields.Integer(
+        string='Completion Duration (Days)', 
+        compute='_compute_completion_duration', 
+        store=True,
+        help='Days from submission to completion'
+    )
+    prodi_id = fields.Many2one(
+        'akademik.prodi', 
+        related='student_id.prodi_id', 
+        string='Study Program', 
+        store=True
+    )
+    completion_date = fields.Date(
+        string='Completion Date',
+        help='Date when thesis was marked as done'
+    )
 
 
     def action_request_approval(self):
@@ -119,6 +137,7 @@ class AkademikThesis(models.Model):
             else:
                 raise models.ValidationError("Tesis subject not found in student's KRS. Please ensure the student is enrolled in Tesis subject.")
             record.student_id.sudo().status = 'lulus'
+            record.completion_date = fields.Date.today()
             record.stage = 'done'
 
     def action_cancel(self):
@@ -144,6 +163,15 @@ class AkademikThesis(models.Model):
                 record.progress_category = 'medium'
             else:
                 record.progress_category = 'low'
+
+    @api.depends('submission_date', 'completion_date', 'stage')
+    def _compute_completion_duration(self):
+        for record in self:
+            if record.completion_date and record.submission_date:
+                delta = record.completion_date - record.submission_date
+                record.completion_duration_days = delta.days
+            else:
+                record.completion_duration_days = 0
 
     @api.model
     def _expand_stage(self, states, domain, order):

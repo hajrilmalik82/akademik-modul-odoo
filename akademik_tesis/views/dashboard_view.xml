@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Dashboard Line Chart: Completion Duration Trend -->
+        <record id="view_tesis_completion_duration_graph" model="ir.ui.view">
+            <field name="name">tesis.completion.duration.graph</field>
+            <field name="model">akademik.tesis</field>
+            <field name="arch" type="xml">
+                <graph string="Thesis Completion Duration Trend" type="line">
+                    <field name="prodi_id" type="row"/>
+                    <field name="completion_duration_days" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Dashboard Pie Chart: Student Status Ratio -->
+        <record id="view_student_status_ratio_graph" model="ir.ui.view">
+            <field name="name">student.status.ratio.graph</field>
+            <field name="model">res.partner</field>
+            <field name="arch" type="xml">
+                <graph string="Student Status Ratio" type="pie">
+                    <field name="status" type="row"/>
+                    <field name="tahun_masuk" type="col"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- Dashboard Actions -->
+        <record id="action_tesis_completion_duration" model="ir.actions.act_window">
+            <field name="name">Thesis Completion Duration</field>
+            <field name="res_model">akademik.tesis</field>
+            <field name="view_mode">graph,tree,form</field>
+            <field name="view_id" ref="view_tesis_completion_duration_graph"/>
+            <field name="domain">[('stage', '=', 'done'), ('completion_duration_days', '>', 0)]</field>
+            <field name="context">{'group_by': ['prodi_id']}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No completed thesis data yet
+                </p>
+                <p>
+                    This chart shows the average completion duration (in days) per study program.
+                </p>
+            </field>
+        </record>
+
+        <record id="action_student_status_ratio" model="ir.actions.act_window">
+            <field name="name">Student Status Ratio</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">graph,tree,form</field>
+            <field name="view_id" ref="view_student_status_ratio_graph"/>
+            <field name="domain">[('identitas_mahasiswa', '=', True), ('status', '!=', 'draft')]</field>
+            <field name="context">{'group_by': ['status', 'tahun_masuk']}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No student data yet
+                </p>
+                <p>
+                    This chart shows the ratio of student status (Active vs Graduated) per academic year.
+                </p>
+            </field>
+        </record>
+
+        <!-- Dashboard Menu - Top Level -->
+        <menuitem 
+            id="menu_akademik_dashboard"
+            name="Dashboard"
+            sequence="5"
+            groups="akademik_dosen.group_akademik_officer"/>
+
+        <menuitem 
+            id="menu_tesis_completion_duration"
+            name="Completion Duration Trend"
+            parent="menu_akademik_dashboard"
+            action="action_tesis_completion_duration"
+            sequence="10"/>
+
+        <menuitem 
+            id="menu_student_status_ratio"
+            name="Student Status Ratio"
+            parent="menu_akademik_dashboard"
+            action="action_student_status_ratio"
+            sequence="20"/>
+
+    </data>
+</odoo>

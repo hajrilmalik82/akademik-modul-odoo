@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data noupdate="1">
+    <data>
     
         <record id="rule_akademik_krs_student" model="ir.rule">
             <field name="name">Student Own KRS Only</field>

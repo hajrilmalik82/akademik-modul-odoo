@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_thesis_certificate" model="ir.actions.report">
+        <field name="name">Surat Keterangan Lulus Sidang Tesis</field>
+        <field name="model">akademik.tesis</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">akademik_tesis.report_surat_lulus_tesis_document</field>
+        <field name="report_file">akademik_tesis.report_surat_lulus_tesis_document</field>
+        <field name="binding_model_id" ref="model_akademik_tesis"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Surat_Lulus_Tesis_%s' % (object.student_id.nim or 'draft')</field>
+    </record>
+
+    <template id="report_surat_lulus_tesis_document">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                    <div class="page" style="font-family: 'Times New Roman', Times, serif;">
+                        
+                        <div class="text-center" style="margin-bottom: 30px; border-bottom: 3px solid #000; padding-bottom: 20px;">
+                            <h3 style="margin: 0; font-weight: bold; font-size: 18pt;">UNIVERSITAS</h3>
+                            <h4 style="margin: 5px 0; font-size: 14pt;">PROGRAM PASCASARJANA</h4>
+                        </div>
+                        <div class="text-center" style="margin: 30px 0;">
+                            <h2 style="text-decoration: underline; font-weight: bold; font-size: 16pt; margin: 0;">
+                                SURAT KETERANGAN LULUS SIDANG TESIS
+                            </h2>
+                        </div>
+                        <div style="margin: 20px 0; text-align: justify; font-size: 11pt; line-height: 1.8;">
+                            <p>Yang bertanda tangan di bawah ini, Direktur Program Pascasarjana Universitas, dengan ini menerangkan bahwa:</p>
+                        </div>
+                        <div style="margin: 20px 40px; font-size: 11pt; line-height: 2.0;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="width: 30%; vertical-align: top;">Nama</td>
+                                    <td style="width: 5%; vertical-align: top;">:</td>
+                                    <td style="width: 65%; font-weight: bold; vertical-align: top;">
+                                        <span t-field="o.student_id.name"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">NIM</td>
+                                    <td style="vertical-align: top;">:</td>
+                                    <td style="font-weight: bold; vertical-align: top;">
+                                        <span t-field="o.student_id.nim"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">Program Studi</td>
+                                    <td style="vertical-align: top;">:</td>
+                                    <td style="font-weight: bold; vertical-align: top;">
+                                        <span t-field="o.student_id.prodi_id.nama_prodi"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">Judul Tesis</td>
+                                    <td style="vertical-align: top;">:</td>
+                                    <td style="font-style: italic; vertical-align: top;">
+                                        <span t-field="o.title"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="margin: 20px 0; text-align: justify; font-size: 11pt; line-height: 1.8;">
+                            <p>
+                                Telah mengikuti dan <strong>LULUS</strong> dalam sidang tesis yang dilaksanakan pada:
+                            </p>
+                        </div>
+                        <div style="margin: 20px 40px; font-size: 11pt; line-height: 2.0;">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <td style="width: 30%; vertical-align: top;">Tanggal Sidang</td>
+                                    <td style="width: 5%; vertical-align: top;">:</td>
+                                    <td style="width: 65%; vertical-align: top;">
+                                        <span t-if="o.defense_schedule">
+                                            <span t-esc="o.defense_schedule.strftime('%d %B %Y')"/>
+                                        </span>
+                                        <span t-else="">-</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="vertical-align: top;">Nilai Akhir</td>
+                                    <td style="vertical-align: top;">:</td>
+                                    <td style="font-weight: bold; vertical-align: top;">
+                                        <span t-esc="'%.2f' % o.final_score"/> (<span t-field="o.final_grade"/>)
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="margin: 30px 0; font-size: 11pt;">
+                            <p style="font-weight: bold; margin-bottom: 10px;">Dosen Pembimbing:</p>
+                            <div style="margin-left: 40px; line-height: 1.8;">
+                                <p>
+                                    <span t-if="o.supervisor_id">
+                                        <span t-field="o.supervisor_id.name"/>
+                                    </span>
+                                    <span t-else="">-</span>
+                                </p>
+                            </div>
+
+                            <p style="font-weight: bold; margin-bottom: 10px; margin-top: 20px;">Tim Penguji:</p>
+                            <div style="margin-left: 40px; line-height: 1.8;">
+                                <t t-if="o.examiner_score_ids">
+                                    <table style="width: 100%; border-collapse: collapse;">
+                                        <thead>
+                                            <tr style="border-bottom: 1px solid #000;">
+                                                <th style="text-align: left; padding: 5px; width: 5%;">No.</th>
+                                                <th style="text-align: left; padding: 5px; width: 60%;">Nama Penguji</th>
+                                                <th style="text-align: left; padding: 5px; width: 35%;">Nilai</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-set="index" t-value="1"/>
+                                            <t t-foreach="o.examiner_score_ids" t-as="examiner">
+                                                <tr>
+                                                    <td style="padding: 5px; vertical-align: top;">
+                                                        <span t-esc="index"/>.
+                                                    </td>
+                                                    <td style="padding: 5px; vertical-align: top;">
+                                                        <span t-field="examiner.examiner_id.name"/>
+                                                    </td>
+                                                    <td style="padding: 5px; vertical-align: top;">
+                                                        <span t-esc="examiner.score"/>
+                                                    </td>
+                                                </tr>
+                                                <t t-set="index" t-value="index + 1"/>
+                                            </t>
+                                        </tbody>
+                                    </table>
+                                </t>
+                                <t t-else="">
+                                    <p>-</p>
+                                </t>
+                            </div>
+                        </div>
+
+                        <div style="margin: 30px 0; text-align: justify; font-size: 11pt; line-height: 1.8;">
+                            <p>
+                                Demikian surat keterangan ini dibuat dengan sebenar-benarnya untuk dapat dipergunakan sebagaimana mestinya.
+                            </p>
+                        </div>
+
+                        <div style="margin-top: 50px; font-size: 11pt;">
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="width: 50%;"></td>
+                                    <td style="width: 50%; text-align: center;">
+                                            <span t-if="o.defense_schedule">
+                                                <span t-esc="o.defense_schedule.strftime('%d %B %Y')"/>
+                                            </span>
+                                            <span t-else="">
+                                                <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d %B %Y')"/>
+                                            </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 50%;"></td>
+                                    <td style="width: 50%; text-align: center; padding-top: 80px;">
+                                        <p style="margin: 0; font-weight: bold; text-decoration: underline;">
+                                            Ketua Program Studi
+                                        </p>
+                                        <p style="margin: 0;">NIP. ..............</p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+            </t>
+        </t>
+    </template>
+</odoo>
