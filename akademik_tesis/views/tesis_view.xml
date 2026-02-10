@@ -73,11 +73,12 @@
                     <button name="action_request_approval" string="Request Approval" type="object" class="oe_highlight" invisible="stage != 'title_submission'" groups="akademik_dosen.group_akademik_officer"/>
                     <button name="action_approve_supervisor" string="Approve" type="object" class="oe_highlight" invisible="stage != 'supervisor_appointment'" groups="akademik_dosen.group_akademik_dosen"/>
                     <button name="action_reject_supervisor" string="Reject" type="object" invisible="stage != 'supervisor_appointment'" groups="akademik_dosen.group_akademik_dosen"/>
-                    <button name="action_approve_proposal" string="Approve Proposal" type="object" class="oe_highlight" invisible="stage != 'proposal_seminar'" groups="akademik_dosen.group_akademik_dosen"/>
-                    <button name="action_approve_research" string="Approve Research" type="object" class="oe_highlight" invisible="stage != 'research'" groups="akademik_dosen.group_akademik_dosen"/>
-                    <button name="action_approve_defense" string="Approve Defense" type="object" class="oe_highlight" invisible="stage != 'final_defense' or supervisor_id.user_id != uid" groups="akademik_dosen.group_akademik_dosen"/>
+                    <button name="action_approve_proposal" string="Approve Proposal" type="object" class="oe_highlight" invisible="stage != 'proposal_seminar' or supervisor_user_id != uid" groups="akademik_dosen.group_akademik_dosen"/>
+                    <button name="action_approve_research" string="Approve Research" type="object" class="oe_highlight" invisible="stage != 'research' or supervisor_user_id != uid" groups="akademik_dosen.group_akademik_dosen"/>
+                    <button name="action_approve_defense" string="Approve Defense" type="object" class="oe_highlight" invisible="stage != 'final_defense' or supervisor_user_id != uid" groups="akademik_dosen.group_akademik_dosen"/>
+                    <button name="action_process_graduation" string="Process Graduation" type="object" class="oe_highlight" invisible="stage != 'graduation'" groups="akademik_dosen.group_akademik_officer"/>
                     <button name="action_cancel" string="Cancel" type="object" invisible="stage != 'supervisor_appointment'" groups="akademik_dosen.group_akademik_officer"/>
-                    <field name="stage" widget="statusbar" readonly="1" options="{'clickable': '0'}"/>
+                    <field name="stage" widget="statusbar" readonly="1"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -92,11 +93,13 @@
                             <field name="progress"/>
                             <field name="seminar_schedule" invisible="stage != 'proposal_seminar'"/>
                             <field name="defense_schedule" invisible="stage != 'final_defense'"/>
+                            <field name="supervisor_user_id" invisible="1"/>
                         </group>
                         <group>
                             <field name="supervisor_id"/>
                             <field name="note"/>
-                            <field name="final_score" invisible="stage not in ('final_defense', 'graduation')"/>
+                            <field name="final_score" invisible="stage not in ('final_defense', 'graduation', 'done')"/>
+                            <field name="final_grade" invisible="stage != 'done'"/>
                         </group>
                     </group>
                     <notebook>
@@ -113,13 +116,13 @@
                                 </tree>
                             </field>
                         </page>
-                        <page string="Scoring" invisible="stage != 'final_defense'">
+                        <page string="Scoring" invisible="stage not in ('final_defense', 'graduation', 'done')">
                             <field name="examiner_score_ids">
                                 <tree editable="bottom">
                                     <field name="examiner_id" options="{'no_create': True}" groups="akademik_dosen.group_akademik_officer"/>
                                     <field name="examiner_id" options="{'no_create': True}" groups="akademik_dosen.group_akademik_dosen" readonly="1"/>
-                                    <field name="score" sum="Total Score"/>
-                                    <field name="note"/>
+                                    <field name="score" sum="Total Score" readonly="parent.stage in ('graduation', 'done')"/>
+                                    <field name="note" readonly="parent.stage in ('graduation', 'done')"/>
                                 </tree>
                             </field>
                         </page>

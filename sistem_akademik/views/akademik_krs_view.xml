@@ -34,6 +34,7 @@
                                 <tree editable="bottom">
                                     <field name="subject_id"/>
                                     <field name="credits" sum="Total SKS"/>
+                                    <field name="grade"/>
                                 </tree>
                             </field>
                         </page>

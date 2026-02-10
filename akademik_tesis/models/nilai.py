@@ -7,7 +7,7 @@ class AkademikThesisScore(models.Model):
 
     thesis_id = fields.Many2one('akademik.tesis', string='Thesis', required=True, ondelete='cascade')
     examiner_id = fields.Many2one('hr.employee', string='Examiner', required=True, domain="[('is_dosen', '=', True)]")
-    score = fields.Integer(string='Score (0-100)', required=True, default=0)
+    score = fields.Integer(string='Score', required=True, default=0)
     note = fields.Text(string='Note')
 
     @api.constrains('score')

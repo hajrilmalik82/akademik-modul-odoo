@@ -7,29 +7,39 @@ class AkademikThesis(models.Model):
     _rec_name = 'title'
 
     title = fields.Char(string='Thesis Title', required=True)
-    student_id = fields.Many2one(
-        'res.partner', 
-        string='Student', 
-        domain="[('identitas_mahasiswa', '=', True), ('krs_ids.line_ids.subject_id.name', 'ilike', 'Tesis')]",
-        required=True
-    )
-    supervisor_id = fields.Many2one(
-        'hr.employee', 
-        string='Supervisor', 
-        domain="[('is_dosen', '=', True)]"
-    )
+    student_id = fields.Many2one('res.partner', string='Student', domain="[('identitas_mahasiswa', '=', True), ('krs_ids.line_ids.subject_id.name', 'ilike', 'Tesis')]", required=True)
+    supervisor_id = fields.Many2one('hr.employee', string='Supervisor', domain="[('is_dosen', '=', True)]")
     submission_date = fields.Date(string='Submission Date', default=fields.Date.today)
     note = fields.Text(string='Note')
     progress = fields.Integer(string='Progress Percentage')
-    
     document_ids = fields.One2many('akademik.tesis.dokumen', 'thesis_id', string='Thesis Documents')
     seminar_schedule = fields.Datetime(string='Seminar Schedule')
-
+    defense_schedule = fields.Datetime(string='Final Defense Schedule')
+    examiner_score_ids = fields.One2many('akademik.tesis.nilai', 'thesis_id', string='Examiner Scores')
+    final_score = fields.Integer(string='Final Score', compute='_compute_final_score', store=True)
+    final_grade = fields.Selection([
+        ('A', 'A'),
+        ('B', 'B'),
+        ('C', 'C'),
+        ('D', 'D'),
+        ('E', 'E')
+    ], string='Final Grade', readonly=True)
+    supervisor_user_id = fields.Many2one('res.users', related='supervisor_id.user_id', string='Supervisor User', store=True)
     progress_category = fields.Selection([
         ('low', 'Low (0-49%)'),
         ('medium', 'Medium (50-99%)'),
         ('high', 'High (100%)')
     ], compute='_compute_progress_category', string='Progress Category')
+    stage = fields.Selection([
+        ('title_submission', 'Title Submission'),
+        ('supervisor_appointment', 'Supervisor Appointment'),
+        ('proposal_seminar', 'Proposal Seminar'),
+        ('research', 'Research'),
+        ('final_defense', 'Final Defense'),
+        ('graduation', 'Graduation'),
+        ('done', 'Done')
+    ], string='Stage', default='title_submission', group_expand='_expand_stage')
+
 
     def action_request_approval(self):
         for record in self:
@@ -82,6 +92,35 @@ class AkademikThesis(models.Model):
 
             record.sudo().stage = 'graduation'
 
+    def action_process_graduation(self):
+        for record in self:
+            if not record.final_score or record.final_score == 0:
+                raise models.ValidationError("Final score must be calculated before processing graduation.")
+            score = record.final_score
+            if score >= 81:
+                grade = 'A'
+            elif score >= 61:
+                grade = 'B'
+            elif score >= 41:
+                grade = 'C'
+            elif score >= 21:
+                grade = 'D'
+            else:
+                grade = 'E'
+                
+            record.final_grade = grade
+
+            krs_line = self.env['akademik.krs.line'].search([
+                ('krs_id.student_id', '=', record.student_id.id),
+                ('subject_id.name', 'ilike', 'Tesis')
+            ], limit=1)
+            if krs_line:
+                krs_line.sudo().grade = grade
+            else:
+                raise models.ValidationError("Tesis subject not found in student's KRS. Please ensure the student is enrolled in Tesis subject.")
+            record.student_id.sudo().status = 'lulus'
+            record.stage = 'done'
+
     def action_cancel(self):
         for record in self:
             record.stage = 'title_submission'
@@ -95,9 +134,6 @@ class AkademikThesis(models.Model):
             else:
                 record.final_score = 0
 
-    defense_schedule = fields.Datetime(string='Final Defense Schedule')
-    examiner_score_ids = fields.One2many('akademik.tesis.nilai', 'thesis_id', string='Examiner Scores')
-    final_score = fields.Integer(string='Final Score', compute='_compute_final_score', store=True)
 
     @api.depends('progress')
     def _compute_progress_category(self):
@@ -108,15 +144,6 @@ class AkademikThesis(models.Model):
                 record.progress_category = 'medium'
             else:
                 record.progress_category = 'low'
-
-    stage = fields.Selection([
-        ('title_submission', 'Title Submission'),
-        ('supervisor_appointment', 'Supervisor Appointment'),
-        ('proposal_seminar', 'Proposal Seminar'),
-        ('research', 'Research'),
-        ('final_defense', 'Final Defense'),
-        ('graduation', 'Graduation')
-    ], string='Stage', default='title_submission', group_expand='_expand_stage')
 
     @api.model
     def _expand_stage(self, states, domain, order):
