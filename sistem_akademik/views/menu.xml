@@ -22,12 +22,14 @@
     <menuitem id="menu_akademik_krs"
               name="KRS"
               parent="menu_akademik_root"
+              groups="group_akademik_officer"
               action="action_akademik_krs"
               sequence="10"/>
 
     <menuitem id="menu_akademik_config"
               name="Configuration"
               parent="menu_akademik_root"
+              groups="group_akademik_officer"
               sequence="100"/>
 
     <menuitem id="menu_akademik_tahun"
@@ -57,7 +59,9 @@
     <menuitem id="menu_akademik_krs_wizard"
               name="Generate KRS"
               parent="menu_akademik_root"
+              groups="group_akademik_officer"
               action="action_akademik_krs_wizard"
               sequence="20"/>
+              
               
 </odoo>

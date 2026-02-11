@@ -5,35 +5,35 @@
         <record id="rule_partner_student" model="ir.rule">
             <field name="name">Student</field>
             <field name="model_id" ref="base.model_res_partner"/>
-            <field name="groups" eval="[(4, ref('group_akademik_student'))]"/>
-            <field name="domain_force">[('id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_student'))]"/>
+            <field name="domain_force">['|', ('id', '=', user.partner_id.id), ('id', '=', user.company_id.partner_id.id)]</field>
         </record>
 
         <record id="rule_partner_dosen" model="ir.rule">
             <field name="name">Dosen:Mahasiswa Bimbingan</field>
             <field name="model_id" ref="base.model_res_partner"/>
-            <field name="groups" eval="[(4, ref('group_akademik_dosen'))]"/>
-            <field name="domain_force">['|', ('dosen_pembimbing_id.user_id', '=', user.id), ('id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_dosen'))]"/>
+            <field name="domain_force">['|',('dosen_pembimbing_id.user_id', '=', user.id), ('id', '=', user.partner_id.id)]</field>
         </record>
 
         <record id="rule_partner_officer" model="ir.rule">
             <field name="name">Officer: Lihat Mahasiswa sama dosen</field>
             <field name="model_id" ref="base.model_res_partner"/>
-            <field name="groups" eval="[(4, ref('group_akademik_officer'))]"/>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_officer'))]"/>
             <field name="domain_force">['|', ('identitas_mahasiswa', '=', True), ('user_ids.employee_ids.is_dosen', '=', True)]</field>
         </record>
 
         <record id="rule_employee_dosen" model="ir.rule">
             <field name="name">Dosen: Lihat Employee Diri Sendiri</field>
             <field name="model_id" ref="hr.model_hr_employee"/>
-            <field name="groups" eval="[(4, ref('group_akademik_dosen'))]"/>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_dosen'))]"/>
             <field name="domain_force">[('user_id', '=', user.id)]</field>
         </record>
 
         <record id="rule_employee_officer" model="ir.rule">
             <field name="name">Officer: Akses Employee Dosen</field>
             <field name="model_id" ref="hr.model_hr_employee"/>
-            <field name="groups" eval="[(4, ref('group_akademik_officer'))]"/>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_officer'))]"/>
             <field name="domain_force">[('is_dosen', '=', True)]</field>
         </record>
 

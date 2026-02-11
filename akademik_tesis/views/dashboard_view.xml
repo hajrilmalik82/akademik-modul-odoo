@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Dashboard Line Chart: Completion Duration Trend -->
         <record id="view_tesis_completion_duration_graph" model="ir.ui.view">
             <field name="name">tesis.completion.duration.graph</field>
             <field name="model">akademik.tesis</field>
@@ -13,7 +12,6 @@
             </field>
         </record>
 
-        <!-- Dashboard Pie Chart: Student Status Ratio -->
         <record id="view_student_status_ratio_graph" model="ir.ui.view">
             <field name="name">student.status.ratio.graph</field>
             <field name="model">res.partner</field>
@@ -25,7 +23,6 @@
             </field>
         </record>
 
-        <!-- Dashboard Actions -->
         <record id="action_tesis_completion_duration" model="ir.actions.act_window">
             <field name="name">Thesis Completion Duration</field>
             <field name="res_model">akademik.tesis</field>
@@ -59,27 +56,5 @@
                 </p>
             </field>
         </record>
-
-        <!-- Dashboard Menu - Top Level -->
-        <menuitem 
-            id="menu_akademik_dashboard"
-            name="Dashboard"
-            sequence="5"
-            groups="akademik_dosen.group_akademik_officer"/>
-
-        <menuitem 
-            id="menu_tesis_completion_duration"
-            name="Completion Duration Trend"
-            parent="menu_akademik_dashboard"
-            action="action_tesis_completion_duration"
-            sequence="10"/>
-
-        <menuitem 
-            id="menu_student_status_ratio"
-            name="Student Status Ratio"
-            parent="menu_akademik_dashboard"
-            action="action_student_status_ratio"
-            sequence="20"/>
-
     </data>
 </odoo>

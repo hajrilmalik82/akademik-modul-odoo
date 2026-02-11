@@ -5,11 +5,10 @@
     'author': 'Hajril',
     'depends': ['base', 'hr', 'sistem_akademik'],
     'data': [
-        'security/akademik_security.xml',
         'security/ir.model.access.csv',
         'security/akademik_rules.xml',
         'views/hr_employee_view.xml',
-        'views/menu_security.xml',
+        'views/menu.xml',
     ],
     'assets': {
         'web.assets_backend': [

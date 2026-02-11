@@ -5,4 +5,24 @@
               parent="sistem_akademik.menu_akademik_root"
               action="action_akademik_tesis"
               sequence="30"/>
+    <menuitem 
+            id="menu_akademik_dashboard"
+            name="Dashboard"
+            parent="sistem_akademik.menu_akademik_root"
+            sequence="40"
+            groups="sistem_akademik.group_akademik_officer"/>
+
+        <menuitem 
+            id="menu_tesis_completion_duration"
+            name="Completion Duration Trend"
+            parent="menu_akademik_dashboard"
+            action="action_tesis_completion_duration"
+            sequence="10"/>
+
+        <menuitem 
+            id="menu_student_status_ratio"
+            name="Student Status Ratio"
+            parent="menu_akademik_dashboard"
+            action="action_student_status_ratio"
+            sequence="20"/>
 </odoo>

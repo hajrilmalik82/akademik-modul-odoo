@@ -1,0 +1,679 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* akademik_tesis
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-11 06:19+0000\n"
+"PO-Revision-Date: 2026-02-11 06:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: akademik_tesis
+#: model:ir.actions.report,print_report_name:akademik_tesis.action_report_thesis_certificate
+msgid "'Surat_Lulus_Tesis_%s' % (object.student_id.nim or 'draft')"
+msgstr "'Surat_Lulus_Tesis_%s' % (object.student_id.nim or 'draft')"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_kanban
+msgid "<span>Supervisor: </span>"
+msgstr "<span>Pembimbing: </span>"
+
+#. module: akademik_tesis
+#: model:ir.model,name:akademik_tesis.model_akademik_tesis
+msgid "Academic Thesis"
+msgstr "Tesis Akademik"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_needaction
+msgid "Action Needed"
+msgstr "Perlu Tindakan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__activity_ids
+msgid "Activities"
+msgstr "Aktivitas"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Dekorasi Pengecualian Aktivitas"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__activity_state
+msgid "Activity State"
+msgstr "Status Aktivitas"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Ikon Tipe Aktivitas"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Approve"
+msgstr "Setujui"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Approve Defense"
+msgstr "Setujui Sidang"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Approve Proposal"
+msgstr "Setujui Proposal"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Approve Research"
+msgstr "Setujui Penelitian"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_attachment_count
+msgid "Attachment Count"
+msgstr "Jumlah Lampiran"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Board of Examiners:"
+msgstr "Dewan Penguji:"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Cancel"
+msgstr "Batal"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__completion_date
+msgid "Completion Date"
+msgstr "Tanggal Selesai"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__completion_duration_days
+msgid "Completion Duration"
+msgstr "Durasi Penyelesaian"
+
+#. module: akademik_tesis
+#: model:ir.ui.menu,name:akademik_tesis.menu_tesis_completion_duration
+msgid "Completion Duration Trend"
+msgstr "Tren Durasi Penyelesaian"
+
+#. module: akademik_tesis
+#: model:ir.model,name:akademik_tesis.model_res_partner
+msgid "Contact"
+msgstr "Kontak"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__create_uid
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__create_uid
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__create_uid
+msgid "Created by"
+msgstr "Dibuat oleh"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__create_date
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__create_date
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__create_date
+msgid "Created on"
+msgstr "Dibuat pada"
+
+#. module: akademik_tesis
+#: model:ir.ui.menu,name:akademik_tesis.menu_akademik_dashboard
+msgid "Dashboard"
+msgstr "Dasbor"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__completion_date
+msgid "Date when thesis was marked as done"
+msgstr "Tanggal ketika tesis ditandai selesai"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__completion_duration_days
+msgid "Days from submission to completion"
+msgstr "Hari dari pengajuan hingga selesai"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Defense Date"
+msgstr "Tanggal Sidang"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__display_name
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__display_name
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__display_name
+msgid "Display Name"
+msgstr "Nama Tampilan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__name
+msgid "Document Name"
+msgstr "Nama Dokumen"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__type
+msgid "Document Type"
+msgstr "Tipe Dokumen"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Documents"
+msgstr "Dokumen"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__stage__done
+msgid "Done"
+msgstr "Selesai"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis_dokumen__status__draft
+msgid "Draft"
+msgstr "Rancangan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__examiner_id
+msgid "Examiner"
+msgstr "Penguji"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Examiner Name"
+msgstr "Nama Penguji"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__examiner_score_ids
+msgid "Examiner Scores"
+msgstr "Nilai Penguji"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__file
+msgid "File"
+msgstr "Berkas"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__file_name
+msgid "File Name"
+msgstr "Nama Berkas"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__stage__final_defense
+msgid "Final Defense"
+msgstr "Sidang Akhir"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__defense_schedule
+msgid "Final Defense Schedule"
+msgstr "Jadwal Sidang Akhir"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__final_grade
+msgid "Final Grade"
+msgstr "Nilai Akhir"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis_dokumen__type__final_report
+msgid "Final Report"
+msgstr "Laporan Akhir"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__final_score
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Final Score"
+msgstr "Nilai Akhir"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_follower_ids
+msgid "Followers"
+msgstr "Pengikut"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Pengikut (Rekanan)"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr "Ikon Font Awesome"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__stage__graduation
+msgid "Graduation"
+msgstr "Wisuda"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__has_message
+msgid "Has Message"
+msgstr "Ada Pesan"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Has attended and <strong>PASSED</strong> the thesis defense held on:"
+msgstr "Telah mengikuti dan <strong>LULUS</strong> sidang tesis yang diselenggarakan pada:"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Head of Study Program"
+msgstr "Ketua Program Studi"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__progress_category__high
+msgid "High (100%)"
+msgstr "Tinggi (100%)"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__id
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__id
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__id
+msgid "ID"
+msgstr "ID"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__activity_exception_icon
+msgid "Icon"
+msgstr "Ikon"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Ikon untuk menandakan pengecualian aktivitas."
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr "Jika dicentang, pesan baru memerlukan perhatian Anda."
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__message_has_error
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Jika dicentang, beberapa pesan mengalami kesalahan pengiriman."
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_is_follower
+msgid "Is Follower"
+msgstr "Adalah Pengikut"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_res_partner__krs_ids
+#: model:ir.model.fields,field_description:akademik_tesis.field_res_users__krs_ids
+msgid "KRS"
+msgstr "KRS"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__write_uid
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__write_uid
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__write_uid
+msgid "Last Updated by"
+msgstr "Terakhir Diperbarui oleh"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__write_date
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__write_date
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__write_date
+msgid "Last Updated on"
+msgstr "Terakhir Diperbarui pada"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__progress_category__low
+msgid "Low (0-49%)"
+msgstr "Rendah (0-49%)"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__progress_category__medium
+msgid "Medium (50-99%)"
+msgstr "Sedang (50-99%)"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_has_error
+msgid "Message Delivery error"
+msgstr "Kesalahan Pengiriman Pesan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_ids
+msgid "Messages"
+msgstr "Pesan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Tenggat Waktu Aktivitas Saya"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "NIM"
+msgstr "NIM"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "NIP. .............."
+msgstr "NIP. .............."
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Name"
+msgstr "Nama"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Tenggat Waktu Aktivitas Berikutnya"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__activity_summary
+msgid "Next Activity Summary"
+msgstr "Ringkasan Aktivitas Berikutnya"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__activity_type_id
+msgid "Next Activity Type"
+msgstr "Tipe Aktivitas Berikutnya"
+
+#. module: akademik_tesis
+#: model_terms:ir.actions.act_window,help:akademik_tesis.action_tesis_completion_duration
+msgid "No completed thesis data yet"
+msgstr "Belum ada data tesis yang selesai"
+
+#. module: akademik_tesis
+#: model_terms:ir.actions.act_window,help:akademik_tesis.action_student_status_ratio
+msgid "No student data yet"
+msgstr "Belum ada data mahasiswa"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "No."
+msgstr "No."
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__note
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__note
+msgid "Note"
+msgstr "Catatan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Jumlah Tindakan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_has_error_counter
+msgid "Number of errors"
+msgstr "Jumlah kesalahan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr "Jumlah pesan yang memerlukan tindakan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Jumlah pesan dengan kesalahan pengiriman"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "PROGRAM PASCASARJANA"
+msgstr "PROGRAM PASCASARJANA"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Process Graduation"
+msgstr "Proses Wisuda"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__progress_category
+msgid "Progress Category"
+msgstr "Kategori Progress"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__progress
+msgid "Progress Percentage"
+msgstr "Persentase Progress"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis_dokumen__type__proposal
+msgid "Proposal"
+msgstr "Proposal"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__stage__proposal_seminar
+msgid "Proposal Seminar"
+msgstr "Seminar Proposal"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Reject"
+msgstr "Tolak"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__supervisor_user_id
+msgid "Related user name for the resource to manage its access."
+msgstr "Nama user terkait untuk mengelola akses resource ini."
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Request Approval"
+msgstr "Minta Persetujuan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__stage__research
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis_dokumen__type__research
+msgid "Research"
+msgstr "Penelitian"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__activity_user_id
+msgid "Responsible User"
+msgstr "PJ User"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Kesalahan Pengiriman SMS"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__score
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Score"
+msgstr "Nilai"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Scoring"
+msgstr "Penilaian"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__seminar_schedule
+msgid "Seminar Schedule"
+msgstr "Jadwal Seminar"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__stage
+msgid "Stage"
+msgstr "Tahapan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__status
+msgid "Status"
+msgstr "Status"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Status berdasarkan aktivitas\n"
+"Terlambat: Batas waktu telah lewat\n"
+"Hari ini: Aktivitas dijadwalkan hari ini\n"
+"Direncanakan: Aktivitas masa depan."
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__student_id
+msgid "Student"
+msgstr "Mahasiswa"
+
+#. module: akademik_tesis
+#: model:ir.actions.act_window,name:akademik_tesis.action_student_status_ratio
+#: model:ir.ui.menu,name:akademik_tesis.menu_student_status_ratio
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_student_status_ratio_graph
+msgid "Student Status Ratio"
+msgstr "Rasio Status Mahasiswa"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__prodi_id
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Study Program"
+msgstr "Program Studi"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__submission_date
+msgid "Submission Date"
+msgstr "Tanggal Pengajuan"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Submit"
+msgstr "Ajukan"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__supervisor_id
+msgid "Supervisor"
+msgstr "Pembimbing"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__stage__supervisor_appointment
+msgid "Supervisor Appointment"
+msgstr "Penunjukan Pembimbing"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__supervisor_user_id
+msgid "Supervisor User"
+msgstr "User Pembimbing"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "Supervisor:"
+msgstr "Pembimbing:"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "THESIS DEFENSE PASSING CERTIFICATE"
+msgstr "SURAT KETERANGAN LULUS TESIS"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid ""
+"The undersigned, Director of the University Postgraduate Program, hereby "
+"certifies that:"
+msgstr "Yang bertanda tangan di bawah ini, Direktur Program Pascasarjana Universitas, dengan ini menerangkan bahwa:"
+
+#. module: akademik_tesis
+#: model:ir.actions.act_window,name:akademik_tesis.action_akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_dokumen__thesis_id
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis_nilai__thesis_id
+#: model:ir.ui.menu,name:akademik_tesis.menu_akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_tree
+msgid "Thesis"
+msgstr "Tesis"
+
+#. module: akademik_tesis
+#: model:ir.actions.act_window,name:akademik_tesis.action_tesis_completion_duration
+msgid "Thesis Completion Duration"
+msgstr "Durasi Penyelesaian Tesis"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_tesis_completion_duration_graph
+msgid "Thesis Completion Duration Trend"
+msgstr "Tren Durasi Penyelesaian Tesis"
+
+#. module: akademik_tesis
+#: model:ir.actions.report,name:akademik_tesis.action_report_thesis_certificate
+msgid "Thesis Defense Passing Certificate"
+msgstr "Surat Keterangan Lulus Tesis"
+
+#. module: akademik_tesis
+#: model:ir.model,name:akademik_tesis.model_akademik_tesis_dokumen
+msgid "Thesis Document"
+msgstr "Dokumen Tesis"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__document_ids
+msgid "Thesis Documents"
+msgstr "Dokumen Tesis"
+
+#. module: akademik_tesis
+#: model:ir.model,name:akademik_tesis.model_akademik_tesis_nilai
+msgid "Thesis Final Defense Score"
+msgstr "Nilai Sidang Akhir Tesis"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,field_description:akademik_tesis.field_akademik_tesis__title
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Thesis Title"
+msgstr "Judul Tesis"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "This certificate is issued truthfully to be used as appropriate."
+msgstr "Surat keterangan ini dibuat dengan sesungguhnya untuk dipergunakan sebagaimana mestinya."
+
+#. module: akademik_tesis
+#: model_terms:ir.actions.act_window,help:akademik_tesis.action_tesis_completion_duration
+msgid ""
+"This chart shows the average completion duration (in days) per study "
+"program."
+msgstr "Grafik ini menampilkan rata-rata durasi penyelesaian (dalam hari) per program studi."
+
+#. module: akademik_tesis
+#: model_terms:ir.actions.act_window,help:akademik_tesis.action_student_status_ratio
+msgid ""
+"This chart shows the ratio of student status (Active vs Graduated) per "
+"academic year."
+msgstr "Grafik ini menampilkan rasio status mahasiswa (Aktif vs Lulus) per tahun akademik."
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis__stage__title_submission
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis_dokumen__type__title_submission
+msgid "Title Submission"
+msgstr "Pengajuan Judul"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis_dokumen__status__to_be_verified
+msgid "To be Verified"
+msgstr "Menunggu Verifikasi"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Total Score"
+msgstr "Total Nilai"
+
+#. module: akademik_tesis
+#: model:ir.model.fields,help:akademik_tesis.field_akademik_tesis__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Tipe aktivitas pengecualian pada record."
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.report_surat_lulus_tesis_document
+msgid "UNIVERSITAS"
+msgstr "UNIVERSITAS"
+
+#. module: akademik_tesis
+#: model:ir.model.fields.selection,name:akademik_tesis.selection__akademik_tesis_dokumen__status__verified
+msgid "Verified"
+msgstr "Terverifikasi"
+
+#. module: akademik_tesis
+#: model_terms:ir.ui.view,arch_db:akademik_tesis.view_akademik_tesis_form
+msgid "Verify"
+msgstr "Verifikasi"

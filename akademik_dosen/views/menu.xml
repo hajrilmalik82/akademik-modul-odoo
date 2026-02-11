@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="menu_akademik_lecturer"
+              name="Lecturers"
+              parent="sistem_akademik.menu_akademik_root"
+              action="action_lecturer"
+              sequence="15"
+              groups="sistem_akademik.group_akademik_officer"/>
+</odoo>

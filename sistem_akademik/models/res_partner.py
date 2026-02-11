@@ -25,7 +25,7 @@ class ResPartner(models.Model):
     )
     tahun_masuk = fields.Many2one('akademik.tahun', string='Entry Year')
     topik_riset = fields.Char(string='Research Topic')
-    dosen_pembimbing_id = fields.Many2one('res.partner', string='Academic Advisor')
+    dosen_pembimbing_id = fields.Many2one('hr.employee', string='Academic Advisor')
     status = fields.Selection([
         ('draft', 'Draft'),
         ('aktif', 'Active'),

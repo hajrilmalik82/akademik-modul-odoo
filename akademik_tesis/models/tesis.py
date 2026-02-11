@@ -39,12 +39,12 @@ class AkademikThesis(models.Model):
         ('graduation', 'Graduation'),
         ('done', 'Done')
     ], string='Stage', default='title_submission', group_expand='_expand_stage')
-    
-    # Analytics fields
+
     completion_duration_days = fields.Integer(
-        string='Completion Duration (Days)', 
+        string='Completion Duration', 
         compute='_compute_completion_duration', 
         store=True,
+        group_operator='avg',
         help='Days from submission to completion'
     )
     prodi_id = fields.Many2one(
@@ -137,7 +137,7 @@ class AkademikThesis(models.Model):
             else:
                 raise models.ValidationError("Tesis subject not found in student's KRS. Please ensure the student is enrolled in Tesis subject.")
             record.student_id.sudo().status = 'lulus'
-            record.completion_date = fields.Date.today()
+            record.completion_date = record.defense_schedule.date()
             record.stage = 'done'
 
     def action_cancel(self):

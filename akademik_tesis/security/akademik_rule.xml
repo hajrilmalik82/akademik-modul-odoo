@@ -4,7 +4,7 @@
         <record id="rule_akademik_tesis_nilai_dosen_read" model="ir.rule">
             <field name="name">Nilai: Dosen Read (Examiner or Supervisor or Fellow Examiner)</field>
             <field name="model_id" ref="model_akademik_tesis_nilai"/>
-            <field name="groups" eval="[(4, ref('akademik_dosen.group_akademik_dosen'))]"/>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_dosen'))]"/>
             <field name="domain_force">['|', '|', ('examiner_id.user_id', '=', user.id), ('thesis_id.supervisor_id.user_id', '=', user.id), ('thesis_id.examiner_score_ids.examiner_id.user_id', '=', user.id)]</field>
             <field name="perm_read" eval="True"/>
             <field name="perm_write" eval="False"/>
@@ -13,7 +13,7 @@
         <record id="rule_akademik_tesis_nilai_dosen_write" model="ir.rule">
             <field name="name">Nilai: Dosen Write (Examiner Only)</field>
             <field name="model_id" ref="model_akademik_tesis_nilai"/>
-            <field name="groups" eval="[(4, ref('akademik_dosen.group_akademik_dosen'))]"/>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_dosen'))]"/>
             <field name="domain_force">[('examiner_id.user_id', '=', user.id)]</field>
             <field name="perm_read" eval="False"/>
             <field name="perm_write" eval="True"/>
@@ -22,21 +22,21 @@
         <record id="rule_akademik_tesis_nilai_officer" model="ir.rule">
             <field name="name">Nilai: Officer All Scores</field>
             <field name="model_id" ref="model_akademik_tesis_nilai"/>
-            <field name="groups" eval="[(4, ref('akademik_dosen.group_akademik_officer'))]"/>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_officer'))]"/>
             <field name="domain_force">[(1, '=', 1)]</field>
         </record>
 
         <record id="rule_akademik_tesis_dosen" model="ir.rule">
             <field name="name">Tesis: Dosen Pembimbing and Examiners</field>
             <field name="model_id" ref="model_akademik_tesis"/>
-            <field name="groups" eval="[(4, ref('akademik_dosen.group_akademik_dosen'))]"/>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_dosen'))]"/>
             <field name="domain_force">['|', ('supervisor_id.user_id', '=', user.id), ('examiner_score_ids.examiner_id.user_id', '=', user.id)]</field>
         </record>
 
         <record id="rule_akademik_tesis_officer" model="ir.rule">
             <field name="name">Tesis: Officer All Documents</field>
             <field name="model_id" ref="model_akademik_tesis"/>
-            <field name="groups" eval="[(4, ref('akademik_dosen.group_akademik_officer'))]"/>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_officer'))]"/>
             <field name="domain_force">[(1, '=', 1)]</field>
         </record>
     </data>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <record id="action_report_thesis_certificate" model="ir.actions.report">
-        <field name="name">Surat Keterangan Lulus Sidang Tesis</field>
+        <field name="name">Thesis Defense Passing Certificate</field>
         <field name="model">akademik.tesis</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">akademik_tesis.report_surat_lulus_tesis_document</field>
@@ -22,16 +22,16 @@
                         </div>
                         <div class="text-center" style="margin: 30px 0;">
                             <h2 style="text-decoration: underline; font-weight: bold; font-size: 16pt; margin: 0;">
-                                SURAT KETERANGAN LULUS SIDANG TESIS
+                                THESIS DEFENSE PASSING CERTIFICATE
                             </h2>
                         </div>
                         <div style="margin: 20px 0; text-align: justify; font-size: 11pt; line-height: 1.8;">
-                            <p>Yang bertanda tangan di bawah ini, Direktur Program Pascasarjana Universitas, dengan ini menerangkan bahwa:</p>
+                            <p>The undersigned, Director of the University Postgraduate Program, hereby certifies that:</p>
                         </div>
                         <div style="margin: 20px 40px; font-size: 11pt; line-height: 2.0;">
                             <table style="width: 100%; border-collapse: collapse;">
                                 <tr>
-                                    <td style="width: 30%; vertical-align: top;">Nama</td>
+                                    <td style="width: 30%; vertical-align: top;">Name</td>
                                     <td style="width: 5%; vertical-align: top;">:</td>
                                     <td style="width: 65%; font-weight: bold; vertical-align: top;">
                                         <span t-field="o.student_id.name"/>
@@ -45,14 +45,14 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="vertical-align: top;">Program Studi</td>
+                                    <td style="vertical-align: top;">Study Program</td>
                                     <td style="vertical-align: top;">:</td>
                                     <td style="font-weight: bold; vertical-align: top;">
                                         <span t-field="o.student_id.prodi_id.nama_prodi"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="vertical-align: top;">Judul Tesis</td>
+                                    <td style="vertical-align: top;">Thesis Title</td>
                                     <td style="vertical-align: top;">:</td>
                                     <td style="font-style: italic; vertical-align: top;">
                                         <span t-field="o.title"/>
@@ -62,13 +62,13 @@
                         </div>
                         <div style="margin: 20px 0; text-align: justify; font-size: 11pt; line-height: 1.8;">
                             <p>
-                                Telah mengikuti dan <strong>LULUS</strong> dalam sidang tesis yang dilaksanakan pada:
+                                Has attended and <strong>PASSED</strong> the thesis defense held on:
                             </p>
                         </div>
                         <div style="margin: 20px 40px; font-size: 11pt; line-height: 2.0;">
                             <table style="width: 100%; border-collapse: collapse;">
                                 <tr>
-                                    <td style="width: 30%; vertical-align: top;">Tanggal Sidang</td>
+                                    <td style="width: 30%; vertical-align: top;">Defense Date</td>
                                     <td style="width: 5%; vertical-align: top;">:</td>
                                     <td style="width: 65%; vertical-align: top;">
                                         <span t-if="o.defense_schedule">
@@ -78,7 +78,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="vertical-align: top;">Nilai Akhir</td>
+                                    <td style="vertical-align: top;">Final Score</td>
                                     <td style="vertical-align: top;">:</td>
                                     <td style="font-weight: bold; vertical-align: top;">
                                         <span t-esc="'%.2f' % o.final_score"/> (<span t-field="o.final_grade"/>)
@@ -87,7 +87,7 @@
                             </table>
                         </div>
                         <div style="margin: 30px 0; font-size: 11pt;">
-                            <p style="font-weight: bold; margin-bottom: 10px;">Dosen Pembimbing:</p>
+                            <p style="font-weight: bold; margin-bottom: 10px;">Supervisor:</p>
                             <div style="margin-left: 40px; line-height: 1.8;">
                                 <p>
                                     <span t-if="o.supervisor_id">
@@ -97,15 +97,15 @@
                                 </p>
                             </div>
 
-                            <p style="font-weight: bold; margin-bottom: 10px; margin-top: 20px;">Tim Penguji:</p>
+                            <p style="font-weight: bold; margin-bottom: 10px; margin-top: 20px;">Board of Examiners:</p>
                             <div style="margin-left: 40px; line-height: 1.8;">
                                 <t t-if="o.examiner_score_ids">
                                     <table style="width: 100%; border-collapse: collapse;">
                                         <thead>
                                             <tr style="border-bottom: 1px solid #000;">
                                                 <th style="text-align: left; padding: 5px; width: 5%;">No.</th>
-                                                <th style="text-align: left; padding: 5px; width: 60%;">Nama Penguji</th>
-                                                <th style="text-align: left; padding: 5px; width: 35%;">Nilai</th>
+                                                <th style="text-align: left; padding: 5px; width: 60%;">Examiner Name</th>
+                                                <th style="text-align: left; padding: 5px; width: 35%;">Score</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -135,7 +135,7 @@
 
                         <div style="margin: 30px 0; text-align: justify; font-size: 11pt; line-height: 1.8;">
                             <p>
-                                Demikian surat keterangan ini dibuat dengan sebenar-benarnya untuk dapat dipergunakan sebagaimana mestinya.
+                                This certificate is issued truthfully to be used as appropriate.
                             </p>
                         </div>
 
@@ -156,7 +156,7 @@
                                     <td style="width: 50%;"></td>
                                     <td style="width: 50%; text-align: center; padding-top: 80px;">
                                         <p style="margin: 0; font-weight: bold; text-decoration: underline;">
-                                            Ketua Program Studi
+                                            Head of Study Program
                                         </p>
                                         <p style="margin: 0;">NIP. ..............</p>
                                     </td>

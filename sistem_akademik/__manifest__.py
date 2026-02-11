@@ -6,6 +6,7 @@
     'author': 'Hajril',
     'depends': ['base', 'contacts', 'hr'],
     'data': [
+        'security/akademik_groups.xml',
         'security/ir.model.access.csv',
         'security/akademik_rule.xml',
         'views/akademik_tahun_view.xml',
