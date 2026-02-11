@@ -6,7 +6,7 @@
             <field name="model">akademik.tesis</field>
             <field name="arch" type="xml">
                 <graph string="Thesis Completion Duration Trend" type="line">
-                    <field name="prodi_id" type="row"/>
+                    <field name="study_program_id" type="row"/>
                     <field name="completion_duration_days" type="measure"/>
                 </graph>
             </field>
@@ -18,7 +18,7 @@
             <field name="arch" type="xml">
                 <graph string="Student Status Ratio" type="pie">
                     <field name="status" type="row"/>
-                    <field name="tahun_masuk" type="col"/>
+                    <field name="entry_year_id" type="col"/>
                 </graph>
             </field>
         </record>
@@ -29,7 +29,7 @@
             <field name="view_mode">graph,tree,form</field>
             <field name="view_id" ref="view_tesis_completion_duration_graph"/>
             <field name="domain">[('stage', '=', 'done'), ('completion_duration_days', '>', 0)]</field>
-            <field name="context">{'group_by': ['prodi_id']}</field>
+            <field name="context">{'group_by': ['study_program_id']}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     No completed thesis data yet
@@ -46,7 +46,7 @@
             <field name="view_mode">graph,tree,form</field>
             <field name="view_id" ref="view_student_status_ratio_graph"/>
             <field name="domain">[('identitas_mahasiswa', '=', True), ('status', '!=', 'draft')]</field>
-            <field name="context">{'group_by': ['status', 'tahun_masuk']}</field>
+            <field name="context">{'group_by': ['status', 'entry_year_id']}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     No student data yet

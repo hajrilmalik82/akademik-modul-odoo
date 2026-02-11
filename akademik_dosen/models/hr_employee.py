@@ -21,7 +21,7 @@ class HrEmployee(models.Model):
                 'email': employee.work_email,
                 'groups_id': [(6, 0, [self.env.ref('base.group_user').id])]
             }
-            user = self.env['res.users'].sudo().create(user_vals)
+            user = self.env['res.users'].create(user_vals)
             employee.user_id = user.id
     
 

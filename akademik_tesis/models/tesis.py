@@ -5,6 +5,7 @@ class AkademikThesis(models.Model):
     _description = 'Academic Thesis'
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _rec_name = 'title'
+    _order = 'submission_date desc, title'
 
     title = fields.Char(string='Thesis Title', required=True)
     student_id = fields.Many2one('res.partner', string='Student', domain="[('identitas_mahasiswa', '=', True), ('krs_ids.line_ids.subject_id.name', 'ilike', 'Tesis')]", required=True)
@@ -47,9 +48,9 @@ class AkademikThesis(models.Model):
         group_operator='avg',
         help='Days from submission to completion'
     )
-    prodi_id = fields.Many2one(
+    study_program_id = fields.Many2one(
         'akademik.prodi', 
-        related='student_id.prodi_id', 
+        related='student_id.study_program_id', 
         string='Study Program', 
         store=True
     )
@@ -65,7 +66,7 @@ class AkademikThesis(models.Model):
 
     def action_approve_supervisor(self):
         for record in self:
-            record.student_id.sudo().dosen_pembimbing_id = record.supervisor_id
+            record.student_id.sudo().supervisor_id = record.supervisor_id
             record.stage = 'proposal_seminar'
 
     def action_reject_supervisor(self):
@@ -136,7 +137,7 @@ class AkademikThesis(models.Model):
                 krs_line.sudo().grade = grade
             else:
                 raise models.ValidationError("Tesis subject not found in student's KRS. Please ensure the student is enrolled in Tesis subject.")
-            record.student_id.sudo().status = 'lulus'
+            record.student_id.sudo().status = 'graduated'
             record.completion_date = record.defense_schedule.date()
             record.stage = 'done'
 

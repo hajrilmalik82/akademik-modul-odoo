@@ -5,7 +5,7 @@
         <field name="model">akademik.tahun</field>
         <field name="arch" type="xml">
             <tree string="Academic Year">
-                <field name="tahun_akademik"/>
+                <field name="academic_year"/>
             </tree>
         </field>
     </record>
@@ -17,7 +17,7 @@
             <form string="Academic Year">
                 <sheet>
                     <group>
-                        <field name="tahun_akademik"/>
+                        <field name="academic_year"/>
                     </group>
                 </sheet>
             </form>

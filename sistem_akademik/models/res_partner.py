@@ -4,32 +4,36 @@ import datetime
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
+    _sql_constraints = [
+        ('nim_unique', 'unique(nim)', 'NIM must be unique!')
+    ]
+
     identitas_mahasiswa = fields.Boolean(string='Student Identity')
     nim = fields.Char(string='NIM')
-    prodi_id = fields.Many2one('akademik.prodi', string='Study Program')
-    jenjang = fields.Selection([
+    study_program_id = fields.Many2one('akademik.prodi', string='Study Program')
+    level = fields.Selection([
         ('s1', 'Bachelor'),
         ('pasca', 'Postgraduate')
     ], string='Level')
-    level_prestasi = fields.Selection([
+    achievement_level = fields.Selection([
         ('1', '1'),
         ('2', '2'),
         ('3', '3'),
         ('4', '4'),
         ('5', '5')
     ], string='Achievement Level')
-    tag_mahasiswa = fields.Many2many(
+    student_tags = fields.Many2many(
         'res.partner.category',
         'mahasiswa_tag_rel',
         string='Student Tags'
     )
-    tahun_masuk = fields.Many2one('akademik.tahun', string='Entry Year')
-    topik_riset = fields.Char(string='Research Topic')
-    dosen_pembimbing_id = fields.Many2one('hr.employee', string='Academic Advisor')
+    entry_year_id = fields.Many2one('akademik.tahun', string='Entry Year')
+    research_topic = fields.Char(string='Research Topic')
+    supervisor_id = fields.Many2one('hr.employee', string='Academic Advisor')
     status = fields.Selection([
         ('draft', 'Draft'),
-        ('aktif', 'Active'),
-        ('lulus', 'Graduated'),
+        ('active', 'Active'),
+        ('graduated', 'Graduated'),
         ('dropout', 'Drop Out')
     ], string='Student Status', default='draft')
 

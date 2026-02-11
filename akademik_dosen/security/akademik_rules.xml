@@ -13,7 +13,7 @@
             <field name="name">Dosen:Mahasiswa Bimbingan</field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_dosen'))]"/>
-            <field name="domain_force">['|',('dosen_pembimbing_id.user_id', '=', user.id), ('id', '=', user.partner_id.id)]</field>
+            <field name="domain_force">['|',('supervisor_id.user_id', '=', user.id), ('id', '=', user.partner_id.id)]</field>
         </record>
 
         <record id="rule_partner_officer" model="ir.rule">

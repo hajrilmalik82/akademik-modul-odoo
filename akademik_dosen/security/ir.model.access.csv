@@ -1,10 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_akademik_prodi_student,akademik.prodi student,sistem_akademik.model_akademik_prodi,sistem_akademik.group_akademik_student,1,0,0,0
-access_akademik_prodi_dosen,akademik.prodi dosen,sistem_akademik.model_akademik_prodi,sistem_akademik.group_akademik_dosen,1,0,0,0
-access_akademik_prodi_officer,akademik.prodi officer,sistem_akademik.model_akademik_prodi,sistem_akademik.group_akademik_officer,1,1,1,1
-access_akademik_tahun_student,akademik.tahun student,sistem_akademik.model_akademik_tahun,sistem_akademik.group_akademik_student,1,0,0,0
-access_akademik_tahun_dosen,akademik.tahun dosen,sistem_akademik.model_akademik_tahun,sistem_akademik.group_akademik_dosen,1,0,0,0
-access_akademik_tahun_officer,akademik.tahun officer,sistem_akademik.model_akademik_tahun,sistem_akademik.group_akademik_officer,1,1,1,1
-access_hr_employee_dosen,hr.employee dosen,hr.model_hr_employee,sistem_akademik.group_akademik_dosen,1,0,0,0
-access_hr_employee_officer,hr.employee officer,hr.model_hr_employee,sistem_akademik.group_akademik_officer,1,1,1,1
+access_akademik_prodi_student,akademik.prodi.student,sistem_akademik.model_akademik_prodi,sistem_akademik.group_akademik_student,1,0,0,0
+access_akademik_prodi_dosen,akademik.prodi.dosen,sistem_akademik.model_akademik_prodi,sistem_akademik.group_akademik_dosen,1,0,0,0
+access_akademik_prodi_officer,akademik.prodi.officer,sistem_akademik.model_akademik_prodi,sistem_akademik.group_akademik_officer,1,1,1,1
+access_akademik_tahun_student,akademik.tahun.student,sistem_akademik.model_akademik_tahun,sistem_akademik.group_akademik_student,1,0,0,0
+access_akademik_tahun_dosen,akademik.tahun.dosen,sistem_akademik.model_akademik_tahun,sistem_akademik.group_akademik_dosen,1,0,0,0
+access_akademik_tahun_officer,akademik.tahun.officer,sistem_akademik.model_akademik_tahun,sistem_akademik.group_akademik_officer,1,1,1,1
+access_hr_employee_dosen,hr.employee.dosen,hr.model_hr_employee,sistem_akademik.group_akademik_dosen,1,0,0,0
+access_hr_employee_officer,hr.employee.officer,hr.model_hr_employee,sistem_akademik.group_akademik_officer,1,1,1,1
 access_res_users_officer,res.users.officer,base.model_res_users,sistem_akademik.group_akademik_officer,1,1,1,0

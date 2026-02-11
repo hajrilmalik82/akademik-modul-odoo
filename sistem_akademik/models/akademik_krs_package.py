@@ -3,9 +3,10 @@ from odoo import models, fields
 class AkademikKrsPackage(models.Model):
     _name = 'akademik.krs.package'
     _description = 'KRS Package'
+    _order = 'study_program_id, semester'
 
     name = fields.Char(string='Package Name', required=True)
-    prodi_id = fields.Many2one('akademik.prodi', string='Study Program', required=True)
+    study_program_id = fields.Many2one('akademik.prodi', string='Study Program', required=True)
     semester = fields.Selection([
         ('1', 'Semester 1'),
         ('2', 'Semester 2'),

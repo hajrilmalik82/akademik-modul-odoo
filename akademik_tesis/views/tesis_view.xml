@@ -71,8 +71,8 @@
             <form string="Thesis">
                 <header>
                     <button name="action_request_approval" string="Request Approval" type="object" class="oe_highlight" invisible="stage != 'title_submission'" groups="sistem_akademik.group_akademik_officer"/>
-                    <button name="action_approve_supervisor" string="Approve" type="object" class="oe_highlight" invisible="stage != 'supervisor_appointment or supervisor_user_id != uid'" groups="sistem_akademik.group_akademik_dosen"/>
-                    <button name="action_reject_supervisor" string="Reject" type="object" invisible="stage != 'supervisor_appointment or supervisor_user_id != uid'" groups="sistem_akademik.group_akademik_dosen"/>
+                    <button name="action_approve_supervisor" string="Approve" type="object" class="oe_highlight" invisible="stage != 'supervisor_appointment' or supervisor_user_id != uid" groups="sistem_akademik.group_akademik_dosen"/>
+                    <button name="action_reject_supervisor" string="Reject" type="object" invisible="stage != 'supervisor_appointment' or supervisor_user_id != uid" groups="sistem_akademik.group_akademik_dosen"/>
                     <button name="action_approve_proposal" string="Approve Proposal" type="object" class="oe_highlight" invisible="stage != 'proposal_seminar' or supervisor_user_id != uid" groups="sistem_akademik.group_akademik_dosen"/>
                     <button name="action_approve_research" string="Approve Research" type="object" class="oe_highlight" invisible="stage != 'research' or supervisor_user_id != uid" groups="sistem_akademik.group_akademik_dosen"/>
                     <button name="action_approve_defense" string="Approve Defense" type="object" class="oe_highlight" invisible="stage != 'final_defense' or supervisor_user_id != uid" groups="sistem_akademik.group_akademik_dosen"/>

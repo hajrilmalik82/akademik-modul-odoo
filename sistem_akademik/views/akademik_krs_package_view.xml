@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <tree string="KRS Packages">
                 <field name="name"/>
-                <field name="prodi_id"/>
+                <field name="study_program_id"/>
                 <field name="semester"/>
             </tree>
         </field>
@@ -21,7 +21,7 @@
                     <group>
                         <group>
                             <field name="name"/>
-                            <field name="prodi_id"/>
+                            <field name="study_program_id"/>
                         </group>
                         <group>
                             <field name="semester"/>
@@ -31,7 +31,6 @@
                         <page string="Subjects">
                             <field name="subject_ids">
                                 <tree>
-                                    <field name="code"/>
                                     <field name="name"/>
                                     <field name="credits"/>
                                     <field name="type"/>

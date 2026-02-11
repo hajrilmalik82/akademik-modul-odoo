@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <tree string="KRS">
                 <field name="student_id"/>
-                <field name="prodi_id"/>
+                <field name="study_program_id"/>
                 <field name="academic_year_id"/>
                 <field name="semester"/>
             </tree>

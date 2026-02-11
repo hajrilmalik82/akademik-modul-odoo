@@ -8,7 +8,7 @@
         <field name="inherit_id" ref="sistem_akademik.view_mahasiswa_search"/>
         <field name="arch" type="xml">
             <xpath expr="//searchpanel" position="inside">
-                <field name="dosen_pembimbing_id" icon="fa-user-tie" enable_counters="1"/>
+                <field name="supervisor_id" icon="fa-user-tie" enable_counters="1"/>
             </xpath>
         </field>
     </record>
@@ -19,7 +19,7 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_partner_tree_mahasiswa"/>
         <field name="search_view_id" ref="view_mahasiswa_pasca_search"/>
-        <field name="domain">[('identitas_mahasiswa', '=', True), ('jenjang', '=', 'pasca')]</field>
-        <field name="context">{'search_default_filter_aktif': 1, 'default_identitas_mahasiswa': True, 'default_jenjang': 'pasca', 'tree_view_ref': 'sistem_akademik.view_partner_tree_mahasiswa', 'form_view_ref': 'sistem_akademik.view_partner_form_mahasiswa'}</field>
+        <field name="domain">[('identitas_mahasiswa', '=', True), ('level', '=', 'pasca')]</field>
+        <field name="context">{'search_default_filter_aktif': 1, 'default_identitas_mahasiswa': True, 'default_level': 'pasca', 'tree_view_ref': 'sistem_akademik.view_partner_tree_mahasiswa', 'form_view_ref': 'sistem_akademik.view_partner_form_mahasiswa'}</field>
     </record>
 </odoo>

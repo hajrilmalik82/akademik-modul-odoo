@@ -1,6 +1,6 @@
 {
     'name': 'Dosen Akademik',
-    'version': '1.0',
+    'version': '17.0.1.0.0',
     'description': """Modul Keren Dosen""",
     'author': 'Hajril',
     'depends': ['base', 'hr', 'sistem_akademik'],

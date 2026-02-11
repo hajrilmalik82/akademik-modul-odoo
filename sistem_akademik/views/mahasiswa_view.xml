@@ -8,15 +8,15 @@
                 <field name="image_128" widget="image"/>
                 <field name="nim"/>
                 <field name="name"/>
-                <field name="prodi_id"/>
-                <field name="tahun_masuk"/>
-                <field name="tag_mahasiswa" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                <field name="study_program_id"/>
+                <field name="entry_year_id"/>
+                <field name="student_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="email" widget="email"/>
                 <field name="phone" widget="phone"/>
-                <field name="topik_riset" column_invisible="context.get('default_jenjang') != 'pasca'"/>
-                <field name="dosen_pembimbing_id" column_invisible="context.get('default_jenjang') != 'pasca'"/>
-                <field name="level_prestasi" widget="priority"/>
-                <field name="status" widget="badge" decoration-success="status == 'lulus'" decoration-danger="status == 'dropout'"/>
+                <field name="research_topic" column_invisible="context.get('default_level') != 'pasca'"/>
+                <field name="supervisor_id" column_invisible="context.get('default_level') != 'pasca'"/>
+                <field name="achievement_level" widget="priority"/>
+                <field name="status" widget="badge" decoration-success="status == 'graduated'" decoration-danger="status == 'dropout'"/>
             </tree>
         </field>
     </record>
@@ -42,16 +42,16 @@
                 <field name="email" string="Email"/>
                 
                 <separator/>
-                <filter string="Active Student" name="filter_aktif" domain="[('status', '=', 'aktif')]"/>
-                <filter string="Graduated" name="filter_lulus" domain="[('status', '=', 'lulus')]"/>
+                <filter string="Active Student" name="filter_aktif" domain="[('status', '=', 'active')]"/>
+                <filter string="Graduated" name="filter_lulus" domain="[('status', '=', 'graduated')]"/>
                 <filter string="Dropped Out" name="filter_dropout" domain="[('status', '=', 'dropout')]"/>
                 
                 <group expand="0" string="Group By">
-                    <filter string="Study Program" name="group_prodi" context="{'group_by': 'prodi_id'}"/>
-                    <filter string="Level" name="group_jenjang" context="{'group_by': 'jenjang'}"/>
+                    <filter string="Study Program" name="group_prodi" context="{'group_by': 'study_program_id'}"/>
+                    <filter string="Level" name="group_level" context="{'group_by': 'level'}"/>
                 </group>
                 <searchpanel>
-                    <field name="prodi_id" icon="fa-building" enable_counters="1"/>
+                    <field name="study_program_id" icon="fa-building" enable_counters="1"/>
                     <field name="status" icon="fa-tags" enable_counters="1"/>
                 </searchpanel>
             </search>
@@ -76,7 +76,7 @@
             <form string="Student">
                 <header>
                     <button name="action_generate_nim" string="Generate NIM" type="object" class="oe_highlight" invisible="nim"/>
-                    <field name="status" widget="statusbar" statusbar_visible="draft,aktif,lulus,dropout" options="{'clickable': '1'}"/>
+                    <field name="status" widget="statusbar" statusbar_visible="draft,active,graduated,dropout" options="{'clickable': '1'}"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box"/>
@@ -87,22 +87,22 @@
                             <field name="name" placeholder="Student Name"/>
                             <field name="identitas_mahasiswa" invisible="1"/>
                             <field name="nim" readonly="id != False"/>
-                            <field name="prodi_id"/>
+                            <field name="study_program_id"/>
                         </group>
                         <group string="Contact &amp; Category">
                             <field name="email" widget="email"/>
                             <field name="phone" widget="phone"/>
-                            <field name="tag_mahasiswa" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="student_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
                         </group>
                     </group>
                     <notebook>
                         <page string="Academic Data">
                             <group>
-                                <field name="jenjang" readonly="1" force_save="1"/>
-                                <field name="topik_riset" invisible="jenjang != 'pasca'" required="jenjang == 'pasca'"/>
-                                <field name="dosen_pembimbing_id" invisible="jenjang != 'pasca'" readonly="1"/>
-                                <field name="level_prestasi" widget="priority"/>
-                                <field name="tahun_masuk"/>
+                                <field name="level" readonly="1" force_save="1"/>
+                                <field name="research_topic" invisible="level != 'pasca'" required="level == 'pasca'"/>
+                                <field name="supervisor_id" invisible="level != 'pasca'" readonly="1"/>
+                                <field name="achievement_level" widget="priority"/>
+                                <field name="entry_year_id"/>
                             </group>
                         </page>
                         <page string="Notes">

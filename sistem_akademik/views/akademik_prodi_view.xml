@@ -5,7 +5,7 @@
         <field name="model">akademik.prodi</field>
         <field name="arch" type="xml">
             <tree string="Study Program">
-                <field name="nama_prodi"/>
+                <field name="study_program_name"/>
             </tree>
         </field>
     </record>
@@ -18,7 +18,7 @@
                 <sheet>
                     <group>
                         <group>
-                            <field name="nama_prodi"/>
+                            <field name="study_program_name"/>
                         </group>
                     </group>
                 </sheet>

@@ -48,7 +48,7 @@
                                     <td style="vertical-align: top;">Study Program</td>
                                     <td style="vertical-align: top;">:</td>
                                     <td style="font-weight: bold; vertical-align: top;">
-                                        <span t-field="o.student_id.prodi_id.nama_prodi"/>
+                                        <span t-field="o.student_id.study_program_id.study_program_name"/>
                                     </td>
                                 </tr>
                                 <tr>

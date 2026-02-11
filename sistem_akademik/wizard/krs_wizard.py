@@ -23,8 +23,8 @@ class KrsWizard(models.TransientModel):
         
         students = self.env['res.partner'].search([
             ('identitas_mahasiswa', '=', True),
-            ('tahun_masuk', '=', self.entry_year_id.id),
-            ('status', '=', 'aktif')
+            ('entry_year_id', '=', self.entry_year_id.id),
+            ('status', '=', 'active')
         ])
 
         if not students:
@@ -33,11 +33,11 @@ class KrsWizard(models.TransientModel):
         created_krs = []
         
         for student in students:
-            if not student.prodi_id:
+            if not student.study_program_id:
                 continue
 
             krs_package = self.env['akademik.krs.package'].search([
-                ('prodi_id', '=', student.prodi_id.id),
+                ('study_program_id', '=', student.study_program_id.id),
                 ('semester', '=', self.semester)
             ], limit=1)
 
