@@ -19,6 +19,7 @@
         'views/mahasiswa_s1_view.xml',
         'views/mahasiswa_pasca_view.xml',
         'wizard/krs_wizard_view.xml',
+        'wizard/akademik_krs_score_wizard_view.xml',
         'views/menu.xml',
     ],
     'installable': True,

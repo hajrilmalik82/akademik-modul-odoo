@@ -22,7 +22,7 @@
     <menuitem id="menu_akademik_krs"
               name="KRS"
               parent="menu_akademik_root"
-              groups="group_akademik_officer"
+              groups="group_akademik_student"
               action="action_akademik_krs"
               sequence="10"/>
 

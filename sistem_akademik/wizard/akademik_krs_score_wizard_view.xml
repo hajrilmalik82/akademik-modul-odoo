@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_akademik_krs_score_wizard_form" model="ir.ui.view">
+        <field name="name">akademik.krs.score.wizard.form</field>
+        <field name="model">akademik.krs.score.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Input Score">
+                <group>
+                    <field name="krs_line_id"/>
+                    <field name="score"/>
+                </group>
+                <footer>
+                    <button name="action_save_score" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_akademik_krs_score_wizard" model="ir.actions.act_window">
+        <field name="name">Input Score</field>
+        <field name="res_model">akademik.krs.score.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

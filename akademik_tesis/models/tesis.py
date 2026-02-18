@@ -19,13 +19,7 @@ class AkademikThesis(models.Model):
     defense_schedule = fields.Datetime(string='Final Defense Schedule')
     examiner_score_ids = fields.One2many('akademik.tesis.nilai', 'thesis_id', string='Examiner Scores')
     final_score = fields.Integer(string='Final Score', compute='_compute_final_score', store=True)
-    final_grade = fields.Selection([
-        ('A', 'A'),
-        ('B', 'B'),
-        ('C', 'C'),
-        ('D', 'D'),
-        ('E', 'E')
-    ], string='Final Grade', readonly=True)
+
     progress_category = fields.Selection([
         ('low', 'Low (0-49%)'),
         ('medium', 'Medium (50-99%)'),
@@ -111,45 +105,32 @@ class AkademikThesis(models.Model):
 
             record.stage = 'graduation'
 
-    def action_process_graduation(self):
+    krs_line_id = fields.Many2one('akademik.krs.line', string='KRS Line (Thesis)', compute='_compute_krs_line_id', store=True)
+    final_grade = fields.Selection(related='krs_line_id.grade', string='Final Grade', store=True, readonly=True)
+    
+    @api.depends('student_id')
+    def _compute_krs_line_id(self):
         for record in self:
-            if not record.final_score or record.final_score == 0:
-                raise models.ValidationError("Final score must be calculated before processing graduation.")
-            score = record.final_score
-            grade = self._get_grade(score)
-            record.final_grade = grade
-
             krs_line = self.env['akademik.krs.line'].search([
                 ('krs_id.student_id', '=', record.student_id.id),
                 ('subject_id.name', 'ilike', 'Tesis')
             ], limit=1)
-            if krs_line:
-                krs_line.grade = grade
+            record.krs_line_id = krs_line.id if krs_line else False
+
+    def action_process_graduation(self):
+        for record in self:
+            if not record.final_score or record.final_score == 0:
+                raise models.ValidationError("Final score must be calculated before processing graduation.")
+            
+            # Write score to KRS Line, triggering auto-compute of grade in KRS
+            if record.krs_line_id:
+                record.krs_line_id.score = record.final_score
+            else:
+                 raise models.ValidationError("Student does not have 'Thesis' in their KRS/Study Plan.")
         
             record.student_id.status = 'graduated'
             record.completion_date = record.defense_schedule.date()
             record.stage = 'done'
-
-    def _get_grade(self, score):
-        """
-        Convert numerical score to letter grade.
-        Scale:
-        A: 81-100
-        B: 61-80
-        C: 41-60
-        D: 21-40
-        E: 0-20
-        """
-        if score >= 81:
-            return 'A'
-        elif score >= 61:
-            return 'B'
-        elif score >= 41:
-            return 'C'
-        elif score >= 21:
-            return 'D'
-        else:
-            return 'E'
 
     def action_cancel(self):
         for record in self:

@@ -84,10 +84,12 @@
                     
                     <group>
                         <group string="Identity Data">
-                            <field name="name" placeholder="Student Name"/>
+                            <field name="name" placeholder="Student Name" readonly="id != False" groups="!sistem_akademik.group_akademik_officer"/>
+                            <field name="name" placeholder="Student Name" groups="sistem_akademik.group_akademik_officer"/>
                             <field name="identitas_mahasiswa" invisible="1"/>
-                            <field name="nim" readonly="id != False"/>
-                            <field name="study_program_id"/>
+                            <field name="nim" readonly="1"/>
+                            <field name="study_program_id" readonly="1" groups="!sistem_akademik.group_akademik_officer"/>
+                            <field name="study_program_id" groups="sistem_akademik.group_akademik_officer"/>
                         </group>
                         <group string="Contact &amp; Category">
                             <field name="email" widget="email"/>
@@ -102,7 +104,8 @@
                                 <field name="research_topic" invisible="level != 'pasca'" required="level == 'pasca'"/>
                                 <field name="supervisor_id" invisible="level != 'pasca'" readonly="1"/>
                                 <field name="achievement_level" widget="priority"/>
-                                <field name="entry_year_id"/>
+                                <field name="entry_year_id" readonly="1" groups="!sistem_akademik.group_akademik_officer"/>
+                                <field name="entry_year_id" groups="sistem_akademik.group_akademik_officer"/>
                             </group>
                         </page>
                         <page string="Notes">
@@ -113,5 +116,5 @@
             </form>
         </field>
     </record>
-
 </odoo>
+

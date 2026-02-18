@@ -8,4 +8,5 @@ access_akademik_krs_student,akademik.krs.student,model_akademik_krs,group_akadem
 access_akademik_krs_line_officer,akademik.krs.line.officer,model_akademik_krs_line,group_akademik_officer,1,1,1,1
 access_akademik_krs_line_student,akademik.krs.line.student,model_akademik_krs_line,group_akademik_student,1,0,0,0
 access_akademik_krs_wizard_officer,akademik.krs.wizard.officer,model_akademik_krs_wizard,group_akademik_officer,1,1,1,1
+access_akademik_krs_score_wizard_officer,akademik.krs.score.wizard.officer,model_akademik_krs_score_wizard,group_akademik_officer,1,1,1,1
 
