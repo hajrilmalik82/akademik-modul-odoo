@@ -9,6 +9,7 @@
         'security/akademik_groups.xml',
         'security/ir.model.access.csv',
         'security/akademik_rule.xml',
+        'data/akademik_sequence.xml',
         'views/akademik_tahun_view.xml',
         'views/akademik_prodi_view.xml',
         'views/akademik_subject_view.xml',

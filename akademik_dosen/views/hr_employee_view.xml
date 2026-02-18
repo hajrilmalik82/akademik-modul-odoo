@@ -39,6 +39,7 @@
                 <group class="dosen_academic_group" invisible="not is_dosen">
                     <field name="nidn"/>
                     <field name="gelar_akademik"/>
+                    <field name="study_program_id"/>
                 </group>
             </xpath>
 

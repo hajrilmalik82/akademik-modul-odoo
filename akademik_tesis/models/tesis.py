@@ -9,7 +9,7 @@ class AkademikThesis(models.Model):
 
     title = fields.Char(string='Thesis Title', required=True)
     student_id = fields.Many2one('res.partner', string='Student', domain="[('identitas_mahasiswa', '=', True), ('krs_ids.line_ids.subject_id.name', 'ilike', 'Tesis')]", required=True)
-    supervisor_id = fields.Many2one('hr.employee', string='Supervisor', domain="[('is_dosen', '=', True)]")
+    supervisor_id = fields.Many2one('hr.employee', string='Supervisor', domain="[('is_dosen', '=', True), ('study_program_id', '=', study_program_id)]")
     supervisor_user_id = fields.Many2one('res.users', related='supervisor_id.user_id', string='Supervisor User', store=True)
     submission_date = fields.Date(string='Submission Date', default=fields.Date.today)
     note = fields.Text(string='Note')
@@ -72,17 +72,17 @@ class AkademikThesis(models.Model):
     def action_reject_supervisor(self):
         for record in self:
             if not record.note:
-                raise models.ValidationError(" fill in the note before rejecting.")
+                raise models.ValidationError("Please fill in the note before rejecting.")
             record.stage = 'title_submission'
 
     def action_approve_proposal(self):
         for record in self:
             proposal = record.document_ids.filtered(lambda d: d.type == 'proposal' and d.status == 'verified')
             if not proposal:
-                raise models.ValidationError("upload and verify the Proposal document before proceeding to Research stage.")
+                raise models.ValidationError("Please upload and verify the Proposal document before proceeding to Research stage.")
             
             if not record.seminar_schedule:
-                raise models.ValidationError("set the Seminar Schedule before approving the proposal.")
+                raise models.ValidationError("Please set the Seminar Schedule before approving the proposal.")
 
             record.stage = 'research'
 
@@ -90,7 +90,7 @@ class AkademikThesis(models.Model):
         for record in self:
             research_doc = record.document_ids.filtered(lambda d: d.type == 'research' and d.status == 'verified')
             if not research_doc:
-                 raise models.ValidationError("upload and verify the Research document before proceeding to Final Defense.")
+                 raise models.ValidationError("Please upload and verify the Research document before proceeding to Final Defense.")
             
             record.stage = 'final_defense'
 
@@ -116,17 +116,7 @@ class AkademikThesis(models.Model):
             if not record.final_score or record.final_score == 0:
                 raise models.ValidationError("Final score must be calculated before processing graduation.")
             score = record.final_score
-            if score >= 81:
-                grade = 'A'
-            elif score >= 61:
-                grade = 'B'
-            elif score >= 41:
-                grade = 'C'
-            elif score >= 21:
-                grade = 'D'
-            else:
-                grade = 'E'
-                
+            grade = self._get_grade(score)
             record.final_grade = grade
 
             krs_line = self.env['akademik.krs.line'].search([
@@ -139,6 +129,27 @@ class AkademikThesis(models.Model):
             record.student_id.status = 'graduated'
             record.completion_date = record.defense_schedule.date()
             record.stage = 'done'
+
+    def _get_grade(self, score):
+        """
+        Convert numerical score to letter grade.
+        Scale:
+        A: 81-100
+        B: 61-80
+        C: 41-60
+        D: 21-40
+        E: 0-20
+        """
+        if score >= 81:
+            return 'A'
+        elif score >= 61:
+            return 'B'
+        elif score >= 41:
+            return 'C'
+        elif score >= 21:
+            return 'D'
+        else:
+            return 'E'
 
     def action_cancel(self):
         for record in self:

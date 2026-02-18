@@ -59,10 +59,7 @@ class KrsWizard(models.TransientModel):
             }
             krs_lines = []
             for subject in krs_package.subject_ids:
-                krs_lines.append((0, 0, {
-                    'subject_id': subject.id
-                }))
-            
+                krs_lines.append((0, 0, {'subject_id': subject.id}))
             krs_vals['line_ids'] = krs_lines
             
             krs = self.env['akademik.krs'].create(krs_vals)

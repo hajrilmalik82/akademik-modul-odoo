@@ -6,6 +6,7 @@ class HrEmployee(models.Model):
     is_dosen = fields.Boolean(string='Is Lecturer', default=False)
     nidn = fields.Char(string='NIDN')
     gelar_akademik = fields.Char(string='Academic Degree')
+    study_program_id = fields.Many2one('akademik.prodi', string='Study Program (Homebase)')
     
     def action_generate_user(self):
         for employee in self:
@@ -13,14 +14,19 @@ class HrEmployee(models.Model):
                 continue
             
             if not employee.work_email:
-                raise models.ValidationError('fill in the email')
+                raise models.ValidationError("Please fill in the work email for the employee.")
                 
+            # Ensure the current user is an HR Manager or Academic Officer
+            if not self.env.user.has_group('sistem_akademik.group_akademik_officer'):
+                 raise models.AccessError("You are not allowed to generate users. Please contact HR Manager.")
+
             user_vals = {
                 'name': employee.name,
                 'login': employee.work_email,
                 'email': employee.work_email,
                 'groups_id': [(6, 0, [self.env.ref('base.group_user').id, self.env.ref('sistem_akademik.group_akademik_dosen').id])]
             }
+            # Use sudo to allow creation of user/partner bypassing strict record rules
             user = self.env['res.users'].sudo().create(user_vals)
             employee.sudo().user_id = user.id
     

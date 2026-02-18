@@ -1,5 +1,5 @@
 from odoo import models, fields, api
-import datetime
+
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -40,8 +40,8 @@ class ResPartner(models.Model):
     def action_generate_nim(self):
         for record in self:
             if not record.nim:
-                year = datetime.datetime.now().year
-                record.nim = f"{year}{record.id or '0000'}"
+                # Use ir.sequence for robust NIM generation
+                record.nim = self.env['ir.sequence'].next_by_code('res.partner.nim') or 'New'
                 
     @api.depends('name', 'nim', 'identitas_mahasiswa')
     def _compute_display_name(self):

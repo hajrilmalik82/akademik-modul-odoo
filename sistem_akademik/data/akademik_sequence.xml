@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Sequence for Student NIM -->
+        <record id="seq_mahasiswa_nim" model="ir.sequence">
+            <field name="name">NIM Mahasiswa</field>
+            <field name="code">res.partner.nim</field>
+            <field name="prefix">%(year)s</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+            <field name="number_increment">1</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>
