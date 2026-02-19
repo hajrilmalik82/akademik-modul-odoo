@@ -13,8 +13,8 @@
                 <field name="student_tags" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 <field name="email" widget="email"/>
                 <field name="phone" widget="phone"/>
-                <field name="research_topic" column_invisible="context.get('default_level') != 'pasca'"/>
-                <field name="supervisor_id" column_invisible="context.get('default_level') != 'pasca'"/>
+                <field name="research_topic"/>
+                <field name="supervisor_id"/>
                 <field name="achievement_level" widget="priority"/>
                 <field name="status" widget="badge" decoration-success="status == 'graduated'" decoration-danger="status == 'dropout'"/>
             </tree>
@@ -48,7 +48,6 @@
                 
                 <group expand="0" string="Group By">
                     <filter string="Study Program" name="group_prodi" context="{'group_by': 'study_program_id'}"/>
-                    <filter string="Level" name="group_level" context="{'group_by': 'level'}"/>
                 </group>
                 <searchpanel>
                     <field name="study_program_id" icon="fa-building" enable_counters="1"/>
@@ -100,9 +99,8 @@
                     <notebook>
                         <page string="Academic Data">
                             <group>
-                                <field name="level" readonly="1" force_save="1"/>
-                                <field name="research_topic" invisible="level != 'pasca'" required="level == 'pasca'"/>
-                                <field name="supervisor_id" invisible="level != 'pasca'" readonly="1"/>
+                                <field name="research_topic"/>
+                                <field name="supervisor_id" readonly="1"/>
                                 <field name="achievement_level" widget="priority"/>
                                 <field name="entry_year_id" readonly="1" groups="!sistem_akademik.group_akademik_officer"/>
                                 <field name="entry_year_id" groups="sistem_akademik.group_akademik_officer"/>

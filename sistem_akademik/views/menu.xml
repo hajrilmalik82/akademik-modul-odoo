@@ -5,8 +5,11 @@
     <menuitem id="menu_akademik_mahasiswa"
               name="Student"
               parent="menu_akademik_root"
+              action="action_mahasiswa_list"
               sequence="10"/>
 
+    <!-- Removed S1 and Pasca sub-menus -->
+    <!--
     <menuitem id="menu_akademik_mahasiswa_s1"
               name="Student S1"
               parent="menu_akademik_mahasiswa"
@@ -18,13 +21,40 @@
               parent="menu_akademik_mahasiswa"
               action="action_mahasiswa_pasca_list"
               sequence="20"/>
+    -->
 
+    <!-- KRS Root Menu (Container) -->
     <menuitem id="menu_akademik_krs"
               name="KRS"
               parent="menu_akademik_root"
               groups="group_akademik_student"
+              sequence="10"/>
+
+    <!-- KRS List Submenu -->
+    <menuitem id="menu_akademik_krs_list"
+              name="KRS List"
+              parent="menu_akademik_krs"
               action="action_akademik_krs"
               sequence="10"/>
+
+    <menuitem id="menu_akademik_krs_wizard"
+              name="Generate KRS"
+              parent="menu_akademik_krs"
+              groups="group_akademik_officer"
+              action="action_akademik_krs_wizard"
+              sequence="20"/>
+
+    <menuitem id="menu_akademik_subject"
+              name="Subjects"
+              parent="menu_akademik_krs"
+              action="action_akademik_subject"
+              sequence="30"/>
+    
+    <menuitem id="menu_akademik_krs_package"
+              name="KRS Packages"
+              parent="menu_akademik_krs"
+              action="action_akademik_krs_package"
+              sequence="40"/>
 
     <menuitem id="menu_akademik_config"
               name="Configuration"
@@ -42,25 +72,6 @@
               name="Study Program"
               parent="menu_akademik_config"
               action="action_akademik_prodi"
-              sequence="20"/>
-    
-    <menuitem id="menu_akademik_subject"
-              name="Subjects"
-              parent="menu_akademik_config"
-              action="action_akademik_subject"
-              sequence="30"/>
-    
-    <menuitem id="menu_akademik_krs_package"
-              name="KRS Packages"
-              parent="menu_akademik_config"
-              action="action_akademik_krs_package"
-              sequence="40"/>
-    
-    <menuitem id="menu_akademik_krs_wizard"
-              name="Generate KRS"
-              parent="menu_akademik_root"
-              groups="group_akademik_officer"
-              action="action_akademik_krs_wizard"
               sequence="20"/>
               
               

@@ -11,10 +11,6 @@ class ResPartner(models.Model):
     identitas_mahasiswa = fields.Boolean(string='Student Identity')
     nim = fields.Char(string='NIM')
     study_program_id = fields.Many2one('akademik.prodi', string='Study Program')
-    level = fields.Selection([
-        ('s1', 'Bachelor'),
-        ('pasca', 'Postgraduate')
-    ], string='Level')
     achievement_level = fields.Selection([
         ('1', '1'),
         ('2', '2'),

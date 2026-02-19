@@ -12,3 +12,5 @@ class AkademikSubject(models.Model):
         ('compulsory', 'Compulsory'),
         ('elective', 'Elective')
     ], string='Type', required=True, default='compulsory')
+    
+    study_program_id = fields.Many2one('akademik.prodi', string='Study Program', required=True)

@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class AkademikKrsPackage(models.Model):
     _name = 'akademik.krs.package'
@@ -17,4 +17,15 @@ class AkademikKrsPackage(models.Model):
         ('7', 'Semester 7'),
         ('8', 'Semester 8'),
     ], string='Semester', required=True)
-    subject_ids = fields.Many2many('akademik.subject', string='Subjects')
+    subject_ids = fields.Many2many('akademik.subject', string='Subjects', domain="[('study_program_id', '=', study_program_id)]")
+
+    @api.constrains('subject_ids')
+    def _check_unique_subjects(self):
+        for package in self:
+            # Check if any subject in this package is already used in OTHER packages
+            other_packages = self.search([('id', '!=', package.id)])
+            existing_subject_ids = other_packages.mapped('subject_ids').ids
+            
+            for subject in package.subject_ids:
+                if subject.id in existing_subject_ids:
+                    raise models.ValidationError(f"Subject '{subject.name}' is already used in another package! A subject can only be assigned to one package.")
