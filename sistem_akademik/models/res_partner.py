@@ -45,3 +45,18 @@ class ResPartner(models.Model):
         for record in self:
             if record.nim:
                 record.display_name = f"[{record.nim}] {record.name}"
+
+    def action_open_my_profile(self):
+        """Opens the logged-in student's own profile in form view."""
+        partner = self.env.user.partner_id
+        form_view = self.env.ref('sistem_akademik.view_partner_form_mahasiswa')
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'My Profile',
+            'res_model': 'res.partner',
+            'res_id': partner.id,
+            'view_mode': 'form',
+            'views': [(form_view.id, 'form')],
+            'target': 'current',
+            'flags': {'mode': 'readonly'},
+        }

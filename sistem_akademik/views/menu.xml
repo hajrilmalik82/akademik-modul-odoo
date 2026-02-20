@@ -2,10 +2,20 @@
 <odoo>
     <menuitem id="menu_akademik_root" name="Academic" sequence="10"/>
 
+    <!-- Officer & Dosen: sees student list -->
     <menuitem id="menu_akademik_mahasiswa"
               name="Student"
               parent="menu_akademik_root"
               action="action_mahasiswa_list"
+              groups="group_akademik_dosen"
+              sequence="10"/>
+
+    <!-- Student: goes directly to own profile form -->
+    <menuitem id="menu_akademik_mahasiswa_student"
+              name="My Profile"
+              parent="menu_akademik_root"
+              action="action_mahasiswa_my_profile"
+              groups="group_akademik_student"
               sequence="10"/>
 
     <!-- Removed S1 and Pasca sub-menus -->
