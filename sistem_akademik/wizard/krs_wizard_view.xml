@@ -9,6 +9,7 @@
                     <group>
                         <field name="academic_year_id"/>
                         <field name="entry_year_id"/>
+                        <field name="study_program_id"/>
                     </group>
                     <group>
                         <field name="semester"/>

@@ -6,9 +6,10 @@
         <field name="arch" type="xml">
             <tree string="Subjects">
                 <field name="name"/>
-                <field name="study_program_id"/>
                 <field name="credits"/>
+                <field name="semester"/>
                 <field name="type"/>
+                <field name="study_program_id"/>
             </tree>
         </field>
     </record>
@@ -26,6 +27,7 @@
                         </group>
                         <group>
                             <field name="credits"/>
+                            <field name="semester"/>
                             <field name="type"/>
                         </group>
                     </group>
@@ -34,9 +36,34 @@
         </field>
     </record>
 
+    <record id="view_akademik_subject_search" model="ir.ui.view">
+        <field name="name">akademik.subject.search</field>
+        <field name="model">akademik.subject</field>
+        <field name="arch" type="xml">
+            <search string="Search Subjects">
+                <field name="name"/>
+                <field name="study_program_id"/>
+                <separator/>
+                <filter string="Compulsory" name="filter_compulsory" domain="[('type', '=', 'compulsory')]"/>
+                <filter string="Elective" name="filter_elective" domain="[('type', '=', 'elective')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Study Program" name="group_prodi" context="{'group_by': 'study_program_id'}"/>
+                    <filter string="Semester" name="group_semester" context="{'group_by': 'semester'}"/>
+                </group>
+                <searchpanel>
+                    <field name="study_program_id" icon="fa-building" enable_counters="1"/>
+                    <field name="semester" icon="fa-list-ol" enable_counters="1"/>
+                    <field name="type" icon="fa-tags" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
     <record id="action_akademik_subject" model="ir.actions.act_window">
         <field name="name">Subjects</field>
         <field name="res_model">akademik.subject</field>
         <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_akademik_subject_search"/>
+        <field name="context">{'search_default_group_semester': 1}</field>
     </record>
 </odoo>

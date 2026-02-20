@@ -47,15 +47,10 @@
     <menuitem id="menu_akademik_subject"
               name="Subjects"
               parent="menu_akademik_krs"
+              groups="group_akademik_officer"
               action="action_akademik_subject"
               sequence="30"/>
     
-    <menuitem id="menu_akademik_krs_package"
-              name="KRS Packages"
-              parent="menu_akademik_krs"
-              action="action_akademik_krs_package"
-              sequence="40"/>
-
     <menuitem id="menu_akademik_config"
               name="Configuration"
               parent="menu_akademik_root"
@@ -73,6 +68,20 @@
               parent="menu_akademik_config"
               action="action_akademik_prodi"
               sequence="20"/>
+
+
+    <menuitem id="menu_akademik_ruangan"
+              name="Rooms"
+              parent="menu_akademik_config"
+              action="action_akademik_ruangan"
+              sequence="40"/>
+
+    <!-- Schedule Menu under KRS Root -->
+    <menuitem id="menu_akademik_jadwal"
+              name="Class Schedules"
+              parent="menu_akademik_krs"
+              action="action_akademik_jadwal"
+              sequence="50"/>
               
               
 </odoo>

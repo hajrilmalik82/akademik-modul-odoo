@@ -36,5 +36,12 @@
             <field name="domain_force">[('is_dosen', '=', True)]</field>
         </record>
 
+        <record id="rule_akademik_jadwal_dosen" model="ir.rule">
+            <field name="name">Lecturer Own Prodi Schedule</field>
+            <field name="model_id" ref="sistem_akademik.model_akademik_jadwal"/>
+            <field name="domain_force">[('study_program_id', 'in', user.employee_ids.study_program_id.ids)]</field>
+            <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_dosen'))]"/>
+        </record>
+
     </data>
 </odoo>

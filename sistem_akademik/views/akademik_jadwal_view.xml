@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_akademik_jadwal_tree" model="ir.ui.view">
+        <field name="name">akademik.jadwal.tree</field>
+        <field name="model">akademik.jadwal</field>
+        <field name="arch" type="xml">
+            <tree string="Class Schedules">
+                <field name="name"/>
+                <field name="study_program_id"/>
+                <field name="subject_id"/>
+                <field name="dosen_id"/>
+                <field name="semester"/>
+                <field name="ruangan_id"/>
+                <field name="day"/>
+                <field name="start_time" widget="float_time"/>
+                <field name="end_time" widget="float_time"/>
+                <field name="remaining_quota" widget="progressbar"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_akademik_jadwal_form" model="ir.ui.view">
+        <field name="name">akademik.jadwal.form</field>
+        <field name="model">akademik.jadwal</field>
+        <field name="arch" type="xml">
+            <form string="Class Schedule">
+                <header>
+                    <button name="action_claim_schedule" string="Claim Schedule" type="object" class="oe_highlight" invisible="dosen_id"/>
+                    <button name="action_release_schedule" string="Release Schedule" type="object" invisible="not dosen_id"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Auto-generated..."/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="study_program_id"/>
+                            <field name="subject_id" domain="[('study_program_id', '=', study_program_id)]"/>
+                            <field name="semester"/>
+                            <field name="ruangan_id"/>
+                        </group>
+                        <group>
+                            <field name="dosen_id" readonly="1"/>
+                            <field name="day"/>
+                            <field name="start_time" widget="float_time"/>
+                            <field name="end_time" widget="float_time"/>
+                        </group>
+                    </group>
+                    <group string="Capacity Info">
+                        <field name="enrolled_count" readonly="1"/>
+                        <field name="remaining_quota" readonly="1" decoration-danger="remaining_quota == 0"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_akademik_jadwal_search" model="ir.ui.view">
+        <field name="name">akademik.jadwal.search</field>
+        <field name="model">akademik.jadwal</field>
+        <field name="arch" type="xml">
+            <search string="Search Schedules">
+                <field name="name" string="Class Name" filter_domain="['|', ('name', 'ilike', self), ('subject_id.name', 'ilike', self)]"/>
+                <field name="study_program_id"/>
+                <field name="subject_id"/>
+                <field name="ruangan_id"/>
+                <field name="dosen_id"/>
+                
+                <group expand="0" string="Group By">
+                    <filter string="Study Program" name="group_prodi" context="{'group_by': 'study_program_id'}"/>
+                    <filter string="Lecturer" name="group_dosen" context="{'group_by': 'dosen_id'}"/>
+                    <filter string="Semester" name="group_semester" context="{'group_by': 'semester'}"/>
+                    <filter string="Day" name="group_day" context="{'group_by': 'day'}"/>
+                    <filter string="Room" name="group_ruangan" context="{'group_by': 'ruangan_id'}"/>
+                </group>
+
+                <searchpanel>
+                    <field name="study_program_id" icon="fa-building" enable_counters="1"/>
+                    <field name="semester" icon="fa-list-ol" enable_counters="1"/>
+                    <field name="day" icon="fa-calendar" enable_counters="1"/>
+                    <field name="ruangan_id" icon="fa-columns" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_akademik_jadwal" model="ir.actions.act_window">
+        <field name="name">Class Schedules</field>
+        <field name="res_model">akademik.jadwal</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="view_akademik_jadwal_search"/>
+        <field name="context">{'search_default_group_semester': 1, 'search_default_group_day': 1}</field>
+    </record>
+</odoo>

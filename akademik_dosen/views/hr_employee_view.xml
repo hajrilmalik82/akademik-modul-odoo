@@ -7,52 +7,61 @@
         <field name="context">{'default_supervisor_id': active_id}</field>
         <field name="domain">[('supervisor_id', '=', active_id)]</field>
     </record>
-    <record id="view_employee_form_dosen_inherit" model="ir.ui.view">
-        <field name="name">hr.employee.form.dosen.inherit</field>
+    <!-- Dedicated Form View for Academic Lecturer -->
+    <record id="view_akademik_dosen_form" model="ir.ui.view">
+        <field name="name">akademik.dosen.form</field>
         <field name="model">hr.employee</field>
-        <field name="inherit_id" ref="hr.view_employee_form"/>
         <field name="arch" type="xml">
-
-            <xpath expr="//header" position="inside">
-                <button name="action_generate_user" 
-                        string="Generate User" 
-                        type="object" 
-                        class="oe_highlight" 
-                        invisible="user_id != False or not is_dosen"
-                        groups="sistem_akademik.group_akademik_officer"/>
-            </xpath>
-
-            <xpath expr="//field[@name='coach_id']" position="after">
-               <field name="is_dosen"/>
-            </xpath>
-
-            <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="%(act_hr_employee_mahasiswa_list)d" 
-                        type="action" 
-                        class="oe_stat_button" 
-                        icon="fa-users"
-                        invisible="not is_dosen">
-                </button>
-            </xpath>
-
-            <xpath expr="//field[@name='work_email']" position="after">
-                <group class="dosen_academic_group" invisible="not is_dosen">
-                    <field name="nidn"/>
-                    <field name="gelar_akademik"/>
-                    <field name="study_program_id"/>
-                </group>
-            </xpath>
-
-            <xpath expr="//div[hasclass('oe_title')]/h1" position="inside">
-                <div invisible="not is_dosen">
-                    <field name="gelar_akademik" readonly="1"/>
-                </div>
-            </xpath>
-        
+            <form string="Lecturer">
+                <header>
+                    <button name="action_generate_user" 
+                            string="Generate User" 
+                            type="object" 
+                            class="oe_highlight" 
+                            invisible="user_id != False"
+                            groups="sistem_akademik.group_akademik_officer"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="%(act_hr_employee_mahasiswa_list)d" 
+                                type="action" 
+                                class="oe_stat_button" 
+                                icon="fa-users"
+                                string="Students">
+                        </button>
+                    </div>
+                    <field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" placeholder="Lecturer's Name"/>
+                        </h1>
+                        <h2>
+                            <field name="job_title" placeholder="Job Position" readonly="1"/>
+                        </h2>
+                        <field name="gelar_akademik" placeholder="Academic Degree (e.g., Ph.D, M.Kom)" readonly="0"/>
+                    </div>
+                    <group>
+                        <group string="Academic Information">
+                            <field name="nidn"/>
+                            <field name="study_program_id"/>
+                            <field name="is_dosen" readonly="1" force_save="1"/>
+                            <field name="user_id" readonly="1"/>
+                        </group>
+                        <group string="Contact Selection">
+                            <field name="work_email"/>
+                            <field name="mobile_phone"/>
+                            <field name="work_phone"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
         </field>
     </record>
 
-
+    <!-- Inherited View for Standard HR Employee (Optional: Keep it for HR Users) -->
+    <!-- We remove the heavy inheritance logic here to keep it clean, or keep it minimal -->
+    
     <record id="view_employee_tree_dosen_inherit" model="ir.ui.view">
         <field name="name">hr.employee.tree.dosen.inherit</field>
         <field name="model">hr.employee</field>
@@ -64,12 +73,16 @@
             </xpath>
         </field>
     </record>
+
     <record id="action_lecturer" model="ir.actions.act_window">
         <field name="name">Lecturers</field>
         <field name="res_model">hr.employee</field>
         <field name="view_mode">kanban,tree,form</field>
         <field name="context">{'default_is_dosen': True, 'search_default_filter_is_dosen': 1}</field>
         <field name="domain">[('is_dosen', '=', True)]</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+            (0, 0, {'view_mode': 'tree', 'view_id': ref('hr.view_employee_tree')}),
+            (0, 0, {'view_mode': 'form', 'view_id': ref('view_akademik_dosen_form')})]"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
                 Create the first Lecturer

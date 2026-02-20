@@ -1,12 +1,15 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_akademik_subject_officer,akademik.subject.officer,model_akademik_subject,group_akademik_officer,1,1,1,1
 access_akademik_subject_student,akademik.subject.student,model_akademik_subject,group_akademik_student,1,0,0,0
-access_akademik_krs_package_officer,akademik.krs.package.officer,model_akademik_krs_package,group_akademik_officer,1,1,1,1
-access_akademik_krs_package_student,akademik.krs.package.student,model_akademik_krs_package,group_akademik_student,1,0,0,0
 access_akademik_krs_officer,akademik.krs.officer,model_akademik_krs,group_akademik_officer,1,1,1,1
 access_akademik_krs_student,akademik.krs.student,model_akademik_krs,group_akademik_student,1,0,0,0
 access_akademik_krs_line_officer,akademik.krs.line.officer,model_akademik_krs_line,group_akademik_officer,1,1,1,1
 access_akademik_krs_line_student,akademik.krs.line.student,model_akademik_krs_line,group_akademik_student,1,0,0,0
 access_akademik_krs_wizard_officer,akademik.krs.wizard.officer,model_akademik_krs_wizard,group_akademik_officer,1,1,1,1
 access_akademik_krs_score_wizard_officer,akademik.krs.score.wizard.officer,model_akademik_krs_score_wizard,group_akademik_officer,1,1,1,1
+access_akademik_ruangan_officer,akademik.ruangan.officer,model_akademik_ruangan,group_akademik_officer,1,1,1,1
+access_akademik_ruangan_student,akademik.ruangan.student,model_akademik_ruangan,group_akademik_student,1,0,0,0
+access_akademik_jadwal_officer,akademik.jadwal.officer,model_akademik_jadwal,group_akademik_officer,1,1,1,1
+access_akademik_jadwal_student,akademik.jadwal.student,model_akademik_jadwal,group_akademik_student,1,0,0,0
+access_akademik_jadwal_dosen,akademik.jadwal.dosen,model_akademik_jadwal,group_akademik_dosen,1,1,0,0
 

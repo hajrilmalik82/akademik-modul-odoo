@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <!-- Room Views -->
+    <record id="view_akademik_ruangan_tree" model="ir.ui.view">
+        <field name="name">akademik.ruangan.tree</field>
+        <field name="model">akademik.ruangan</field>
+        <field name="arch" type="xml">
+            <tree string="Rooms">
+                <field name="name"/>
+                <field name="capacity"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_akademik_ruangan_form" model="ir.ui.view">
+        <field name="name">akademik.ruangan.form</field>
+        <field name="model">akademik.ruangan</field>
+        <field name="arch" type="xml">
+            <form string="Room">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="capacity"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_akademik_ruangan" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="res_model">akademik.ruangan</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
