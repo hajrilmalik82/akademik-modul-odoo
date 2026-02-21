@@ -37,9 +37,8 @@
                             <field name="name" placeholder="Lecturer's Name"/>
                         </h1>
                         <h2>
-                            <field name="job_title" placeholder="Job Position" readonly="1"/>
+                            <field name="job_title" placeholder="Job Position"/>
                         </h2>
-                        <field name="gelar_akademik" placeholder="Academic Degree (e.g., Ph.D, M.Kom)" readonly="0"/>
                     </div>
                     <group>
                         <group string="Academic Information">

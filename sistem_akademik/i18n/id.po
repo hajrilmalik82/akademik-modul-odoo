@@ -6,10 +6,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-09 02:59+0000\n"
-"PO-Revision-Date: 2026-02-09 02:59+0000\n"
+"POT-Creation-Date: 2026-02-21 11:14+0000\n"
+"PO-Revision-Date: 2026-02-21 11:14+0000\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: Indonesian\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,6 +22,11 @@ msgid "Academic"
 msgstr "Akademik"
 
 #. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__supervisor_id
+msgid "Academic Advisor"
+msgstr "Pembimbing Akademik"
+
+#. module: sistem_akademik
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
 msgid "Academic Data"
 msgstr "Data Akademik"
@@ -32,24 +37,26 @@ msgid "Academic Subject"
 msgstr "Mata Kuliah"
 
 #. module: sistem_akademik
-#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_tahun
+#: model:ir.module.category,name:sistem_akademik.module_category_akademik
+msgid "Academic System"
+msgstr "Sistem Akademik"
+
+#. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__academic_year_id
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_wizard__academic_year_id
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_tahun__tahun_akademik
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_tahun_form
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_tahun_tree
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_tahun__academic_year
+#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_tahun
+#: model:ir.model,name:sistem_akademik.model_akademik_tahun
 msgid "Academic Year"
 msgstr "Tahun Akademik"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__level_prestasi
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__level_prestasi
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__achievement_level
 msgid "Achievement Level"
 msgstr "Tingkat Prestasi"
 
 #. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__active
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__aktif
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__active
 msgid "Active"
 msgstr "Aktif"
 
@@ -59,29 +66,50 @@ msgid "Active Student"
 msgstr "Mahasiswa Aktif"
 
 #. module: sistem_akademik
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__jenjang__s1
-msgid "Bachelor"
-msgstr "Sarjana (S1)"
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_jadwal_form
+msgid "Auto-generated..."
+msgstr "Dibuat otomatis..."
 
 #. module: sistem_akademik
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_wizard_form
-msgid "Cancel"
-msgstr "Batal"
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_ruangan__capacity
+msgid "Capacity"
+msgstr "Kapasitas"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__code
-msgid "Code"
-msgstr "Kode"
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_jadwal_form
+msgid "Capacity Info"
+msgstr "Informasi Kapasitas"
 
 #. module: sistem_akademik
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_subject__type__compulsory
-msgid "Compulsory"
-msgstr "Wajib"
+#: model:ir.module.category,description:sistem_akademik.module_category_akademik
+msgid "Category for Academic System Access Rights"
+msgstr "Kategori untuk Hak Akses Sistem Akademik"
 
 #. module: sistem_akademik
-#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_config
-msgid "Configuration"
-msgstr "Konfigurasi"
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_jadwal_form
+msgid "Claim Schedule"
+msgstr "Klaim Jadwal"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__name
+msgid "Class Name"
+msgstr "Nama Kelas"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__jadwal_id
+msgid "Class Schedule"
+msgstr "Jadwal Kelas"
+
+#. module: sistem_akademik
+#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_jadwal
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_jadwal
+msgid "Class Schedules"
+msgstr "Jadwal Kuliah"
+
+#. module: sistem_akademik
+#: model:ir.model,name:sistem_akademik.model_akademik_jadwal
+msgid "Class Session"
+msgstr "Sesi Kelas"
 
 #. module: sistem_akademik
 #: model:ir.model,name:sistem_akademik.model_res_partner
@@ -94,53 +122,25 @@ msgid "Contact & Category"
 msgstr "Kontak & Kategori"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__create_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__create_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__create_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_wizard__create_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__create_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__create_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_tahun__create_uid
-msgid "Created by"
-msgstr "Dibuat oleh"
-
-#. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__create_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__create_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__create_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_wizard__create_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__create_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__create_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_tahun__create_date
-msgid "Created on"
-msgstr "Dibuat pada"
-
-#. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__credits
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__credits
 msgid "Credits"
 msgstr "SKS"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__display_name
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__display_name
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__display_name
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_wizard__display_name
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__display_name
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__display_name
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_tahun__display_name
-msgid "Display Name"
-msgstr "Nama Tampilan"
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__day
+msgid "Day"
+msgstr "Hari"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__draft
 msgid "Draft"
-msgstr "Draft"
+msgstr "Draf"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__dropout
 msgid "Drop Out"
-msgstr "DO (Drop Out)"
+msgstr "Putus Kuliah"
 
 #. module: sistem_akademik
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
@@ -158,8 +158,17 @@ msgid "Email"
 msgstr "Email"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__tahun_masuk
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__tahun_masuk
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__end_time
+msgid "End Time"
+msgstr "Waktu Selesai"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__enrolled_count
+msgid "Enrolled"
+msgstr "Terdaftar"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__entry_year_id
 #: model:ir.ui.menu,name:sistem_akademik.menu_akademik_tahun
 msgid "Entry Year"
 msgstr "Tahun Masuk"
@@ -167,18 +176,18 @@ msgstr "Tahun Masuk"
 #. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_wizard__entry_year_id
 msgid "Entry Year (Student Intake)"
-msgstr "Tahun Masuk (Angkatan)"
+msgstr "Tahun Masuk (Angkatan Mahasiswa)"
 
 #. module: sistem_akademik
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_wizard_form
-msgid "Generate KRS"
-msgstr "Buat KRS"
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_jadwal__day__jumat
+msgid "Friday"
+msgstr "Jumat"
 
 #. module: sistem_akademik
 #: model:ir.actions.act_window,name:sistem_akademik.action_akademik_krs_wizard
 #: model:ir.ui.menu,name:sistem_akademik.menu_akademik_krs_wizard
-msgid "Generate KRS (Auto)"
-msgstr "Buat KRS (Otomatis)"
+msgid "Generate KRS"
+msgstr "Buat KRS"
 
 #. module: sistem_akademik
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_wizard_form
@@ -191,26 +200,27 @@ msgid "Generate NIM"
 msgstr "Buat NIM"
 
 #. module: sistem_akademik
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__lulus
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__grade
+msgid "Grade"
+msgstr "Nilai Huruf"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__status__graduated
 msgid "Graduated"
 msgstr "Lulus"
 
 #. module: sistem_akademik
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
-msgid "Group By"
-msgstr "Kelompokkan Berdasarkan"
+msgid "Graduated"
+msgstr "Lulus"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__id
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__id
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__id
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_wizard__id
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__id
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__id
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_tahun__id
-msgid "ID"
-msgstr "ID"
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_jadwal_search
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_search
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_subject_search
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
+msgid "Group By"
+msgstr "Kelompokkan Berdasarkan"
 
 #. module: sistem_akademik
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
@@ -218,11 +228,12 @@ msgid "Identity Data"
 msgstr "Data Identitas"
 
 #. module: sistem_akademik
-#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_krs
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__krs_id
+#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_krs_score_wizard
+msgid "Input Score"
+msgstr "Input Nilai"
+
+#. module: sistem_akademik
 #: model:ir.ui.menu,name:sistem_akademik.menu_akademik_krs
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_form
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_tree
 msgid "KRS"
 msgstr "KRS"
 
@@ -232,81 +243,53 @@ msgid "KRS Initialization Wizard"
 msgstr "Wizard Inisialisasi KRS"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__name
-msgid "KRS Number"
-msgstr "Nomor KRS"
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__line_ids
+msgid "KRS Lines"
+msgstr "Baris KRS"
 
 #. module: sistem_akademik
-#: model:ir.model,name:sistem_akademik.model_akademik_krs_package
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_package_form
-msgid "KRS Package"
-msgstr "Paket KRS"
+#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_krs
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_krs_list
+msgid "KRS List"
+msgstr "Daftar KRS"
 
 #. module: sistem_akademik
-#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_krs_package
-#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_krs_package
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_package_tree
-msgid "KRS Packages"
-msgstr "Paket KRS"
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__dosen_id
+#: model:res.groups,name:sistem_akademik.group_akademik_dosen
+msgid "Lecturer"
+msgstr "Dosen"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__write_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__write_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__write_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_wizard__write_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__write_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__write_uid
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_tahun__write_uid
-msgid "Last Updated by"
-msgstr "Terakhir Diperbarui oleh"
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_jadwal__day__senin
+msgid "Monday"
+msgstr "Senin"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__write_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__write_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__write_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_wizard__write_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__write_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__write_date
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_tahun__write_date
-msgid "Last Updated on"
-msgstr "Terakhir Diperbarui pada"
-
-#. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__jenjang
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__jenjang
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
-msgid "Level"
-msgstr "Jenjang"
-
-#. module: sistem_akademik
-#: model:ir.actions.act_window,name:sistem_akademik.action_mahasiswa_pasca_list
-msgid "Mahasiswa Pascasarjana"
-msgstr "Mahasiswa Pascasarjana"
-
-#. module: sistem_akademik
-#: model:ir.actions.act_window,name:sistem_akademik.action_mahasiswa_s1_list
-msgid "Mahasiswa S1"
-msgstr "Mahasiswa S1"
+#: model:ir.actions.server,name:sistem_akademik.action_mahasiswa_my_profile
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_mahasiswa_student
+msgid "My Profile"
+msgstr "Profil Saya"
 
 #. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__nim
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__nim
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
 msgid "NIM"
 msgstr "NIM"
 
 #. module: sistem_akademik
+#: model:ir.model.constraint,message:sistem_akademik.constraint_res_partner_nim_unique
+msgid "NIM must be unique!"
+msgstr "NIM harus unik!"
+
+#. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__name
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
 msgid "Name"
 msgstr "Nama"
 
 #. module: sistem_akademik
 #. odoo-python
 #: code:addons/sistem_akademik/wizard/krs_wizard.py:0
-#, python-format
-msgid "No active students found for this entry year."
-msgstr "Tidak ada mahasiswa aktif yang ditemukan untuk angkatan ini."
+msgid "No active students found for this Entry Year and Study Program."
+msgstr "Tidak ada mahasiswa aktif untuk Tahun Masuk dan Program Studi ini."
 
 #. module: sistem_akademik
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
@@ -314,116 +297,124 @@ msgid "Notes"
 msgstr "Catatan"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__name
-msgid "Package Name"
-msgstr "Nama Paket"
+#: model:res.groups,name:sistem_akademik.group_akademik_officer
+msgid "Officer"
+msgstr "Petugas Admin"
 
 #. module: sistem_akademik
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__res_partner__jenjang__pasca
-msgid "Postgraduate"
-msgstr "Pascasarjana"
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_jadwal_form
+msgid "Release Schedule"
+msgstr "Lepas Jadwal"
 
 #. module: sistem_akademik
-#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_mahasiswa_pasca
-msgid "Postgraduate Student"
-msgstr "Mahasiswa Pascasarjana"
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__remaining_quota
+msgid "Remaining Quota"
+msgstr "Sisa Kuota"
 
 #. module: sistem_akademik
-#. odoo-python
-#: code:addons/sistem_akademik/wizard/krs_wizard.py:0
-#, python-format
-msgid ""
-"Process Completed. No new KRS records created (Packages might be missing or "
-"students already have KRS)."
-msgstr ""
-"Proses Selesai. Tidak ada KRS baru yang dibuat (Paket mungkin tidak tersedia atau "
-"mahasiswa sudah memiliki KRS)."
+#: model:ir.model,name:sistem_akademik.model_akademik_ruangan
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__ruangan_id
+msgid "Room"
+msgstr "Ruangan"
 
 #. module: sistem_akademik
-#: model:ir.model,name:sistem_akademik.model_akademik_prodi
-msgid "Program Studi"
-msgstr "Program Studi"
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_ruangan__name
+msgid "Room Name"
+msgstr "Nama Ruangan"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__topik_riset
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__topik_riset
-msgid "Research Topic"
-msgstr "Topik Riset"
+#: model:ir.actions.act_window,name:sistem_akademik.action_akademik_ruangan
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_ruangan
+msgid "Rooms"
+msgstr "Ruangan"
 
 #. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_jadwal__day__sabtu
+msgid "Saturday"
+msgstr "Sabtu"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_score_wizard_form
+msgid "Save"
+msgstr "Simpan"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__score
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_score_wizard__score
+msgid "Score (0-100)"
+msgstr "Nilai (0-100)"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_search
+msgid "Search KRS"
+msgstr "Cari KRS"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_jadwal_search
+msgid "Search Schedules"
+msgstr "Cari Jadwal"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_subject_search
+msgid "Search Subjects"
+msgstr "Cari Mata Kuliah"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__semester
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__semester
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__semester
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__semester
 msgid "Semester"
 msgstr "Semester"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs__semester__1
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_package__semester__1
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_wizard__semester__1
 msgid "Semester 1"
 msgstr "Semester 1"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs__semester__2
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_package__semester__2
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_wizard__semester__2
 msgid "Semester 2"
 msgstr "Semester 2"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs__semester__3
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_package__semester__3
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_wizard__semester__3
 msgid "Semester 3"
 msgstr "Semester 3"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs__semester__4
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_package__semester__4
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_wizard__semester__4
 msgid "Semester 4"
 msgstr "Semester 4"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs__semester__5
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_package__semester__5
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_wizard__semester__5
 msgid "Semester 5"
 msgstr "Semester 5"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs__semester__6
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_package__semester__6
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_wizard__semester__6
 msgid "Semester 6"
 msgstr "Semester 6"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs__semester__7
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_package__semester__7
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_wizard__semester__7
 msgid "Semester 7"
 msgstr "Semester 7"
 
 #. module: sistem_akademik
 #: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs__semester__8
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_package__semester__8
-#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_krs_wizard__semester__8
 msgid "Semester 8"
 msgstr "Semester 8"
 
 #. module: sistem_akademik
 #: model:ir.actions.act_window,name:sistem_akademik.action_mahasiswa_list
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__student_id
 #: model:ir.ui.menu,name:sistem_akademik.menu_akademik_mahasiswa
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_tree_mahasiswa
+#: model:res.groups,name:sistem_akademik.group_akademik_student
 msgid "Student"
 msgstr "Mahasiswa"
 
 #. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__identitas_mahasiswa
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__identitas_mahasiswa
 msgid "Student Identity"
 msgstr "Identitas Mahasiswa"
 
@@ -433,31 +424,24 @@ msgid "Student Name"
 msgstr "Nama Mahasiswa"
 
 #. module: sistem_akademik
-#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_mahasiswa_s1
-msgid "Student S1"
-msgstr "Mahasiswa S1"
-
-#. module: sistem_akademik
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
 msgid "Student Search"
-msgstr "Pencarian Mahasiswa"
+msgstr "Cari Mahasiswa"
 
 #. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__status
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__status
 msgid "Student Status"
 msgstr "Status Mahasiswa"
 
 #. module: sistem_akademik
 #: model:ir.model,name:sistem_akademik.model_akademik_krs
 msgid "Student Study Plan"
-msgstr "Kartu Rencana Studi"
+msgstr "Rencana Studi Mahasiswa"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__tag_mahasiswa
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__tag_mahasiswa
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__student_tags
 msgid "Student Tags"
-msgstr "Tag Mahasiswa"
+msgstr "Label Mahasiswa"
 
 #. module: sistem_akademik
 #: model:ir.model,name:sistem_akademik.model_akademik_krs_line
@@ -466,57 +450,57 @@ msgstr "Detail Rencana Studi"
 
 #. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs__line_ids
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_form
 msgid "Study Plan Details"
 msgstr "Detail Rencana Studi"
 
 #. module: sistem_akademik
 #: model:ir.actions.act_window,name:sistem_akademik.action_akademik_prodi
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__prodi_id
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__prodi_id
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__prodi_id
+#: model:ir.model,name:sistem_akademik.model_akademik_prodi
 #: model:ir.ui.menu,name:sistem_akademik.menu_akademik_prodi
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_prodi_form
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_prodi_tree
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_mahasiswa_search
 msgid "Study Program"
 msgstr "Program Studi"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__nama_prodi
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_prodi__study_program_name
 msgid "Study Program Name"
 msgstr "Nama Program Studi"
 
 #. module: sistem_akademik
+#: model:ir.model.constraint,message:sistem_akademik.constraint_akademik_prodi_study_program_name_unique
+msgid "Study Program name must be unique!"
+msgstr "Nama Program Studi harus unik!"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__subject_id
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__subject_id
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_subject_form
 msgid "Subject"
 msgstr "Mata Kuliah"
 
 #. module: sistem_akademik
 #: model:ir.actions.act_window,name:sistem_akademik.action_akademik_subject
-#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_package__subject_ids
 #: model:ir.ui.menu,name:sistem_akademik.menu_akademik_subject
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_package_form
-#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_subject_tree
 msgid "Subjects"
 msgstr "Mata Kuliah"
 
 #. module: sistem_akademik
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__dosen_pembimbing_id
-#: model:ir.model.fields,field_description:sistem_akademik.field_res_users__dosen_pembimbing_id
-msgid "Supervisor"
-msgstr "Dosen Pembimbing"
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_jadwal__day__minggu
+msgid "Sunday"
+msgstr "Minggu"
 
 #. module: sistem_akademik
-#: model:ir.model,name:sistem_akademik.model_akademik_tahun
-msgid "Tahun Akademik"
-msgstr "Tahun Akademik"
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__start_time
+msgid "Start Time"
+msgstr "Waktu Mulai"
 
 #. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_wizard__semester
 msgid "Target Semester"
-msgstr "Semester Target"
+msgstr "Target Semester"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_jadwal__day__kamis
+msgid "Thursday"
+msgstr "Kamis"
 
 #. module: sistem_akademik
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_krs_form
@@ -524,9 +508,44 @@ msgid "Total SKS"
 msgstr "Total SKS"
 
 #. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_jadwal__day__selasa
+msgid "Tuesday"
+msgstr "Selasa"
+
+#. module: sistem_akademik
 #: model:ir.model.fields,field_description:sistem_akademik.field_akademik_subject__type
 msgid "Type"
-msgstr "Tipe"
+msgstr "Jenis"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_subject__type__compulsory
+msgid "Compulsory"
+msgstr "Wajib"
+
+#. module: sistem_akademik
+#: model:ir.ui.menu,name:sistem_akademik.menu_akademik_config
+msgid "Configuration"
+msgstr "Konfigurasi"
+
+#. module: sistem_akademik
+#: model:ir.model.fields.selection,name:sistem_akademik.selection__akademik_jadwal__day__rabu
+msgid "Wednesday"
+msgstr "Rabu"
+
+#. module: sistem_akademik
+#: model:ir.model,name:sistem_akademik.model_akademik_krs_score_wizard
+msgid "Wizard Input Score"
+msgstr "Wizard Input Nilai"
+
+#. module: sistem_akademik
+#: model_terms:ir.ui.view,arch_db:sistem_akademik.view_akademik_subject_form
+msgid "Subject"
+msgstr "Mata Kuliah"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_res_partner__research_topic
+msgid "Research Topic"
+msgstr "Topik Penelitian"
 
 #. module: sistem_akademik
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa

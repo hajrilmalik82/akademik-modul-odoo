@@ -4,7 +4,7 @@
     'summary': 'sistem akademik',
     'description': """  sistem akademik  """,
     'author': 'Hajril',
-    'depends': ['base', 'contacts', 'hr'],
+    'depends': ['base', 'contacts', 'hr', 'web'],
     'data': [
         'security/akademik_groups.xml',
         'security/ir.model.access.csv',
@@ -20,7 +20,9 @@
         'wizard/krs_wizard_view.xml',
         'wizard/akademik_krs_score_wizard_view.xml',
         'views/menu.xml',
+        'views/login_template.xml',
     ],
+
     'installable': True,
     'application': True,
 }

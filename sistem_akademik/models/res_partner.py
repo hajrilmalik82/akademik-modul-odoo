@@ -46,6 +46,14 @@ class ResPartner(models.Model):
             if record.nim:
                 record.display_name = f"[{record.nim}] {record.name}"
 
+    @api.model
+    def _name_search(self, name='', domain=None, operator='ilike', limit=100, order=None):
+        """Allow searching partners by NIM in Many2one dropdowns."""
+        domain = domain or []
+        if name:
+            domain = ['|', ('nim', operator, name), ('name', operator, name)] + domain
+        return super()._name_search(name='', domain=domain, operator=operator, limit=limit, order=order)
+
     def action_open_my_profile(self):
         """Opens the logged-in student's own profile in form view."""
         partner = self.env.user.partner_id

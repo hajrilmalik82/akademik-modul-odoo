@@ -1,11 +1,15 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* akademik_dosen
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0\n"
+"Project-Id-Version: Odoo Server 17.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-06 00:00+0000\n"
-"PO-Revision-Date: 2026-02-06 00:00+0000\n"
+"POT-Creation-Date: 2026-02-21 11:14+0000\n"
+"PO-Revision-Date: 2026-02-21 11:14+0000\n"
 "Last-Translator: \n"
-"Language-Team: \n"
+"Language-Team: Indonesian\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,14 +22,34 @@ msgid "Academic Degree"
 msgstr "Gelar Akademik"
 
 #. module: akademik_dosen
-#: model:ir.module.category,name:akademik_dosen.module_category_akademik
-msgid "Academic System"
-msgstr "Sistem Akademik"
+#: model_terms:ir.ui.view,arch_db:akademik_dosen.view_akademik_dosen_form
+msgid "Academic Degree (e.g., Ph.D, M.Kom)"
+msgstr "Gelar Akademik (mis. Ph.D, M.Kom)"
 
 #. module: akademik_dosen
-#: model:ir.module.category,description:akademik_dosen.module_category_akademik
-msgid "Category for Academic System Access Rights"
-msgstr "Kategori untuk Hak Akses Sistem Akademik"
+#: model_terms:ir.ui.view,arch_db:akademik_dosen.view_akademik_dosen_form
+msgid "Academic Information"
+msgstr "Informasi Akademik"
+
+#. module: akademik_dosen
+#: model_terms:ir.ui.view,arch_db:akademik_dosen.view_akademik_dosen_form
+msgid "Contact Selection"
+msgstr "Pemilihan Kontak"
+
+#. module: akademik_dosen
+#: model_terms:ir.actions.act_window,help:akademik_dosen.action_lecturer
+msgid "Create the first Lecturer"
+msgstr "Buat Dosen Pertama"
+
+#. module: akademik_dosen
+#: model:ir.model,name:akademik_dosen.model_hr_employee
+msgid "Employee"
+msgstr "Pegawai"
+
+#. module: akademik_dosen
+#: model_terms:ir.ui.view,arch_db:akademik_dosen.view_akademik_dosen_form
+msgid "Generate User"
+msgstr "Buat Pengguna"
 
 #. module: akademik_dosen
 #: model:ir.model.fields,field_description:akademik_dosen.field_hr_employee__is_dosen
@@ -33,24 +57,47 @@ msgid "Is Lecturer"
 msgstr "Adalah Dosen"
 
 #. module: akademik_dosen
-#: model:res.groups,name:akademik_dosen.group_akademik_dosen
+#: model_terms:ir.ui.view,arch_db:akademik_dosen.view_akademik_dosen_form
+msgid "Job Position"
+msgstr "Jabatan"
+
+#. module: akademik_dosen
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_jadwal__dosen_id
 msgid "Lecturer"
 msgstr "Dosen"
 
 #. module: akademik_dosen
-#. odoo-python
-#: code:addons/akademik_dosen/models/hr_employee.py:0
-#, python-format
-msgid "Please fill in the email"
-msgstr "Email wajib diisi"
+#: model_terms:ir.ui.view,arch_db:akademik_dosen.view_akademik_dosen_form
+msgid "Lecturer's Name"
+msgstr "Nama Dosen"
+
+#. module: akademik_dosen
+#: model:ir.actions.act_window,name:akademik_dosen.action_lecturer
+#: model:ir.ui.menu,name:akademik_dosen.menu_akademik_lecturer
+msgid "Lecturers"
+msgstr "Dosen"
+
+#. module: akademik_dosen
+#: model_terms:ir.actions.act_window,help:akademik_dosen.action_lecturer
+msgid "Manage your academic supervisors and lecturers here."
+msgstr "Kelola pembimbing akademik dan dosen di sini."
+
+#. module: akademik_dosen
+#: model:ir.model.fields,field_description:akademik_dosen.field_hr_employee__nidn
+msgid "NIDN"
+msgstr "NIDN"
+
+#. module: akademik_dosen
+#: model_terms:ir.ui.view,arch_db:akademik_dosen.view_akademik_dosen_form
+msgid "Students"
+msgstr "Mahasiswa"
+
+#. module: akademik_dosen
+#: model:ir.model.fields,field_description:akademik_dosen.field_hr_employee__study_program_id
+msgid "Study Program (Homebase)"
+msgstr "Program Studi (Homebase)"
 
 #. module: akademik_dosen
 #: model:ir.actions.act_window,name:akademik_dosen.act_hr_employee_mahasiswa_list
 msgid "Supervised Students"
 msgstr "Mahasiswa Bimbingan"
-
-#. module: akademik_dosen
-#: model:ir.model.fields,field_description:akademik_dosen.field_res_partner__dosen_pembimbing_id
-#: model:ir.model.fields,field_description:akademik_dosen.field_res_users__dosen_pembimbing_id
-msgid "Supervisor"
-msgstr "Dosen Pembimbing"

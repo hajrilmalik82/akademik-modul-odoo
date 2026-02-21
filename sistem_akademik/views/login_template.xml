@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="login_layout_custom" inherit_id="web.login_layout" name="Demo Credentials Panel">
+        <xpath expr="//div[hasclass('container')]" position="replace">
+            <div class="d-flex align-items-center justify-content-center gap-4 px-3 py-4" style="min-height:100vh; flex-wrap:wrap;" id="login-wrapper">
+
+                <!-- === DEMO CREDENTIALS PANEL === -->
+                <div style="
+                    background: #1e293b;
+                    border-radius: 16px;
+                    padding: 28px 28px;
+                    max-width: 310px;
+                    width: 100%;
+                    color: #f1f5f9;
+                    font-family: system-ui, sans-serif;
+                    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+                    border: 1px solid #334155;
+                ">
+                    <!-- Header -->
+                    <div style="text-align:center; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid #334155;">
+                        <div style="font-size:28px; margin-bottom:6px;">🎓</div>
+                        <div style="font-size:14px; font-weight:700; color:#f1f5f9; letter-spacing:1px;">DEMO LOGIN</div>
+                        <div style="font-size:11px; color:#94a3b8; margin-top:2px;">Akun untuk mencoba sistem</div>
+                    </div>
+
+                    <!-- Officer -->
+                    <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid #334155;">
+                        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#60a5fa; margin-bottom:10px;">🛠️ Officer</div>
+                        <div style="background:#0f172a; border-radius:8px; padding:10px 12px;">
+                            <div style="font-size:10px; color:#94a3b8;">Email</div>
+                            <div style="font-size:12px; color:#e2e8f0; word-break:break-all; font-family:monospace;">officer1@portofolio.ac.id</div>
+                            <div style="font-size:10px; color:#94a3b8; margin-top:6px;">Password</div>
+                            <div style="font-size:13px; color:#4ade80; font-weight:600; font-family:monospace;">officer123</div>
+                        </div>
+                    </div>
+
+                    <!-- Dosen -->
+                    <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid #334155;">
+                        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#a78bfa; margin-bottom:10px;">👨‍🏫 Dosen</div>
+                        <div style="display:flex; flex-direction:column; gap:6px;">
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
+                                <div style="font-size:10px; color:#64748b;">Teknik Informatika</div>
+                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">ahmad.fauzi@portofolio.ac.id</div>
+                            </div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
+                                <div style="font-size:10px; color:#64748b;">Teknik Industri</div>
+                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">fahmi.ardiansyah@portofolio.ac.id</div>
+                            </div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
+                                <div style="font-size:10px; color:#64748b;">Hukum</div>
+                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">gita.lestari@portofolio.ac.id</div>
+                            </div>
+                        </div>
+                        <div style="margin-top:8px; font-size:11px; color:#94a3b8;">Password: <span style="color:#4ade80; font-weight:600; font-family:monospace;">dosen123</span></div>
+                    </div>
+
+                    <!-- Mahasiswa -->
+                    <div>
+                        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#34d399; margin-bottom:10px;">🎓 Mahasiswa</div>
+                        <div style="display:flex; flex-direction:column; gap:6px;">
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
+                                <div style="font-size:10px; color:#64748b;">Teknik Informatika</div>
+                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">agus.santoso@mhs.portofolio.ac.id</div>
+                            </div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
+                                <div style="font-size:10px; color:#64748b;">Teknik Industri</div>
+                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">aditya.rahayu@mhs.portofolio.ac.id</div>
+                            </div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
+                                <div style="font-size:10px; color:#64748b;">Hukum</div>
+                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">anggi.susanto@mhs.portofolio.ac.id</div>
+                            </div>
+                        </div>
+                        <div style="margin-top:8px; font-size:11px; color:#94a3b8;">Password: <span style="color:#4ade80; font-weight:600; font-family:monospace;">mahasiswa123</span></div>
+                    </div>
+                </div>
+
+                <!-- === LOGIN FORM (asli) === -->
+                <div style="max-width:320px; width:100%;">
+                    <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: 300px;">
+                        <div class="card-body">
+                            <div t-attf-class="text-center pb-3 border-bottom {{'mb-3' if form_small else 'mb-4'}}">
+                                <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
+                            </div>
+                            <t t-out="0"/>
+                            <div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">
+                                <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </xpath>
+    </template>
+</odoo>

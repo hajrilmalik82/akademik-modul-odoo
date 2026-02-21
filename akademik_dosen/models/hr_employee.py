@@ -5,7 +5,6 @@ class HrEmployee(models.Model):
 
     is_dosen = fields.Boolean(string='Is Lecturer', default=False)
     nidn = fields.Char(string='NIDN')
-    gelar_akademik = fields.Char(string='Academic Degree')
     study_program_id = fields.Many2one('akademik.prodi', string='Study Program (Homebase)')
     
     def action_generate_user(self):
