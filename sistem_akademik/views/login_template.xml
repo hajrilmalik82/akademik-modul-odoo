@@ -8,7 +8,7 @@
                 <div style="
                     background: #1e293b;
                     border-radius: 16px;
-                    padding: 28px 28px;
+                    padding: 28px 24px;
                     max-width: 310px;
                     width: 100%;
                     color: #f1f5f9;
@@ -19,59 +19,84 @@
                     <!-- Header -->
                     <div style="text-align:center; margin-bottom:20px; padding-bottom:16px; border-bottom:1px solid #334155;">
                         <div style="font-size:28px; margin-bottom:6px;">🎓</div>
-                        <div style="font-size:14px; font-weight:700; color:#f1f5f9; letter-spacing:1px;">DEMO LOGIN</div>
-                        <div style="font-size:11px; color:#94a3b8; margin-top:2px;">Akun untuk mencoba sistem</div>
+                        <div style="font-size:14px; font-weight:700; letter-spacing:1px;">DEMO LOGIN</div>
+                        <div style="font-size:11px; color:#94a3b8; margin-top:2px;">Klik tombol untuk login langsung</div>
                     </div>
 
                     <!-- Officer -->
-                    <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid #334155;">
-                        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#60a5fa; margin-bottom:10px;">🛠️ Officer</div>
-                        <div style="background:#0f172a; border-radius:8px; padding:10px 12px;">
-                            <div style="font-size:10px; color:#94a3b8;">Email</div>
-                            <div style="font-size:12px; color:#e2e8f0; word-break:break-all; font-family:monospace;">officer1@portofolio.ac.id</div>
-                            <div style="font-size:10px; color:#94a3b8; margin-top:6px;">Password</div>
-                            <div style="font-size:13px; color:#4ade80; font-weight:600; font-family:monospace;">officer123</div>
+                    <div style="margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid #334155;">
+                        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#60a5fa; margin-bottom:8px;">🛠️ Officer</div>
+                        <div style="background:#0f172a; border-radius:8px; padding:10px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                            <div>
+                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">officer1@portofolio.ac.id</div>
+                                <div style="font-size:10px; color:#64748b;">officer123</div>
+                            </div>
+                            <button onclick="quickLogin('officer1@portofolio.ac.id','officer123')" style="
+                                background:linear-gradient(135deg,#3b82f6,#6366f1);
+                                border:none; border-radius:6px; color:#fff;
+                                font-size:11px; font-weight:600; padding:6px 12px;
+                                cursor:pointer; white-space:nowrap; flex-shrink:0;
+                                transition:opacity 0.2s;
+                            " onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">
+                                Login →
+                            </button>
                         </div>
                     </div>
 
                     <!-- Dosen -->
-                    <div style="margin-bottom:16px; padding-bottom:16px; border-bottom:1px solid #334155;">
-                        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#a78bfa; margin-bottom:10px;">👨‍🏫 Dosen</div>
+                    <div style="margin-bottom:14px; padding-bottom:14px; border-bottom:1px solid #334155;">
+                        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#a78bfa; margin-bottom:8px;">👨‍🏫 Dosen</div>
                         <div style="display:flex; flex-direction:column; gap:6px;">
-                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
-                                <div style="font-size:10px; color:#64748b;">Teknik Informatika</div>
-                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">ahmad.fauzi@portofolio.ac.id</div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                                <div>
+                                    <div style="font-size:10px; color:#64748b;">Teknik Informatika</div>
+                                    <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">ahmad.fauzi@portofolio.ac.id</div>
+                                </div>
+                                <button onclick="quickLogin('ahmad.fauzi@portofolio.ac.id','dosen123')" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);border:none;border-radius:6px;color:#fff;font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;white-space:nowrap;flex-shrink:0;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Login →</button>
                             </div>
-                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
-                                <div style="font-size:10px; color:#64748b;">Teknik Industri</div>
-                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">fahmi.ardiansyah@portofolio.ac.id</div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                                <div>
+                                    <div style="font-size:10px; color:#64748b;">Teknik Industri</div>
+                                    <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">fahmi.ardiansyah@portofolio.ac.id</div>
+                                </div>
+                                <button onclick="quickLogin('fahmi.ardiansyah@portofolio.ac.id','dosen123')" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);border:none;border-radius:6px;color:#fff;font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;white-space:nowrap;flex-shrink:0;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Login →</button>
                             </div>
-                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
-                                <div style="font-size:10px; color:#64748b;">Hukum</div>
-                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">gita.lestari@portofolio.ac.id</div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                                <div>
+                                    <div style="font-size:10px; color:#64748b;">Hukum</div>
+                                    <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">gita.lestari@portofolio.ac.id</div>
+                                </div>
+                                <button onclick="quickLogin('gita.lestari@portofolio.ac.id','dosen123')" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);border:none;border-radius:6px;color:#fff;font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;white-space:nowrap;flex-shrink:0;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Login →</button>
                             </div>
                         </div>
-                        <div style="margin-top:8px; font-size:11px; color:#94a3b8;">Password: <span style="color:#4ade80; font-weight:600; font-family:monospace;">dosen123</span></div>
                     </div>
 
                     <!-- Mahasiswa -->
                     <div>
-                        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#34d399; margin-bottom:10px;">🎓 Mahasiswa</div>
+                        <div style="font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.5px; color:#34d399; margin-bottom:8px;">🎓 Mahasiswa</div>
                         <div style="display:flex; flex-direction:column; gap:6px;">
-                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
-                                <div style="font-size:10px; color:#64748b;">Teknik Informatika</div>
-                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">agus.santoso@mhs.portofolio.ac.id</div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                                <div>
+                                    <div style="font-size:10px; color:#64748b;">Teknik Informatika</div>
+                                    <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">agus.santoso@mhs.portofolio.ac.id</div>
+                                </div>
+                                <button onclick="quickLogin('agus.santoso@mhs.portofolio.ac.id','mahasiswa123')" style="background:linear-gradient(135deg,#059669,#34d399);border:none;border-radius:6px;color:#fff;font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;white-space:nowrap;flex-shrink:0;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Login →</button>
                             </div>
-                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
-                                <div style="font-size:10px; color:#64748b;">Teknik Industri</div>
-                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">aditya.rahayu@mhs.portofolio.ac.id</div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                                <div>
+                                    <div style="font-size:10px; color:#64748b;">Teknik Industri</div>
+                                    <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">aditya.rahayu@mhs.portofolio.ac.id</div>
+                                </div>
+                                <button onclick="quickLogin('aditya.rahayu@mhs.portofolio.ac.id','mahasiswa123')" style="background:linear-gradient(135deg,#059669,#34d399);border:none;border-radius:6px;color:#fff;font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;white-space:nowrap;flex-shrink:0;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Login →</button>
                             </div>
-                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px;">
-                                <div style="font-size:10px; color:#64748b;">Hukum</div>
-                                <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">anggi.susanto@mhs.portofolio.ac.id</div>
+                            <div style="background:#0f172a; border-radius:8px; padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:8px;">
+                                <div>
+                                    <div style="font-size:10px; color:#64748b;">Hukum</div>
+                                    <div style="font-size:11px; color:#e2e8f0; font-family:monospace; word-break:break-all;">anggi.susanto@mhs.portofolio.ac.id</div>
+                                </div>
+                                <button onclick="quickLogin('anggi.susanto@mhs.portofolio.ac.id','mahasiswa123')" style="background:linear-gradient(135deg,#059669,#34d399);border:none;border-radius:6px;color:#fff;font-size:11px;font-weight:600;padding:6px 12px;cursor:pointer;white-space:nowrap;flex-shrink:0;" onmouseover="this.style.opacity='0.8'" onmouseout="this.style.opacity='1'">Login →</button>
                             </div>
                         </div>
-                        <div style="margin-top:8px; font-size:11px; color:#94a3b8;">Password: <span style="color:#4ade80; font-weight:600; font-family:monospace;">mahasiswa123</span></div>
                     </div>
                 </div>
 
@@ -91,6 +116,20 @@
                 </div>
 
             </div>
+
+            <!-- Quick Login Script -->
+            <script type="text/javascript">
+                function quickLogin(email, password) {
+                    var loginField = document.getElementById('login');
+                    var passwordField = document.getElementById('password');
+                    var form = document.querySelector('form.oe_login_form');
+                    if (loginField &amp;&amp; passwordField &amp;&amp; form) {
+                        loginField.value = email;
+                        passwordField.value = password;
+                        form.submit();
+                    }
+                }
+            </script>
         </xpath>
     </template>
 </odoo>
