@@ -29,5 +29,19 @@
             <field name="groups" eval="[(4, ref('group_akademik_officer'))]"/>
         </record>
 
+        <!-- Hide "My Profile" menu from dosen & officer (pure XML).
+             Record rule on ir.ui.menu: dosen/officer can only read menus
+             where id is NOT the My Profile menuitem. -->
+        <record id="rule_hide_my_profile_from_dosen" model="ir.rule">
+            <field name="name">Hide My Profile Menu from Dosen/Officer</field>
+            <field name="model_id" ref="base.model_ir_ui_menu"/>
+            <field name="domain_force">['|', ('name', '!=', 'My Profile'), ('parent_id.name', '!=', 'Academic')]</field>
+            <field name="groups" eval="[(4, ref('group_akademik_dosen'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
     </data>
 </odoo>
