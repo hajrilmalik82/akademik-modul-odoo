@@ -36,8 +36,17 @@
                                     <field name="subject_id" readonly="1" force_save="1"/>
                                     <field name="credits" sum="Total SKS"/>
                                     <field name="is_thesis" column_invisible="1"/>
-                                    <field name="score" readonly="1" force_save="1"/>
-                                    <button name="action_open_score_wizard" type="object" icon="fa-pencil-square-o" string="Input Score" class="btn-primary" invisible="is_thesis" groups="sistem_akademik.group_akademik_officer"/>
+                                    <field name="dosen_access_ok" column_invisible="1"/>
+                                    <field name="score_harian" readonly="1"/>
+                                    <field name="score_uts"    readonly="1"/>
+                                    <field name="score_uas"    readonly="1"/>
+                                    <field name="score"        readonly="1"/>
+                                    <button name="action_open_score_wizard"
+                                            type="object"
+                                            icon="fa-pencil-square-o"
+                                            string="Input Nilai"
+                                            class="btn-primary"
+                                            invisible="is_thesis or not dosen_access_ok"/>
                                     <field name="grade"/>
                                 </tree>
                             </field>

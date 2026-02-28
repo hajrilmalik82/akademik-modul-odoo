@@ -1,5 +1,6 @@
 from odoo import models, fields, api
 
+
 class AkademikKrsLine(models.Model):
     _name = 'akademik.krs.line'
     _description = 'Study Plan Detail'
@@ -7,22 +8,88 @@ class AkademikKrsLine(models.Model):
     krs_id = fields.Many2one('akademik.krs', string='KRS', ondelete='cascade')
     subject_id = fields.Many2one('akademik.subject', string='Subject', required=True)
     credits = fields.Integer(string='Credits', related='subject_id.credits', readonly=True)
-    grade = fields.Selection([
-        ('A', 'A'),
-        ('B', 'B'),
-        ('C', 'C'),
-        ('D', 'D'),
-        ('E', 'E')
-    ], string='Grade', compute='_compute_grade', store=True, readonly=True)
-    score = fields.Integer(string='Score (0-100)', default=0)
-    
-    is_thesis = fields.Boolean(compute='_compute_is_thesis', string='Is Thesis')
     jadwal_id = fields.Many2one('akademik.jadwal', string='Class Schedule')
+
+    # ── Komponen Nilai ────────────────────────────────────────────
+    score_harian = fields.Float(string='Nilai Harian (30%)', default=0, digits=(5, 2))
+    score_uts = fields.Float(string='Nilai UTS (30%)', default=0, digits=(5, 2))
+    score_uas = fields.Float(string='Nilai UAS (40%)', default=0, digits=(5, 2))
+
+    # ── Total & Grade (computed) ──────────────────────────────────
+    score = fields.Float(
+        string='Total Score', compute='_compute_score', store=True, readonly=True, digits=(5, 2))
+    grade = fields.Selection([
+        ('A', 'A'), ('B', 'B'), ('C', 'C'), ('D', 'D'), ('E', 'E')
+    ], string='Grade', compute='_compute_grade', store=True, readonly=True)
+
+    is_thesis = fields.Boolean(compute='_compute_is_thesis', string='Is Thesis')
+
+    # ── Access helper (untuk lock field di view) ──────────────────
+    dosen_access_ok = fields.Boolean(
+        string='Can Edit Score', compute='_compute_dosen_access_ok')
+
+    @api.depends('score_harian', 'score_uts', 'score_uas')
+    def _compute_score(self):
+        for record in self:
+            record.score = (
+                record.score_harian * 0.30 +
+                record.score_uts    * 0.30 +
+                record.score_uas    * 0.40
+            )
+
+    @api.depends('score')
+    def _compute_grade(self):
+        for record in self:
+            s = record.score
+            if s >= 85:
+                record.grade = 'A'
+            elif s >= 70:
+                record.grade = 'B'
+            elif s >= 55:
+                record.grade = 'C'
+            elif s >= 40:
+                record.grade = 'D'
+            else:
+                record.grade = 'E'
+
+    @api.depends('jadwal_id')
+    def _compute_dosen_access_ok(self):
+        """True jika user adalah dosen pengajar jadwal ini, atau officer."""
+        user = self.env.user
+        is_officer = user.has_group('sistem_akademik.group_akademik_officer')
+        for record in self:
+            if is_officer:
+                record.dosen_access_ok = True
+            elif record.jadwal_id and record.jadwal_id.dosen_id:
+                record.dosen_access_ok = (
+                    record.jadwal_id.dosen_id.user_id.id == user.id)
+            else:
+                record.dosen_access_ok = False
 
     @api.onchange('jadwal_id')
     def _onchange_jadwal_id(self):
         if self.jadwal_id:
             self.subject_id = self.jadwal_id.subject_id
+
+    @api.depends('subject_id')
+    def _compute_is_thesis(self):
+        for record in self:
+            if record.subject_id and record.subject_id.name:
+                record.is_thesis = 'tesis' in record.subject_id.name.lower()
+            else:
+                record.is_thesis = False
+
+    @api.constrains('score_harian', 'score_uts', 'score_uas')
+    def _check_score_range(self):
+        for record in self:
+            for field_name, val in [
+                ('Nilai Harian', record.score_harian),
+                ('Nilai UTS', record.score_uts),
+                ('Nilai UAS', record.score_uas),
+            ]:
+                if not (0 <= val <= 100):
+                    raise models.ValidationError(
+                        f"{field_name} harus antara 0 dan 100 (nilai: {val})")
 
     @api.constrains('jadwal_id')
     def _check_schedule_conflict(self):

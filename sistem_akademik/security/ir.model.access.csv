@@ -12,4 +12,8 @@ access_akademik_ruangan_student,akademik.ruangan.student,model_akademik_ruangan,
 access_akademik_jadwal_officer,akademik.jadwal.officer,model_akademik_jadwal,group_akademik_officer,1,1,1,1
 access_akademik_jadwal_student,akademik.jadwal.student,model_akademik_jadwal,group_akademik_student,1,0,0,0
 access_akademik_jadwal_dosen,akademik.jadwal.dosen,model_akademik_jadwal,group_akademik_dosen,1,1,0,0
+access_res_partner_dosen,res.partner.dosen,base.model_res_partner,group_akademik_dosen,1,0,0,0
+access_akademik_krs_dosen,akademik.krs.dosen,model_akademik_krs,group_akademik_dosen,1,0,0,0
+access_akademik_krs_line_dosen,akademik.krs.line.dosen,model_akademik_krs_line,group_akademik_dosen,1,1,0,0
+access_akademik_krs_score_wizard_dosen,akademik.krs.score.wizard.dosen,model_akademik_krs_score_wizard,group_akademik_dosen,1,1,1,1
 

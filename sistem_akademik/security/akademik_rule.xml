@@ -15,6 +15,26 @@
             <field name="domain_force">[(1, '=', 1)]</field>
             <field name="groups" eval="[(4, ref('group_akademik_officer'))]"/>
         </record>
+
+        <!-- Dosen melihat KRS yang ada line-nya dengan jadwal yang dosen tsb mengajar -->
+        <record id="rule_akademik_krs_dosen" model="ir.rule">
+            <field name="name">Dosen See KRS With Their Jadwal</field>
+            <field name="model_id" ref="model_akademik_krs"/>
+            <field name="domain_force">[('line_ids.jadwal_id.dosen_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_akademik_dosen'))]"/>
+        </record>
+
+        <!-- Dosen perlu bisa baca res.partner untuk menampilkan nama mahasiswa di KRS -->
+        <record id="rule_res_partner_dosen_read" model="ir.rule">
+            <field name="name">Dosen Read Student Partners</field>
+            <field name="model_id" ref="base.model_res_partner"/>
+            <field name="domain_force">[('identitas_mahasiswa', '=', True)]</field>
+            <field name="groups" eval="[(4, ref('group_akademik_dosen'))]"/>
+            <field name="perm_read"   eval="True"/>
+            <field name="perm_write"  eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
         <record id="rule_akademik_jadwal_student" model="ir.rule">
             <field name="name">Student Own Prodi Schedule</field>
             <field name="model_id" ref="model_akademik_jadwal"/>
@@ -27,6 +47,30 @@
             <field name="model_id" ref="model_akademik_jadwal"/>
             <field name="domain_force">[(1, '=', 1)]</field>
             <field name="groups" eval="[(4, ref('group_akademik_officer'))]"/>
+        </record>
+
+        <!-- KRS Line: dosen hanya bisa write baris yang jadwalnya dia yang mengajar -->
+        <record id="rule_krs_line_dosen_write" model="ir.rule">
+            <field name="name">Dosen Only Write Own Subject KRS Line</field>
+            <field name="model_id" ref="model_akademik_krs_line"/>
+            <field name="domain_force">[('jadwal_id.dosen_id.user_id', '=', user.id)]</field>
+            <field name="groups" eval="[(4, ref('group_akademik_dosen'))]"/>
+            <field name="perm_read"   eval="False"/>
+            <field name="perm_write"  eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- KRS Line: officer bisa write semua -->
+        <record id="rule_krs_line_officer_write" model="ir.rule">
+            <field name="name">Officer Write All KRS Lines</field>
+            <field name="model_id" ref="model_akademik_krs_line"/>
+            <field name="domain_force">[(1, '=', 1)]</field>
+            <field name="groups" eval="[(4, ref('group_akademik_officer'))]"/>
+            <field name="perm_read"   eval="False"/>
+            <field name="perm_write"  eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
         </record>
 
         <!-- Hide "My Profile" menu from dosen & officer (pure XML).

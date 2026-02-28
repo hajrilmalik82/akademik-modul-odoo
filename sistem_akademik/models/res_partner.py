@@ -43,8 +43,11 @@ class ResPartner(models.Model):
     def _compute_display_name(self):
         super(ResPartner, self)._compute_display_name()
         for record in self:
-            if record.nim:
-                record.display_name = f"[{record.nim}] {record.name}"
+            # sudo() bypasses hr.employee.public proxy restriction when this
+            # partner is also linked to an employee account
+            nim = record.sudo().nim
+            if nim:
+                record.display_name = f"[{nim}] {record.name}"
 
     @api.model
     def _name_search(self, name='', domain=None, operator='ilike', limit=100, order=None):

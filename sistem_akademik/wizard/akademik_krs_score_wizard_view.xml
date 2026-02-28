@@ -4,14 +4,22 @@
         <field name="name">akademik.krs.score.wizard.form</field>
         <field name="model">akademik.krs.score.wizard</field>
         <field name="arch" type="xml">
-            <form string="Input Score">
-                <group>
-                    <field name="krs_line_id"/>
-                    <field name="score"/>
+            <form string="Input Nilai">
+                <group string="Mata Kuliah">
+                    <field name="krs_line_id" readonly="1"/>
+                </group>
+                <group string="Komponen Nilai">
+                    <field name="score_harian"/>
+                    <field name="score_uts"/>
+                    <field name="score_uas"/>
+                </group>
+                <group string="Hasil">
+                    <field name="score_preview" readonly="1"/>
+                    <field name="grade_preview" readonly="1"/>
                 </group>
                 <footer>
-                    <button name="action_save_score" string="Save" type="object" class="btn-primary"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    <button name="action_save_score" string="Simpan Nilai" type="object" class="btn-primary"/>
+                    <button string="Batal" class="btn-secondary" special="cancel"/>
                 </footer>
             </form>
         </field>
