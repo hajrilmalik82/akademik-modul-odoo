@@ -121,13 +121,14 @@ class AkademikThesis(models.Model):
         for record in self:
             if not record.final_score or record.final_score == 0:
                 raise models.ValidationError("Final score must be calculated before processing graduation.")
-            
-            # Write score to KRS Line, triggering auto-compute of grade in KRS
-            if record.krs_line_id:
-                record.krs_line_id.score = record.final_score
-            else:
-                 raise models.ValidationError("Student does not have 'Thesis' in their KRS/Study Plan.")
-        
+
+            if not record.krs_line_id:
+                raise models.ValidationError("Student does not have 'Thesis' in their KRS/Study Plan.")
+
+            # Tulis ke score_tesis (bukan ke score yang computed).
+            # _compute_score akan otomatis menghitung: score = score_tesis (karena is_thesis = True)
+            record.krs_line_id.sudo().write({'score_tesis': record.final_score})
+
             record.student_id.status = 'graduated'
             record.completion_date = record.defense_schedule.date()
             record.stage = 'done'

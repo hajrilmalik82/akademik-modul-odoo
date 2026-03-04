@@ -10,10 +10,15 @@ class AkademikKrsLine(models.Model):
     credits = fields.Integer(string='Credits', related='subject_id.credits', readonly=True)
     jadwal_id = fields.Many2one('akademik.jadwal', string='Class Schedule')
 
-    # ── Komponen Nilai ────────────────────────────────────────────
+    # ── Komponen Nilai (untuk MK biasa) ─────────────────────────
     score_harian = fields.Float(string='Nilai Harian (30%)', default=0, digits=(5, 2))
     score_uts = fields.Float(string='Nilai UTS (30%)', default=0, digits=(5, 2))
     score_uas = fields.Float(string='Nilai UAS (40%)', default=0, digits=(5, 2))
+
+    # ── Nilai khusus Tesis (dari modul akademik_tesis) ────────────
+    score_tesis = fields.Float(
+        string='Nilai Tesis', default=0, digits=(5, 2),
+        help='Diisi otomatis dari final score sidang tesis. Hanya untuk MK Tesis.')
 
     # ── Total & Grade (computed) ──────────────────────────────────
     score = fields.Float(
@@ -28,14 +33,19 @@ class AkademikKrsLine(models.Model):
     dosen_access_ok = fields.Boolean(
         string='Can Edit Score', compute='_compute_dosen_access_ok')
 
-    @api.depends('score_harian', 'score_uts', 'score_uas')
+    @api.depends('score_harian', 'score_uts', 'score_uas', 'score_tesis', 'is_thesis')
     def _compute_score(self):
         for record in self:
-            record.score = (
-                record.score_harian * 0.30 +
-                record.score_uts    * 0.30 +
-                record.score_uas    * 0.40
-            )
+            if record.is_thesis:
+                # Tesis: nilai langsung dari sidang, bukan dari 3 komponen
+                record.score = record.score_tesis
+            else:
+                # MK biasa: bobot harian 30% + UTS 30% + UAS 40%
+                record.score = (
+                    record.score_harian * 0.30 +
+                    record.score_uts    * 0.30 +
+                    record.score_uas    * 0.40
+                )
 
     @api.depends('score')
     def _compute_grade(self):
@@ -134,26 +144,7 @@ class AkademikKrsLine(models.Model):
             if current_enrolled > limit:
                 raise models.ValidationError(f"Class '{sch_sudo.name}' is Full! Capacity: {limit}")
 
-    @api.depends('subject_id')
-    def _compute_is_thesis(self):
-        for record in self:
-            if record.subject_id and record.subject_id.name:
-                record.is_thesis = 'tesis' in record.subject_id.name.lower()
-            else:
-                record.is_thesis = False
 
-    @api.depends('score')
-    def _compute_grade(self):
-        for record in self:
-            if record.score >= 85:
-                record.grade = 'A'
-            elif record.score >= 70:
-                record.grade = 'B'
-            elif record.score >= 55:
-                record.grade = 'C'
-            elif record.score >= 40:
-                record.grade = 'D'
-                record.grade = 'E'
 
     def action_open_score_wizard(self):
         return {
