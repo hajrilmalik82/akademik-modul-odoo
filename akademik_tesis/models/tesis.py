@@ -9,8 +9,24 @@ class AkademikThesis(models.Model):
 
     title = fields.Char(string='Thesis Title', required=True)
     student_id = fields.Many2one('res.partner', string='Student', domain="[('identitas_mahasiswa', '=', True), ('krs_ids.line_ids.subject_id.name', 'ilike', 'Tesis')]", required=True)
-    supervisor_id = fields.Many2one('hr.employee', string='Supervisor', domain="[('is_dosen', '=', True), ('study_program_id', '=', study_program_id)]")
+    supervisor_id = fields.Many2one(
+        'hr.employee', string='Supervisor',
+        domain="[('is_dosen', '=', True)]")
     supervisor_user_id = fields.Many2one('res.users', related='supervisor_id.user_id', string='Supervisor User', store=True)
+
+    @api.onchange('student_id')
+    def _onchange_student_id_supervisor(self):
+        """Filter supervisor berdasarkan prodi mahasiswa yang dipilih."""
+        if self.student_id and self.student_id.study_program_id:
+            return {
+                'domain': {
+                    'supervisor_id': [
+                        ('is_dosen', '=', True),
+                        ('study_program_id', '=', self.student_id.study_program_id.id),
+                    ]
+                }
+            }
+        return {'domain': {'supervisor_id': [('is_dosen', '=', True)]}}
     submission_date = fields.Date(string='Submission Date', default=fields.Date.today)
     note = fields.Text(string='Note')
     progress = fields.Integer(string='Progress Percentage')
@@ -36,16 +52,16 @@ class AkademikThesis(models.Model):
     ], string='Stage', default='title_submission', group_expand='_expand_stage')
 
     completion_duration_days = fields.Integer(
-        string='Completion Duration', 
-        compute='_compute_completion_duration', 
+        string='Completion Duration',
+        compute='_compute_completion_duration',
         store=True,
         group_operator='avg',
         help='Days from submission to completion'
     )
     study_program_id = fields.Many2one(
-        'akademik.prodi', 
-        related='student_id.study_program_id', 
-        string='Study Program', 
+        'akademik.prodi',
+        related='student_id.study_program_id',
+        string='Study Program',
         store=True
     )
     completion_date = fields.Date(
@@ -74,7 +90,7 @@ class AkademikThesis(models.Model):
             proposal = record.document_ids.filtered(lambda d: d.type == 'proposal' and d.status == 'verified')
             if not proposal:
                 raise models.ValidationError("Please upload and verify the Proposal document before proceeding to Research stage.")
-            
+
             if not record.seminar_schedule:
                 raise models.ValidationError("Please set the Seminar Schedule before approving the proposal.")
 
@@ -85,7 +101,7 @@ class AkademikThesis(models.Model):
             research_doc = record.document_ids.filtered(lambda d: d.type == 'research' and d.status == 'verified')
             if not research_doc:
                  raise models.ValidationError("Please upload and verify the Research document before proceeding to Final Defense.")
-            
+
             record.stage = 'final_defense'
 
     def action_approve_defense(self):
@@ -95,7 +111,7 @@ class AkademikThesis(models.Model):
 
             if not record.defense_schedule:
                 raise models.ValidationError("Please set the Final Defense Schedule.")
-            
+
             if not record.examiner_score_ids:
                 raise models.ValidationError("Please assign at least one Examiner.")
 
@@ -107,7 +123,7 @@ class AkademikThesis(models.Model):
 
     krs_line_id = fields.Many2one('akademik.krs.line', string='KRS Line (Thesis)', compute='_compute_krs_line_id', store=True)
     final_grade = fields.Selection(related='krs_line_id.grade', string='Final Grade', store=True, readonly=True)
-    
+
     @api.depends('student_id')
     def _compute_krs_line_id(self):
         for record in self:

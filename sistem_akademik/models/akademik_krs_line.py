@@ -11,14 +11,14 @@ class AkademikKrsLine(models.Model):
     jadwal_id = fields.Many2one('akademik.jadwal', string='Class Schedule')
 
     # ── Komponen Nilai (untuk MK biasa) ─────────────────────────
-    score_harian = fields.Float(string='Nilai Harian (30%)', default=0, digits=(5, 2))
-    score_uts = fields.Float(string='Nilai UTS (30%)', default=0, digits=(5, 2))
-    score_uas = fields.Float(string='Nilai UAS (40%)', default=0, digits=(5, 2))
+    score_harian = fields.Float(string='Daily Score (30%)', default=0, digits=(5, 2))
+    score_uts = fields.Float(string='Mid-Term Score (30%)', default=0, digits=(5, 2))
+    score_uas = fields.Float(string='Final Exam Score (40%)', default=0, digits=(5, 2))
 
     # ── Nilai khusus Tesis (dari modul akademik_tesis) ────────────
     score_tesis = fields.Float(
-        string='Nilai Tesis', default=0, digits=(5, 2),
-        help='Diisi otomatis dari final score sidang tesis. Hanya untuk MK Tesis.')
+        string='Thesis Score', default=0, digits=(5, 2),
+        help='Automatically filled from thesis final defense score. For Thesis subject only.')
 
     # ── Total & Grade (computed) ──────────────────────────────────
     score = fields.Float(
@@ -106,10 +106,7 @@ class AkademikKrsLine(models.Model):
         for record in self:
             if not record.jadwal_id:
                 continue
-            
-            # Check Conflict
-            # Check for conflict with other lines in the SAME KRS (or other active KRS of the same student)
-            # Find other KRS lines of this student that have a schedule
+
             domain = [
                 ('krs_id.student_id', '=', record.krs_id.student_id.id),
                 ('id', '!=', record.id),
@@ -117,41 +114,39 @@ class AkademikKrsLine(models.Model):
                 ('krs_id.active', '=', True)
             ]
             other_lines = self.sudo().search(domain)
-            
+
             for line in other_lines:
-                # Check Day Collision
-                # Use sudo() to access jadwal details as they might be hidden
+                # sudo() needed: student cannot see other students' jadwal directly
                 sch_a = record.jadwal_id.sudo()
                 sch_b = line.jadwal_id.sudo()
-                
+
                 if sch_b.day == sch_a.day:
-                    # Check Time Overlap
-                    # (StartA < EndB) and (EndA > StartB)
+                    # Time overlap: (StartA < EndB) and (EndA > StartB)
                     if (sch_a.start_time < sch_b.end_time) and (sch_a.end_time > sch_b.start_time):
                         raise models.ValidationError(
                             f"Schedule Conflict! Class '{sch_a.name}' overlaps with '{sch_b.name}' on {sch_a.day} at {sch_a.start_time}-{sch_a.end_time}."
                         )
-            
-            # Check Quota (Capacity)
-            # Count how many lines use this jadwal_id
-            # sudo() ESSENTIAL here because student cannot see other students' lines
+
+            # sudo() needed: student cannot see other students' KRS lines
             current_enrolled = self.sudo().search_count([('jadwal_id', '=', record.jadwal_id.id)])
-            
-            # Use Room Capacity as limit
             sch_sudo = record.jadwal_id.sudo()
             limit = sch_sudo.ruangan_id.capacity if sch_sudo.ruangan_id else 0
-            
+
             if current_enrolled > limit:
                 raise models.ValidationError(f"Class '{sch_sudo.name}' is Full! Capacity: {limit}")
 
-
-
     def action_open_score_wizard(self):
+        self.ensure_one()
         return {
-            'name': 'Input Score',
+            'name': 'Input Nilai',
             'type': 'ir.actions.act_window',
             'res_model': 'akademik.krs.score.wizard',
             'view_mode': 'form',
             'target': 'new',
-            'context': {'default_krs_line_id': self.id, 'default_score': self.score},
+            'context': {
+                'default_krs_line_id': self.id,
+                'default_score_harian': self.score_harian,
+                'default_score_uts':    self.score_uts,
+                'default_score_uas':    self.score_uas,
+            },
         }

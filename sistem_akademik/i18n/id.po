@@ -551,3 +551,87 @@ msgstr "Topik Penelitian"
 #: model_terms:ir.ui.view,arch_db:sistem_akademik.view_partner_form_mahasiswa
 msgid "history or academic advisor observation"
 msgstr "riwayat atau catatan pembimbing akademik"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__score_harian
+msgid "Daily Score (30%)"
+msgstr "Nilai Harian (30%)"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__score_uts
+msgid "Mid-Term Score (30%)"
+msgstr "Nilai UTS (30%)"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__score_uas
+msgid "Final Exam Score (40%)"
+msgstr "Nilai UAS (40%)"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__score_tesis
+msgid "Thesis Score"
+msgstr "Nilai Tesis"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__score
+msgid "Total Score"
+msgstr "Total Nilai"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__is_thesis
+msgid "Is Thesis"
+msgstr "Adalah Tesis"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_line__dosen_access_ok
+msgid "Can Edit Score"
+msgstr "Dapat Input Nilai"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_score_wizard__score_harian
+msgid "Daily Score (30%)"
+msgstr "Nilai Harian (30%)"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_score_wizard__score_uts
+msgid "Mid-Term Score (30%)"
+msgstr "Nilai UTS (30%)"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_score_wizard__score_uas
+msgid "Final Exam Score (40%)"
+msgstr "Nilai UAS (40%)"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_score_wizard__score_preview
+msgid "Total (Preview)"
+msgstr "Total (Pratinjau)"
+
+#. module: sistem_akademik
+#: model:ir.model.fields,field_description:sistem_akademik.field_akademik_krs_score_wizard__grade_preview
+msgid "Grade (Preview)"
+msgstr "Nilai Huruf (Pratinjau)"
+
+#. module: sistem_akademik
+#. odoo-python
+#: code:addons/sistem_akademik/models/akademik_jadwal.py:0
+msgid "Your user account is not linked to any Employee/Lecturer record."
+msgstr "Akun Anda tidak terhubung dengan data Pegawai/Dosen."
+
+#. module: sistem_akademik
+#. odoo-python
+#: code:addons/sistem_akademik/models/akademik_jadwal.py:0
+msgid "You are not registered as a Lecturer."
+msgstr "Anda tidak terdaftar sebagai Dosen."
+
+#. module: sistem_akademik
+#. odoo-python
+#: code:addons/sistem_akademik/models/akademik_jadwal.py:0
+msgid "You are not authorized to perform this action."
+msgstr "Anda tidak memiliki wewenang untuk melakukan tindakan ini."
+
+#. module: sistem_akademik
+#. odoo-python
+#: code:addons/sistem_akademik/models/akademik_jadwal.py:0
+msgid "You cannot release a schedule that is not assigned to you."
+msgstr "Anda tidak bisa melepas jadwal yang bukan milik Anda."
