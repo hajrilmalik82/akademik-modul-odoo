@@ -1,0 +1,9 @@
+/* ═══════════════════════════════════════════
+   Akademik Portal — Simplified Styling
+   (Using standard Odoo/Bootstrap 5 utilities)
+═══════════════════════════════════════════ */
+
+/* Bootstrap 5 doesn't have a specific hover-underline animation 
+   utility that matches Odoo's branding by default, 
+   but we will use Bootstrap classes in the XML instead. 
+*/

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══════════════════════════════════════════════
+         KRS LIST — /my/akademik/krs/
+    ═══════════════════════════════════════════════ -->
+    <template id="portal_krs_list" name="Student Portal - KRS List">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_breadcrumbs" t-value="True"/>
+            <div class="mb-4">
+                <a href="/my/akademik/" class="btn btn-link btn-sm text-decoration-none ps-0">← Kembali ke Profil</a>
+                <h3 class="fw-bold mt-2">📋 Daftar KRS</h3>
+            </div>
+
+            <t t-if="not krs_list">
+                <div class="alert alert-light border shadow-sm rounded-3 py-4 text-center">
+                    <span class="fs-1 d-block mb-2">📄</span>
+                    <h5 class="fw-bold">Belum ada KRS</h5>
+                    <p class="text-muted mb-0">Data Kartu Rencana Studi Anda belum tersedia di sistem.</p>
+                </div>
+            </t>
+            <t t-else="">
+                <div class="row g-4">
+                    <t t-foreach="krs_list" t-as="krs">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="card border-0 shadow-sm h-100 rounded-3 transition-lift">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <h5 class="fw-bold mb-0" t-esc="krs.academic_year_id.academic_year or '—'"/>
+                                        <span class="badge bg-light text-primary border border-primary border-opacity-25">
+                                            Semester <t t-esc="krs.semester"/>
+                                        </span>
+                                    </div>
+                                    <div class="d-flex gap-3 mb-0">
+                                        <div>
+                                            <small class="text-muted d-block">Mata Kuliah</small>
+                                            <span class="fw-bold"><t t-esc="len(krs.line_ids)"/> MK</span>
+                                        </div>
+                                        <div class="border-start ps-3">
+                                            <small class="text-muted d-block">Total Beban</small>
+                                            <span class="fw-bold text-primary"><t t-esc="sum(krs.line_ids.mapped('credits'))"/> SKS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-light bg-opacity-50 border-0 p-3">
+                                    <a t-attf-href="/my/akademik/krs/#{krs.id}/"
+                                       class="btn btn-primary w-100 rounded-pill shadow-sm py-2">
+                                        Lihat Konten &amp; Nilai
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <!-- ═══════════════════════════════════════════════
+         KRS DETAIL — /my/akademik/krs/<id>/
+    ═══════════════════════════════════════════════ -->
+    <template id="portal_krs_detail" name="Student Portal - KRS Detail">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_breadcrumbs" t-value="True"/>
+            
+            <div class="card border-0 shadow-sm rounded-3 overflow-hidden mb-4">
+                <div class="card-header bg-primary text-white border-0 py-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                        <div class="d-flex align-items-center gap-3">
+                            <a href="/my/akademik/krs/" class="text-white opacity-75 text-decoration-none">
+                                <span class="fs-4">←</span>
+                            </a>
+                            <div>
+                                <h4 class="fw-bold mb-0">
+                                    Semester <t t-esc="krs.semester"/>
+                                </h4>
+                                <small class="text-white-50" t-esc="krs.academic_year_id.academic_year or ''"/>
+                            </div>
+                        </div>
+                        <div class="bg-white bg-opacity-25 rounded-pill px-4 py-2 border border-white border-opacity-25 shadow-sm">
+                            <span class="fw-bold">Total: <t t-esc="total_sks"/> SKS</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr class="text-muted small text-uppercase">
+                                <th class="ps-4">No</th>
+                                <th>Mata Kuliah</th>
+                                <th class="text-center">SKS</th>
+                                <th class="text-center">Harian</th>
+                                <th class="text-center">UTS</th>
+                                <th class="text-center">UAS</th>
+                                <th class="text-center">Total</th>
+                                <th class="text-center pe-4">Grade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="krs.line_ids" t-as="line">
+                                <tr>
+                                    <td class="ps-4 text-muted small" t-esc="line_index + 1"/>
+                                    <td>
+                                        <div class="fw-bold" t-esc="line.subject_id.name or '—'"/>
+                                        <div class="small text-muted" t-if="line.jadwal_id">
+                                            <i class="fa fa-calendar-o me-1"/> <t t-esc="line.jadwal_id.name"/>
+                                        </div>
+                                    </td>
+                                    <td class="text-center fw-bold text-primary" t-esc="line.credits"/>
+                                    <td class="text-center">
+                                        <t t-if="line.is_thesis">—</t>
+                                        <t t-else="" t-esc="'%.1f' % line.score_harian"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <t t-if="line.is_thesis">—</t>
+                                        <t t-else="" t-esc="'%.1f' % line.score_uts"/>
+                                    </td>
+                                    <td class="text-center">
+                                        <t t-if="line.is_thesis">—</t>
+                                        <t t-else="" t-esc="'%.1f' % line.score_uas"/>
+                                    </td>
+                                    <td class="text-center fw-bold" t-esc="'%.1f' % line.score"/>
+                                    <td class="text-center pe-4">
+                                        <span t-att-class="'badge rounded-pill px-3 ' + {'A':'bg-success','B':'bg-primary','C':'bg-warning text-dark','D':'bg-danger','E':'bg-dark'}.get(line.grade,'bg-secondary')">
+                                            <t t-esc="line.grade or '—'"/>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

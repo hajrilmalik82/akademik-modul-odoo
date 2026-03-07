@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══════════════════════════════════════════════
+         JADWAL — /my/akademik/jadwal/
+    ═══════════════════════════════════════════════ -->
+    <template id="portal_jadwal" name="Student Portal - Class Schedule">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_breadcrumbs" t-value="True"/>
+            <div class="mb-4">
+                <a href="/my/akademik/" class="btn btn-link btn-sm text-decoration-none ps-0">← Kembali ke Profil</a>
+                <h3 class="fw-bold mt-2">📅 Jadwal Perkuliahan</h3>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
+                <div class="table-responsive">
+                    <table id="jadwal-table" class="table table-hover align-middle mb-0">
+                        <thead class="bg-dark text-white">
+                            <tr class="text-uppercase small">
+                                <th class="ps-4">Mata Kuliah</th>
+                                <th>Waktu</th>
+                                <th>Ruangan</th>
+                                <th>Dosen</th>
+                                <th class="text-center">Terdaftar</th>
+                                <th class="text-center pe-4">Kuota</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="jadwal_list" t-as="jadwal">
+                                <tr t-att-data-day="jadwal.day" class="border-start border-4" 
+                                    t-attf-style="border-color: #{{ {'monday':'007bff','tuesday':'6f42c1','wednesday':'e83e8c','thursday':'fd7e14','friday':'28a745','saturday':'ffc107','sunday':'6c757d'}.get(jadwal.day or '', '6c757d') }} !important;">
+                                    <td class="ps-4">
+                                        <div class="fw-bold" t-esc="jadwal.subject_id.name or '—'"/>
+                                        <div class="badge bg-light text-dark border text-capitalize fw-normal">
+                                            <t t-esc="jadwal.day or '—'"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="fw-bold">
+                                            <t t-esc="'%02d:%02d' % divmod(int(jadwal.start_time * 60), 60)"/>
+                                            –
+                                            <t t-esc="'%02d:%02d' % divmod(int(jadwal.end_time * 60), 60)"/>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted"><i class="fa fa-map-marker me-1"/></span>
+                                        <t t-esc="jadwal.ruangan_id.name if jadwal.ruangan_id else '—'"/>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted"><i class="fa fa-user me-1"/></span>
+                                        <t t-esc="jadwal.dosen_id.name if jadwal.dosen_id else 'TBA'"/>
+                                    </td>
+                                    <td class="text-center fw-bold" t-esc="jadwal.enrolled_count"/>
+                                    <td class="text-center pe-4">
+                                        <span t-att-class="'badge rounded-pill ' + ('bg-success' if jadwal.remaining_quota > 5 else 'bg-warning text-dark' if jadwal.remaining_quota > 0 else 'bg-danger')">
+                                            <t t-esc="jadwal.remaining_quota"/> sisa
+                                        </span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

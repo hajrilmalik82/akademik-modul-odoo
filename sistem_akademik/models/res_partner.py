@@ -71,3 +71,33 @@ class ResPartner(models.Model):
             'target': 'current',
             'flags': {'mode': 'readonly'},
         }
+
+    def action_generate_portal_user(self):
+        """Generate a Portal User account for this student.
+        Portal users access the system via /my/ and cannot enter the Odoo backend."""
+        if not self.env.user.has_group('sistem_akademik.group_akademik_officer'):
+            raise models.ValidationError(
+                "Only Academic Officers can generate student user accounts.")
+
+        for record in self:
+            if not record.identitas_mahasiswa:
+                continue
+
+            if record.user_ids:
+                raise models.ValidationError(
+                    f"Student '{record.name}' already has a user account.")
+
+            if not record.email:
+                raise models.ValidationError(
+                    f"Please fill in the email for '{record.name}' first.")
+
+            user_vals = {
+                'name': record.name,
+                'login': record.email,
+                'email': record.email,
+                # Portal user only — NO base.group_user (internal)
+                'groups_id': [(6, 0, [self.env.ref('base.group_portal').id])],
+            }
+            user = self.env['res.users'].sudo().create(user_vals)
+            record.sudo().write({'user_ids': [(4, user.id)]})
+

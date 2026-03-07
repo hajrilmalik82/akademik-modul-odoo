@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ═══════════════════════════════════════════════
+         PROFIL — /my/akademik/
+    ═══════════════════════════════════════════════ -->
+    <template id="portal_profil" name="Student Portal - Profil">
+        <t t-call="portal.portal_layout">
+            <t t-set="no_breadcrumbs" t-value="True"/>
+            
+            <!-- Hero Header using BS5 bg-primary -->
+            <div class="bg-primary text-white p-4 rounded-3 shadow-sm mb-4">
+                <div class="d-flex flex-wrap align-items-center gap-4">
+                    <!-- Avatar Container using BS5 utilities -->
+                    <div class="flex-shrink-0">
+                        <t t-if="partner.image_128">
+                            <img t-attf-src="/web/image/res.partner/#{partner.id}/image_128"
+                                 class="rounded-circle border border-white border-2 shadow-sm"
+                                 width="80" height="80" alt="foto"/>
+                        </t>
+                        <t t-else="">
+                            <div class="bg-white bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center shadow-sm"
+                                 style="width:80px; height:80px;">
+                                <span class="fs-1">👤</span>
+                            </div>
+                        </t>
+                    </div>
+                    
+                    <div class="flex-grow-1 min-vw-0">
+                        <h2 class="mb-1 fw-bold text-truncate" t-esc="partner.name"/>
+                        <div class="d-flex flex-wrap align-items-center gap-2 text-white-50">
+                            <span class="text-truncate" t-esc="partner.nim or '—'"/>
+                            <span class="opacity-75 d-none d-sm-inline">|</span>
+                            <span class="text-truncate" t-esc="partner.study_program_id.study_program_name or '—'"/>
+                        </div>
+                    </div>
+                    
+                    <div class="ms-md-auto text-end">
+                        <span t-att-class="'badge fs-6 shadow-sm border border-white border-opacity-25 ' + {'active':'bg-success','graduated':'bg-info','dropout':'bg-danger','draft':'bg-secondary'}.get(partner.status,'bg-secondary')">
+                            <t t-esc="dict(draft='Draft',active='Aktif',graduated='Lulus',dropout='Drop Out').get(partner.status, partner.status or '—')"/>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <!-- ─── Kolom Kiri: Data Diri ── -->
+                <div class="col-md-7">
+                    <div class="card border-0 shadow-sm rounded-3">
+                        <div class="card-header bg-white py-3 border-bottom-0">
+                            <h5 class="mb-0 fw-bold d-flex align-items-center gap-2">
+                                <span class="text-primary">📋</span> Data Diri
+                            </h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-sm mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-muted fw-normal ps-4 py-3 border-top-0" style="width:35%">Nama Lengkap</th>
+                                            <td class="fw-semibold py-3 border-top-0" t-esc="partner.name"/>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted fw-normal ps-4 py-3">NIM</th>
+                                            <td class="py-3" t-esc="partner.nim or '—'"/>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted fw-normal ps-4 py-3">Program Studi</th>
+                                            <td class="py-3" t-esc="partner.study_program_id.study_program_name or '—'"/>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted fw-normal ps-4 py-3">Tahun Masuk</th>
+                                            <td class="py-3" t-esc="partner.entry_year_id.academic_year if partner.entry_year_id else '—'"/>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted fw-normal ps-4 py-3">Email</th>
+                                            <td class="py-3 text-break" t-esc="partner.email or '—'"/>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted fw-normal ps-4 py-3">Telepon</th>
+                                            <td class="py-3" t-esc="partner.phone or '—'"/>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-muted fw-normal ps-4 py-3">Status</th>
+                                            <td class="py-3">
+                                                <span t-att-class="'badge rounded-pill ' + {'active':'bg-success','graduated':'bg-info','dropout':'bg-danger','draft':'bg-secondary'}.get(partner.status,'bg-secondary')">
+                                                    <t t-esc="dict(draft='Draft',active='Aktif',graduated='Lulus',dropout='Drop Out').get(partner.status,'—')"/>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ─── Kolom Kanan: Ringkasan Akademik ── -->
+                <div class="col-md-5">
+                    <!-- KRS Card -->
+                    <div class="card border-0 shadow-sm rounded-3 mb-4">
+                        <div class="card-header bg-white py-3 border-bottom-0">
+                            <h5 class="mb-0 fw-bold d-flex align-items-center gap-2">
+                                <span class="text-primary">📅</span> KRS Terakhir
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <t t-if="latest_krs">
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="text-muted small">Tahun Akademik</span>
+                                        <span class="fw-bold" t-esc="latest_krs.academic_year_id.academic_year or '—'"/>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="text-muted small">Semester</span>
+                                        <span class="fw-bold badge bg-light text-dark">Semester <t t-esc="latest_krs.semester"/></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <span class="text-muted small">Total Beban</span>
+                                        <span class="badge bg-primary px-3">
+                                            <t t-esc="sum(latest_krs.line_ids.mapped('credits'))"/> SKS
+                                        </span>
+                                    </div>
+                                </div>
+                                <a t-attf-href="/my/akademik/krs/#{latest_krs.id}/"
+                                   class="btn btn-outline-primary w-100 rounded-pill fw-bold">
+                                    Lihat Detail KRS →
+                                </a>
+                            </t>
+                            <t t-else="">
+                                <div class="text-center py-3">
+                                    <p class="text-muted mb-0">Belum ada KRS terdaftar.</p>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+
+                    <!-- Tesis Card -->
+                    <div class="card border-0 shadow-sm rounded-3">
+                        <div class="card-header bg-white py-3 border-bottom-0">
+                            <h5 class="mb-0 fw-bold d-flex align-items-center gap-2">
+                                <span class="text-primary">🎓</span> Status Tesis
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <t t-if="tesis">
+                                <h6 class="fw-bold mb-1" t-esc="tesis.title"/>
+                                <p class="text-muted small mb-3">
+                                    <i class="fa fa-user-circle me-1"/>
+                                    Pembimbing: <strong t-esc="tesis.supervisor_id.name if tesis.supervisor_id else '—'"/>
+                                </p>
+                                
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge bg-info text-dark bg-opacity-25 border border-info border-opacity-25" t-esc="tesis.stage"/>
+                                    <small class="fw-bold text-info"><t t-esc="tesis.progress or 0"/>%</small>
+                                </div>
+                                <div class="progress rounded-pill mb-4" style="height:8px;">
+                                    <div class="progress-bar bg-info progress-bar-striped progress-bar-animated"
+                                         t-attf-style="width:#{tesis.progress or 0}%"/>
+                                </div>
+                                
+                                <a href="/my/akademik/tesis/" class="btn btn-outline-info w-100 rounded-pill fw-bold">
+                                    Detail Tesis →
+                                </a>
+                            </t>
+                            <t t-else="">
+                                <div class="text-center py-3">
+                                    <p class="text-muted mb-3">Belum ada pengajuan tesis.</p>
+                                    <a href="/my/akademik/tesis/" class="btn btn-primary rounded-pill px-4 fw-bold">
+                                        Ajukan Sekarang
+                                    </a>
+                                </div>
+                            </t>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add "My Academic" link to the portal sidebar -->
+    <template id="portal_my_home_akademik" inherit_id="portal.portal_my_home"
+              name="Show Academic in Portal">
+        <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
+            <t t-call="portal.portal_docs_entry">
+                <t t-set="title">Academic Portal</t>
+                <t t-set="url">/my/akademik/</t>
+                <t t-set="placeholder_count">0</t>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -67,14 +67,6 @@
         <field name="context">{'default_identitas_mahasiswa': True, 'tree_view_ref': 'sistem_akademik.view_partner_tree_mahasiswa', 'form_view_ref': 'sistem_akademik.view_partner_form_mahasiswa'}</field>
     </record>
 
-    <!-- Student: Server Action to open own profile form directly -->
-    <record id="action_mahasiswa_my_profile" model="ir.actions.server">
-        <field name="name">My Profile</field>
-        <field name="model_id" ref="base.model_res_partner"/>
-        <field name="state">code</field>
-        <field name="code">action = env['res.partner'].action_open_my_profile()</field>
-    </record>
-
     <record id="view_partner_form_mahasiswa" model="ir.ui.view">
         <field name="name">res.partner.form.mahasiswa</field>
         <field name="model">res.partner</field>
@@ -83,6 +75,12 @@
             <form string="Student">
                 <header>
                     <button name="action_generate_nim" string="Generate NIM" type="object" class="oe_highlight" invisible="nim"/>
+                    <button name="action_generate_portal_user"
+                            string="Generate Portal User"
+                            type="object"
+                            class="btn-secondary"
+                            groups="sistem_akademik.group_akademik_officer"
+                            invisible="user_ids"/>
                     <field name="status" widget="statusbar" statusbar_visible="draft,active,graduated,dropout" options="{'clickable': '1'}"/>
                 </header>
                 <sheet>
@@ -94,6 +92,7 @@
                             <field name="name" placeholder="Student Name" readonly="id != False" groups="!sistem_akademik.group_akademik_officer"/>
                             <field name="name" placeholder="Student Name" groups="sistem_akademik.group_akademik_officer"/>
                             <field name="identitas_mahasiswa" invisible="1"/>
+                            <field name="user_ids" invisible="1"/>
                             <field name="nim" readonly="1"/>
                             <field name="study_program_id" readonly="1" groups="!sistem_akademik.group_akademik_officer"/>
                             <field name="study_program_id" groups="sistem_akademik.group_akademik_officer"/>

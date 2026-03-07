@@ -10,13 +10,7 @@
               groups="group_akademik_dosen"
               sequence="10"/>
 
-    <!-- Student: goes directly to own profile form -->
-    <menuitem id="menu_akademik_mahasiswa_student"
-              name="My Profile"
-              parent="menu_akademik_root"
-              action="action_mahasiswa_my_profile"
-              groups="group_akademik_student"
-              sequence="10"/>
+
 
     <!-- Removed S1 and Pasca sub-menus -->
     <!--
@@ -37,7 +31,7 @@
     <menuitem id="menu_akademik_krs"
               name="KRS"
               parent="menu_akademik_root"
-              groups="group_akademik_student"
+              groups="sistem_akademik.group_akademik_dosen"
               sequence="10"/>
 
     <!-- KRS List Submenu -->
