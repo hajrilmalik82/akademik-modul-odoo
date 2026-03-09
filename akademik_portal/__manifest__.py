@@ -7,6 +7,8 @@
     'license': 'LGPL-3',
     'depends': ['portal', 'sistem_akademik', 'akademik_tesis'],
     'data': [
+        'security/portal_security.xml',
+        'security/ir.model.access.csv',
         'views/portal_navbar.xml',
         'views/portal_profil.xml',
         'views/portal_krs.xml',

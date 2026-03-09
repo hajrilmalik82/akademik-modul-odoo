@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- KRS: Portal users can only read their own KRS -->
+        <record id="rule_akademik_krs_portal" model="ir.rule">
+            <field name="name">Portal: Student Own KRS</field>
+            <field name="model_id" ref="sistem_akademik.model_akademik_krs"/>
+            <field name="domain_force">[('student_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- KRS Line: Portal users can only read lines of their own KRS -->
+        <record id="rule_akademik_krs_line_portal" model="ir.rule">
+            <field name="name">Portal: Student Own KRS Lines</field>
+            <field name="model_id" ref="sistem_akademik.model_akademik_krs_line"/>
+            <field name="domain_force">[('krs_id.student_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Jadwal: Portal users can read schedules matching their Study Program -->
+        <record id="rule_akademik_jadwal_portal" model="ir.rule">
+            <field name="name">Portal: Student Own Prodi Schedule</field>
+            <field name="model_id" ref="sistem_akademik.model_akademik_jadwal"/>
+            <field name="domain_force">[('study_program_id', '=', user.partner_id.study_program_id.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+
+        <!-- Tesis: Portal users can only read their own Thesis -->
+        <record id="rule_akademik_tesis_portal" model="ir.rule">
+            <field name="name">Portal: Student Own Thesis</field>
+            <field name="model_id" ref="akademik_tesis.model_akademik_tesis"/>
+            <field name="domain_force">[('student_id', '=', user.partner_id.id)]</field>
+            <field name="groups" eval="[(4, ref('base.group_portal'))]"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_unlink" eval="False"/>
+        </record>
+    </data>
+</odoo>

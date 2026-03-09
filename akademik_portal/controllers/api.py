@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
-from odoo import http
-from odoo.http import request
+from odoo import http  # type: ignore
+from odoo.http import request  # type: ignore
 
 
 class AkademikApiController(http.Controller):
     """JSON API endpoints for all OWL interactive components in the student portal."""
 
     def _get_student_partner(self):
-        return request.env.user.partner_id.sudo()
+        return request.env.user.partner_id
 
     # ─── Profil ───────────────────────────────────────────────────────────────
 
     @http.route('/api/akademik/profil', auth='user', type='json')
     def api_profil(self, **kwargs):
         p = self._get_student_partner()
-        latest_krs = request.env['akademik.krs'].sudo().search([
+        latest_krs = request.env['akademik.krs'].search([
             ('student_id', '=', p.id)], order='id desc', limit=1)
-        tesis = request.env['akademik.tesis'].sudo().search([
+        tesis = request.env['akademik.tesis'].search([
             ('student_id', '=', p.id)], limit=1)
 
         krs_data = {}
@@ -65,7 +65,7 @@ class AkademikApiController(http.Controller):
         if year_filter:
             domain.append(('academic_year_id.academic_year', 'ilike', year_filter))
 
-        krs_list = request.env['akademik.krs'].sudo().search(domain, order='id desc')
+        krs_list = request.env['akademik.krs'].search(domain, order='id desc')
         return [{
             'id': krs.id,
             'academic_year': krs.academic_year_id.academic_year or '—',
@@ -77,7 +77,7 @@ class AkademikApiController(http.Controller):
     @http.route('/api/akademik/krs_detail', auth='user', type='json')
     def api_krs_detail(self, krs_id, **kwargs):
         p = self._get_student_partner()
-        krs = request.env['akademik.krs'].sudo().browse(int(krs_id))
+        krs = request.env['akademik.krs'].browse(int(krs_id))
         if not krs.exists() or krs.student_id.id != p.id:
             return {'error': 'Not found'}
 
@@ -112,7 +112,7 @@ class AkademikApiController(http.Controller):
         if day:
             domain.append(('day', '=', day))
 
-        jadwal_list = request.env['akademik.jadwal'].sudo().search(
+        jadwal_list = request.env['akademik.jadwal'].search(
             domain, order='day, start_time')
         return [{
             'id': j.id,
@@ -132,9 +132,9 @@ class AkademikApiController(http.Controller):
     @http.route('/api/akademik/tesis', auth='user', type='json')
     def api_tesis(self, **kwargs):
         p = self._get_student_partner()
-        tesis = request.env['akademik.tesis'].sudo().search([
+        tesis = request.env['akademik.tesis'].search([
             ('student_id', '=', p.id)], limit=1)
-        dosen_list = request.env['hr.employee'].sudo().search([
+        dosen_list = request.env['hr.employee'].search([
             ('is_dosen', '=', True),
             ('study_program_id', '=', p.study_program_id.id),
         ])

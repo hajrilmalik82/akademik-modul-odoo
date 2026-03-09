@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_akademik_krs_portal,akademik.krs.portal,sistem_akademik.model_akademik_krs,base.group_portal,1,0,0,0
+access_akademik_krs_line_portal,akademik.krs.line.portal,sistem_akademik.model_akademik_krs_line,base.group_portal,1,0,0,0
+access_akademik_jadwal_portal,akademik.jadwal.portal,sistem_akademik.model_akademik_jadwal,base.group_portal,1,0,0,0
+access_akademik_subject_portal,akademik.subject.portal,sistem_akademik.model_akademik_subject,base.group_portal,1,0,0,0
+access_akademik_tesis_portal,akademik.tesis.portal,akademik_tesis.model_akademik_tesis,base.group_portal,1,0,0,0
