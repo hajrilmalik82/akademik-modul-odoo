@@ -8,10 +8,10 @@ class AkademikThesis(models.Model):
     _order = 'submission_date desc, title'
 
     title = fields.Char(string='Thesis Title', required=True)
-    student_id = fields.Many2one('res.partner', string='Student', domain="[('identitas_mahasiswa', '=', True), ('krs_ids.line_ids.subject_id.name', 'ilike', 'Tesis')]", required=True)
+    student_id = fields.Many2one('res.partner', string='Student', domain="[('is_student', '=', True), ('krs_ids.line_ids.subject_id.name', 'ilike', 'Tesis')]", required=True)
     supervisor_id = fields.Many2one(
         'hr.employee', string='Supervisor',
-        domain="[('is_dosen', '=', True)]")
+        domain="[('is_lecturer', '=', True)]")
     supervisor_user_id = fields.Many2one('res.users', related='supervisor_id.user_id', string='Supervisor User', store=True)
 
     @api.onchange('student_id')
@@ -21,12 +21,12 @@ class AkademikThesis(models.Model):
             return {
                 'domain': {
                     'supervisor_id': [
-                        ('is_dosen', '=', True),
+                        ('is_lecturer', '=', True),
                         ('study_program_id', '=', self.student_id.study_program_id.id),
                     ]
                 }
             }
-        return {'domain': {'supervisor_id': [('is_dosen', '=', True)]}}
+        return {'domain': {'supervisor_id': [('is_lecturer', '=', True)]}}
     submission_date = fields.Date(string='Submission Date', default=fields.Date.today)
     note = fields.Text(string='Note')
     progress = fields.Integer(string='Progress Percentage')
@@ -141,9 +141,9 @@ class AkademikThesis(models.Model):
             if not record.krs_line_id:
                 raise models.ValidationError("Student does not have 'Thesis' in their KRS/Study Plan.")
 
-            # Tulis ke score_tesis (bukan ke score yang computed).
-            # _compute_score akan otomatis menghitung: score = score_tesis (karena is_thesis = True)
-            record.krs_line_id.sudo().write({'score_tesis': record.final_score})
+            # Tulis ke thesis_score (bukan ke score yang computed).
+            # _compute_score akan otomatis menghitung: score = thesis_score (karena is_thesis = True)
+            record.krs_line_id.sudo().write({'thesis_score': record.final_score})
 
             record.student_id.status = 'graduated'
             record.completion_date = record.defense_schedule.date()

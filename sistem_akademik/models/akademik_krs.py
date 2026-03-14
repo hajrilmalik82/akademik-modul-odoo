@@ -9,7 +9,7 @@ class AkademikKrs(models.Model):
 
     active = fields.Boolean(default=True)
     
-    student_id = fields.Many2one('res.partner', string='Student', domain="[('identitas_mahasiswa', '=', True)]", required=True)
+    student_id = fields.Many2one('res.partner', string='Student', domain="[('is_student', '=', True)]", required=True)
     study_program_id = fields.Many2one('akademik.prodi', string='Study Program', related='student_id.study_program_id', store=True, readonly=True)
     academic_year_id = fields.Many2one('akademik.tahun', string='Academic Year', required=True)
     semester = fields.Selection([

@@ -44,7 +44,7 @@
                         <group string="Academic Information">
                             <field name="nidn"/>
                             <field name="study_program_id"/>
-                            <field name="is_dosen" readonly="1" force_save="1"/>
+                            <field name="is_lecturer" readonly="1" force_save="1"/>
                             <field name="user_id" readonly="1"/>
                         </group>
                         <group string="Contact Selection">
@@ -68,7 +68,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='work_email']" position="after">
                 <field name="nidn" optional="show"/>
-                <field name="is_dosen" optional="hide"/>
+                <field name="is_lecturer" optional="hide"/>
             </xpath>
         </field>
     </record>
@@ -77,8 +77,8 @@
         <field name="name">Lecturers</field>
         <field name="res_model">hr.employee</field>
         <field name="view_mode">kanban,tree,form</field>
-        <field name="context">{'default_is_dosen': True, 'search_default_filter_is_dosen': 1}</field>
-        <field name="domain">[('is_dosen', '=', True)]</field>
+        <field name="context">{'default_is_lecturer': True, 'search_default_filter_is_lecturer': 1}</field>
+        <field name="domain">[('is_lecturer', '=', True)]</field>
         <field name="view_ids" eval="[(5, 0, 0),
             (0, 0, {'view_mode': 'tree', 'view_id': ref('hr.view_employee_tree')}),
             (0, 0, {'view_mode': 'form', 'view_id': ref('view_akademik_dosen_form')})]"/>

@@ -7,7 +7,7 @@ class AkademikThesisScore(models.Model):
     _order = 'examiner_id'
 
     thesis_id = fields.Many2one('akademik.tesis', string='Thesis', required=True, ondelete='cascade')
-    examiner_id = fields.Many2one('hr.employee', string='Examiner', required=True, domain="[('is_dosen', '=', True)]")
+    examiner_id = fields.Many2one('hr.employee', string='Examiner', required=True, domain="[('is_lecturer', '=', True)]")
     score = fields.Integer(string='Score', required=True, default=0)
     note = fields.Text(string='Note')
 

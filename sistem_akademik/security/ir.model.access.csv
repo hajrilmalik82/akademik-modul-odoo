@@ -12,3 +12,7 @@ access_akademik_krs_dosen,akademik.krs.dosen,model_akademik_krs,group_akademik_d
 access_akademik_krs_line_dosen,akademik.krs.line.dosen,model_akademik_krs_line,group_akademik_dosen,1,1,0,0
 access_akademik_krs_score_wizard_dosen,akademik.krs.score.wizard.dosen,model_akademik_krs_score_wizard,group_akademik_dosen,1,1,1,1
 
+access_akademik_ruangan_dosen,akademik.ruangan.dosen,model_akademik_ruangan,group_akademik_dosen,1,0,0,0
+access_akademik_tahun_dosen,akademik.tahun.dosen,model_akademik_tahun,group_akademik_dosen,1,0,0,0
+access_akademik_prodi_dosen,akademik.prodi.dosen,model_akademik_prodi,group_akademik_dosen,1,0,0,0
+access_akademik_subject_dosen,akademik.subject.dosen,model_akademik_subject,group_akademik_dosen,1,0,0,0

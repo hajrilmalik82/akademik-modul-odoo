@@ -4,7 +4,7 @@ from odoo import models, fields
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
-    is_dosen = fields.Boolean(string='Is Lecturer', default=False)
+    is_lecturer = fields.Boolean(string='Is Lecturer', default=False)
     nidn = fields.Char(string='NIDN')
     study_program_id = fields.Many2one('akademik.prodi', string='Study Program (Homebase)')
 
@@ -37,6 +37,6 @@ class HrEmployeePublic(models.Model):
     Tanpa ini, membaca jadwal_id.dosen_id di KRS form akan Access Error."""
     _inherit = 'hr.employee.public'
 
-    is_dosen = fields.Boolean(readonly=True)
+    is_lecturer = fields.Boolean(readonly=True)
     nidn = fields.Char(readonly=True)
     study_program_id = fields.Many2one('akademik.prodi', readonly=True)

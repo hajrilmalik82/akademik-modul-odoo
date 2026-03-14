@@ -35,30 +35,30 @@ class AkademikJadwal(models.Model):
     start_time = fields.Float(string='Start Time', required=True)
     end_time = fields.Float(string='End Time', required=True)
 
-    ruangan_id = fields.Many2one('akademik.ruangan', string='Room', required=True)
-    dosen_id = fields.Many2one('hr.employee', string='Lecturer', domain="[('is_dosen', '=', True)]")
+    room_id = fields.Many2one('akademik.ruangan', string='Room', required=True)
+    lecturer_id = fields.Many2one('hr.employee', string='Lecturer', domain="[('is_dosen', '=', True)]")
 
     # One2many to KRS Line to count enrolled students and for domain filtering
-    line_ids = fields.One2many('akademik.krs.line', 'jadwal_id', string='KRS Lines')
+    line_ids = fields.One2many('akademik.krs.line', 'schedule_id', string='KRS Lines')
 
     enrolled_count = fields.Integer(string='Enrolled', compute='_compute_enrolled')
     remaining_quota = fields.Integer(string='Remaining Quota', compute='_compute_enrolled')
 
-    @api.depends('subject_id', 'day', 'start_time', 'ruangan_id')
+    @api.depends('subject_id', 'day', 'start_time', 'room_id')
     def _compute_name(self):
         for record in self:
-            if record.subject_id and record.day and record.ruangan_id:
-                record.name = f"{record.subject_id.name} ({record.ruangan_id.name}) - {record.day.capitalize()} {record.start_time}"
+            if record.subject_id and record.day and record.room_id:
+                record.name = f"{record.subject_id.name} ({record.room_id.name}) - {record.day.capitalize()} {record.start_time}"
             else:
                 record.name = "New Class"
 
-    @api.depends('line_ids', 'ruangan_id')
+    @api.depends('line_ids', 'room_id')
     def _compute_enrolled(self):
         for record in self:
             # sudo() needed to count ALL students, not just what user can see
-            record.enrolled_count = self.env['akademik.krs.line'].sudo().search_count([('jadwal_id', '=', record.id)])
-            if record.ruangan_id:
-                record.remaining_quota = record.ruangan_id.capacity - record.enrolled_count
+            record.enrolled_count = self.env['akademik.krs.line'].sudo().search_count([('schedule_id', '=', record.id)])
+            if record.room_id:
+                record.remaining_quota = record.room_id.capacity - record.enrolled_count
             else:
                 record.remaining_quota = 0
 
@@ -77,10 +77,10 @@ class AkademikJadwal(models.Model):
             if self.study_program_id != employee.study_program_id:
                 raise models.ValidationError(f"You cannot claim schedule from other Study Program ({self.study_program_id.name}). Your Homebase is {employee.study_program_id.name}.")
 
-        if self.dosen_id:
-            raise models.ValidationError(f"This schedule is already taken by {self.dosen_id.name}.")
+        if self.lecturer_id:
+            raise models.ValidationError(f"This schedule is already taken by {self.lecturer_id.name}.")
 
-        self.dosen_id = employee.id
+        self.lecturer_id = employee.id
         return True
 
     def action_release_schedule(self):
@@ -90,8 +90,8 @@ class AkademikJadwal(models.Model):
         if not employee or not employee.is_dosen:
              raise models.ValidationError("You are not authorized.")
 
-        if self.dosen_id != employee:
+        if self.lecturer_id != employee:
             raise models.ValidationError("You cannot release a schedule that is not yours.")
 
-        self.dosen_id = False
+        self.lecturer_id = False
         return True

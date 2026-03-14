@@ -12,8 +12,8 @@ class AkademikPortalController(CustomerPortal):
     @http.route('/my', auth='user', website=True)
     def home(self, **kwargs):
         """Redirect students to /my/akademik/ on login."""
-        partner = request.env.user.partner_id.sudo()
-        if partner.identitas_mahasiswa:
+        partner = request.env.user.partner_id
+        if partner.is_student:
             return request.redirect('/my/akademik/')
         return super().home(**kwargs)
 
@@ -21,12 +21,12 @@ class AkademikPortalController(CustomerPortal):
 
     @http.route('/my/akademik/', auth='user', website=True)
     def profil(self, **kwargs):
-        partner = request.env.user.partner_id.sudo()
-        # sudo() + domain = safe portal pattern
-        latest_krs = request.env['akademik.krs'].sudo().search([
+        partner = request.env.user.partner_id
+        # Safe portal pattern via ORM rules
+        latest_krs = request.env['akademik.krs'].search([
             ('student_id', '=', partner.id),
         ], order='id desc', limit=1)
-        tesis = request.env['akademik.tesis'].sudo().search([
+        tesis = request.env['akademik.tesis'].search([
             ('student_id', '=', partner.id),
         ], limit=1)
         return request.render('akademik_portal.portal_profil', {
@@ -38,8 +38,8 @@ class AkademikPortalController(CustomerPortal):
 
     @http.route('/my/akademik/krs/', auth='user', website=True)
     def krs_list(self, **kwargs):
-        partner = request.env.user.partner_id.sudo()
-        krs_list = request.env['akademik.krs'].sudo().search([
+        partner = request.env.user.partner_id
+        krs_list = request.env['akademik.krs'].search([
             ('student_id', '=', partner.id),
         ], order='id desc')
         return request.render('akademik_portal.portal_krs_list', {
@@ -50,8 +50,8 @@ class AkademikPortalController(CustomerPortal):
 
     @http.route('/my/akademik/krs/<int:krs_id>/', auth='user', website=True)
     def krs_detail(self, krs_id, **kwargs):
-        partner = request.env.user.partner_id.sudo()
-        krs = request.env['akademik.krs'].sudo().browse(krs_id)
+        partner = request.env.user.partner_id
+        krs = request.env['akademik.krs'].browse(krs_id)
         # Security: only own KRS
         if not krs.exists() or krs.student_id.id != partner.id:
             return request.not_found()
@@ -66,8 +66,8 @@ class AkademikPortalController(CustomerPortal):
 
     @http.route('/my/akademik/jadwal/', auth='user', website=True)
     def jadwal(self, **kwargs):
-        partner = request.env.user.partner_id.sudo()
-        jadwal_list = request.env['akademik.jadwal'].sudo().search([
+        partner = request.env.user.partner_id
+        jadwal_list = request.env['akademik.jadwal'].search([
             ('study_program_id', '=', partner.study_program_id.id),
         ], order='day, start_time')
         return request.render('akademik_portal.portal_jadwal', {
@@ -78,12 +78,12 @@ class AkademikPortalController(CustomerPortal):
 
     @http.route('/my/akademik/tesis/', auth='user', website=True)
     def tesis(self, **kwargs):
-        partner = request.env.user.partner_id.sudo()
-        tesis = request.env['akademik.tesis'].sudo().search([
+        partner = request.env.user.partner_id
+        tesis = request.env['akademik.tesis'].search([
             ('student_id', '=', partner.id),
         ], limit=1)
-        dosen_list = request.env['hr.employee'].sudo().search([
-            ('is_dosen', '=', True),
+        dosen_list = request.env['hr.employee'].search([
+            ('is_lecturer', '=', True),
             ('study_program_id', '=', partner.study_program_id.id),
         ])
         return request.render('akademik_portal.portal_tesis', {
@@ -96,7 +96,7 @@ class AkademikPortalController(CustomerPortal):
     @http.route('/my/akademik/tesis/submit', auth='user',
                 website=True, methods=['POST'], csrf=True)
     def tesis_submit(self, title='', supervisor_id=None, **kwargs):
-        partner = request.env.user.partner_id.sudo()
+        partner = request.env.user.partner_id
         if title:
             vals = {'title': title, 'student_id': partner.id}
             if supervisor_id:

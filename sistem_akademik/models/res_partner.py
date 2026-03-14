@@ -8,7 +8,7 @@ class ResPartner(models.Model):
         ('nim_unique', 'unique(nim)', 'NIM must be unique!')
     ]
 
-    identitas_mahasiswa = fields.Boolean(string='Student Identity')
+    is_student = fields.Boolean(string='Student Identity')
     nim = fields.Char(string='NIM')
     study_program_id = fields.Many2one('akademik.prodi', string='Study Program')
     achievement_level = fields.Selection([
@@ -39,7 +39,7 @@ class ResPartner(models.Model):
                 # Use ir.sequence for robust NIM generation
                 record.nim = self.env['ir.sequence'].next_by_code('res.partner.nim') or 'New'
                 
-    @api.depends('name', 'nim', 'identitas_mahasiswa')
+    @api.depends('name', 'nim', 'is_student')
     def _compute_display_name(self):
         super(ResPartner, self)._compute_display_name()
         for record in self:
@@ -80,7 +80,7 @@ class ResPartner(models.Model):
                 "Only Academic Officers can generate student user accounts.")
 
         for record in self:
-            if not record.identitas_mahasiswa:
+            if not record.is_student:
                 continue
 
             if record.user_ids:

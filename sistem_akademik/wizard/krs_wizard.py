@@ -18,7 +18,7 @@ class KrsWizard(models.TransientModel):
     def process_krs(self):
         # 1. Get Candidates
         students = self.env['res.partner'].search([
-            ('identitas_mahasiswa', '=', True),
+            ('is_student', '=', True),
             ('entry_year_id', '=', self.entry_year_id.id),
             ('study_program_id', '=', self.study_program_id.id),
             ('status', '=', 'active')
@@ -62,7 +62,7 @@ class KrsWizard(models.TransientModel):
             total_remaining = sum(s.remaining_quota for s in schedules)
             
             if total_remaining < candidate_count:
-                details = ", ".join([f"{sch.ruangan_id.name} (Rem: {sch.remaining_quota})" for sch in schedules])
+                details = ", ".join([f"{sch.room_id.name} (Rem: {sch.remaining_quota})" for sch in schedules])
                 validation_errors.append(f"- Subject '{subject.name}': Need {candidate_count} seats, but only have {total_remaining} remaining. \n  Current Rooms: [{details}]")
         
         if validation_errors:
@@ -106,15 +106,15 @@ class KrsWizard(models.TransientModel):
                 for schedule in schedules:
                     # Re-check remaining quota in real-time
                     # We use search_count because 'remaining_quota' is computed
-                    current_enrolled = self.env['akademik.krs.line'].search_count([('jadwal_id', '=', schedule.id)])
-                    if schedule.ruangan_id and current_enrolled < schedule.ruangan_id.capacity:
+                    current_enrolled = self.env['akademik.krs.line'].search_count([('schedule_id', '=', schedule.id)])
+                    if schedule.room_id and current_enrolled < schedule.room_id.capacity:
                         selected_schedule = schedule
                         break
                 
                 if selected_schedule:
                     krs_lines.append((0, 0, {
                         'subject_id': subject.id,
-                        'jadwal_id': selected_schedule.id
+                        'schedule_id': selected_schedule.id
                     }))
                 else:
                     # Should not happen if validation passed, unless concurrency issue

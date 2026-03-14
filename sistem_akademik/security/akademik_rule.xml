@@ -15,7 +15,7 @@
         <record id="rule_akademik_krs_dosen" model="ir.rule">
             <field name="name">Dosen See KRS With Their Jadwal</field>
             <field name="model_id" ref="model_akademik_krs"/>
-            <field name="domain_force">[('line_ids.jadwal_id.dosen_id.user_id', '=', user.id)]</field>
+            <field name="domain_force">[('line_ids.schedule_id.lecturer_id.user_id', '=', user.id)]</field>
             <field name="groups" eval="[(4, ref('group_akademik_dosen'))]"/>
         </record>
 
@@ -23,7 +23,7 @@
         <record id="rule_res_partner_dosen_read" model="ir.rule">
             <field name="name">Dosen Read Student Partners</field>
             <field name="model_id" ref="base.model_res_partner"/>
-            <field name="domain_force">[('identitas_mahasiswa', '=', True)]</field>
+            <field name="domain_force">[('is_student', '=', True)]</field>
             <field name="groups" eval="[(4, ref('group_akademik_dosen'))]"/>
             <field name="perm_read"   eval="True"/>
             <field name="perm_write"  eval="False"/>
@@ -43,7 +43,7 @@
         <record id="rule_krs_line_dosen_write" model="ir.rule">
             <field name="name">Dosen Only Write Own Subject KRS Line</field>
             <field name="model_id" ref="model_akademik_krs_line"/>
-            <field name="domain_force">[('jadwal_id.dosen_id.user_id', '=', user.id)]</field>
+            <field name="domain_force">[('schedule_id.lecturer_id.user_id', '=', user.id)]</field>
             <field name="groups" eval="[(4, ref('group_akademik_dosen'))]"/>
             <field name="perm_read"   eval="False"/>
             <field name="perm_write"  eval="True"/>

@@ -102,22 +102,22 @@
                                     <td class="ps-4 text-muted small" t-esc="line_index + 1"/>
                                     <td>
                                         <div class="fw-bold" t-esc="line.subject_id.name or '—'"/>
-                                        <div class="small text-muted" t-if="line.jadwal_id">
-                                            <i class="fa fa-calendar-o me-1"/> <t t-esc="line.jadwal_id.name"/>
+                                        <div class="small text-muted" t-if="line.schedule_id">
+                                            <i class="fa fa-calendar-o me-1"/> <t t-esc="line.schedule_id.name"/>
                                         </div>
                                     </td>
                                     <td class="text-center fw-bold text-primary" t-esc="line.credits"/>
                                     <td class="text-center">
                                         <t t-if="line.is_thesis">—</t>
-                                        <t t-else="" t-esc="'%.1f' % line.score_harian"/>
+                                        <t t-else="" t-esc="'%.1f' % line.daily_score"/>
                                     </td>
                                     <td class="text-center">
                                         <t t-if="line.is_thesis">—</t>
-                                        <t t-else="" t-esc="'%.1f' % line.score_uts"/>
+                                        <t t-else="" t-esc="'%.1f' % line.midterm_score"/>
                                     </td>
                                     <td class="text-center">
                                         <t t-if="line.is_thesis">—</t>
-                                        <t t-else="" t-esc="'%.1f' % line.score_uas"/>
+                                        <t t-else="" t-esc="'%.1f' % line.final_exam_score"/>
                                     </td>
                                     <td class="text-center fw-bold" t-esc="'%.1f' % line.score"/>
                                     <td class="text-center pe-4">

@@ -16,7 +16,7 @@
                             </div>
                             <div class="o_kanban_record_body">
                                 <div>
-                                    <field name="student_id" widget="res_partner_many2one" options="{'no_open': True}" domain="[('identitas_mahasiswa', '=', True), ('krs_ids.line_ids.subject_id.name', 'ilike', 'Tesis')]"/>
+                                    <field name="student_id" widget="res_partner_many2one" options="{'no_open': True}" domain="[('is_student', '=', True), ('krs_ids.line_ids.subject_id.name', 'ilike', 'Tesis')]"/>
                                 </div>
                                 <div t-if="record.supervisor_id.value">
                                     <span>Supervisor: </span>

@@ -8,9 +8,9 @@ class AkademikKrsScoreWizard(models.TransientModel):
     krs_line_id = fields.Many2one(
         'akademik.krs.line', string='Study Plan Detail', required=True, readonly=True)
 
-    score_harian = fields.Float(string='Nilai Harian (30%)', digits=(5, 2), default=0)
-    score_uts    = fields.Float(string='Nilai UTS (30%)',    digits=(5, 2), default=0)
-    score_uas    = fields.Float(string='Nilai UAS (40%)',    digits=(5, 2), default=0)
+    daily_score = fields.Float(string='Nilai Harian (30%)', digits=(5, 2), default=0)
+    midterm_score    = fields.Float(string='Nilai UTS (30%)',    digits=(5, 2), default=0)
+    final_exam_score    = fields.Float(string='Nilai UAS (40%)',    digits=(5, 2), default=0)
 
     # Preview total
     score_preview = fields.Float(
@@ -18,10 +18,10 @@ class AkademikKrsScoreWizard(models.TransientModel):
     grade_preview = fields.Char(
         string='Grade (Preview)', compute='_compute_preview')
 
-    @api.depends('score_harian', 'score_uts', 'score_uas')
+    @api.depends('daily_score', 'midterm_score', 'final_exam_score')
     def _compute_preview(self):
         for rec in self:
-            total = rec.score_harian * 0.3 + rec.score_uts * 0.3 + rec.score_uas * 0.4
+            total = rec.daily_score * 0.3 + rec.midterm_score * 0.3 + rec.final_exam_score * 0.4
             rec.score_preview = total
             if total >= 85:
                 rec.grade_preview = 'A'
@@ -41,8 +41,8 @@ class AkademikKrsScoreWizard(models.TransientModel):
         # - Officer: bisa write semua
         # Jika dosen bukan pengajar jadwal ini, write akan di-reject otomatis oleh rule
         self.krs_line_id.write({
-            'score_harian': self.score_harian,
-            'score_uts':    self.score_uts,
-            'score_uas':    self.score_uas,
+            'daily_score': self.daily_score,
+            'midterm_score':    self.midterm_score,
+            'final_exam_score':    self.final_exam_score,
         })
         return {'type': 'ir.actions.act_window_close'}

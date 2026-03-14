@@ -27,7 +27,7 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='category_id']" position="after">
-                <field name="identitas_mahasiswa"/>
+                <field name="is_student"/>
             </xpath>
         </field>
     </record>
@@ -63,8 +63,8 @@
         <field name="view_mode">tree,form</field>
         <field name="view_id" ref="view_partner_tree_mahasiswa"/>
         <field name="search_view_id" ref="view_mahasiswa_search"/>
-        <field name="domain">[('identitas_mahasiswa', '=', True)]</field>
-        <field name="context">{'default_identitas_mahasiswa': True, 'tree_view_ref': 'sistem_akademik.view_partner_tree_mahasiswa', 'form_view_ref': 'sistem_akademik.view_partner_form_mahasiswa'}</field>
+        <field name="domain">[('is_student', '=', True)]</field>
+        <field name="context">{'default_is_student': True, 'tree_view_ref': 'sistem_akademik.view_partner_tree_mahasiswa', 'form_view_ref': 'sistem_akademik.view_partner_form_mahasiswa'}</field>
     </record>
 
     <record id="view_partner_form_mahasiswa" model="ir.ui.view">
@@ -91,7 +91,7 @@
                         <group string="Identity Data">
                             <field name="name" placeholder="Student Name" readonly="id != False" groups="!sistem_akademik.group_akademik_officer"/>
                             <field name="name" placeholder="Student Name" groups="sistem_akademik.group_akademik_officer"/>
-                            <field name="identitas_mahasiswa" invisible="1"/>
+                            <field name="is_student" invisible="1"/>
                             <field name="user_ids" invisible="1"/>
                             <field name="nim" readonly="1"/>
                             <field name="study_program_id" readonly="1" groups="!sistem_akademik.group_akademik_officer"/>

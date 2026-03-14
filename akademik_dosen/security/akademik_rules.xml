@@ -14,7 +14,7 @@
             <field name="name">Officer: Lihat Mahasiswa, Dosen, Diri Sendiri </field>
             <field name="model_id" ref="base.model_res_partner"/>
             <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_officer'))]"/>
-            <field name="domain_force">['|', '|', ('identitas_mahasiswa', '=', True), ('user_ids.employee_ids.is_dosen', '=', True), ('id', '=', user.partner_id.id)]</field>
+            <field name="domain_force">['|', '|', ('is_student', '=', True), ('user_ids.employee_ids.is_lecturer', '=', True), ('id', '=', user.partner_id.id)]</field>
         </record>
 
         <record id="rule_employee_dosen" model="ir.rule">
@@ -28,7 +28,7 @@
             <field name="name">Officer: Akses Employee Dosen</field>
             <field name="model_id" ref="hr.model_hr_employee"/>
             <field name="groups" eval="[(4, ref('sistem_akademik.group_akademik_officer'))]"/>
-            <field name="domain_force">[('is_dosen', '=', True)]</field>
+            <field name="domain_force">[('is_lecturer', '=', True)]</field>
         </record>
 
         <record id="rule_akademik_jadwal_dosen" model="ir.rule">

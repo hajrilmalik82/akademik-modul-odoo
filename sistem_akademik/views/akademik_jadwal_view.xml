@@ -8,9 +8,9 @@
                 <field name="name"/>
                 <field name="study_program_id"/>
                 <field name="subject_id"/>
-                <field name="dosen_id"/>
+                <field name="lecturer_id"/>
                 <field name="semester"/>
-                <field name="ruangan_id"/>
+                <field name="room_id"/>
                 <field name="day"/>
                 <field name="start_time" widget="float_time"/>
                 <field name="end_time" widget="float_time"/>
@@ -25,8 +25,8 @@
         <field name="arch" type="xml">
             <form string="Class Schedule">
                 <header>
-                    <button name="action_claim_schedule" string="Claim Schedule" type="object" class="oe_highlight" invisible="dosen_id"/>
-                    <button name="action_release_schedule" string="Release Schedule" type="object" invisible="not dosen_id"/>
+                    <button name="action_claim_schedule" string="Claim Schedule" type="object" class="oe_highlight" invisible="lecturer_id"/>
+                    <button name="action_release_schedule" string="Release Schedule" type="object" invisible="not lecturer_id"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
@@ -40,10 +40,10 @@
                             <field name="study_program_id"/>
                             <field name="subject_id" domain="[('study_program_id', '=', study_program_id)]"/>
                             <field name="semester"/>
-                            <field name="ruangan_id"/>
+                            <field name="room_id"/>
                         </group>
                         <group>
-                            <field name="dosen_id" readonly="1"/>
+                            <field name="lecturer_id" readonly="1"/>
                             <field name="day"/>
                             <field name="start_time" widget="float_time"/>
                             <field name="end_time" widget="float_time"/>
@@ -66,22 +66,22 @@
                 <field name="name" string="Class Name" filter_domain="['|', ('name', 'ilike', self), ('subject_id.name', 'ilike', self)]"/>
                 <field name="study_program_id"/>
                 <field name="subject_id"/>
-                <field name="ruangan_id"/>
-                <field name="dosen_id"/>
+                <field name="room_id"/>
+                <field name="lecturer_id"/>
                 
                 <group expand="0" string="Group By">
                     <filter string="Study Program" name="group_prodi" context="{'group_by': 'study_program_id'}"/>
-                    <filter string="Lecturer" name="group_dosen" context="{'group_by': 'dosen_id'}"/>
+                    <filter string="Lecturer" name="group_dosen" context="{'group_by': 'lecturer_id'}"/>
                     <filter string="Semester" name="group_semester" context="{'group_by': 'semester'}"/>
                     <filter string="Day" name="group_day" context="{'group_by': 'day'}"/>
-                    <filter string="Room" name="group_ruangan" context="{'group_by': 'ruangan_id'}"/>
+                    <filter string="Room" name="group_ruangan" context="{'group_by': 'room_id'}"/>
                 </group>
 
                 <searchpanel>
                     <field name="study_program_id" icon="fa-building" enable_counters="1"/>
                     <field name="semester" icon="fa-list-ol" enable_counters="1"/>
                     <field name="day" icon="fa-calendar" enable_counters="1"/>
-                    <field name="ruangan_id" icon="fa-columns" enable_counters="1"/>
+                    <field name="room_id" icon="fa-columns" enable_counters="1"/>
                 </searchpanel>
             </search>
         </field>

@@ -4,3 +4,7 @@ access_akademik_krs_line_portal,akademik.krs.line.portal,sistem_akademik.model_a
 access_akademik_jadwal_portal,akademik.jadwal.portal,sistem_akademik.model_akademik_jadwal,base.group_portal,1,0,0,0
 access_akademik_subject_portal,akademik.subject.portal,sistem_akademik.model_akademik_subject,base.group_portal,1,0,0,0
 access_akademik_tesis_portal,akademik.tesis.portal,akademik_tesis.model_akademik_tesis,base.group_portal,1,0,0,0
+access_akademik_tahun_portal,akademik.tahun.portal,sistem_akademik.model_akademik_tahun,base.group_portal,1,0,0,0
+access_akademik_prodi_portal,akademik.prodi.portal,sistem_akademik.model_akademik_prodi,base.group_portal,1,0,0,0
+access_akademik_ruangan_portal,akademik.ruangan.portal,sistem_akademik.model_akademik_ruangan,base.group_portal,1,0,0,0
+access_hr_employee_portal,hr.employee.portal,hr.model_hr_employee,base.group_portal,1,0,0,0

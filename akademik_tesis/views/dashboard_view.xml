@@ -45,7 +45,7 @@
             <field name="res_model">res.partner</field>
             <field name="view_mode">graph,tree,form</field>
             <field name="view_id" ref="view_student_status_ratio_graph"/>
-            <field name="domain">[('identitas_mahasiswa', '=', True), ('status', '!=', 'draft')]</field>
+            <field name="domain">[('is_student', '=', True), ('status', '!=', 'draft')]</field>
             <field name="context">{'group_by': ['status', 'entry_year_id']}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">

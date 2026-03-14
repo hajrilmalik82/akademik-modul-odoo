@@ -8,15 +8,15 @@ class AkademikKrsLine(models.Model):
     krs_id = fields.Many2one('akademik.krs', string='KRS', ondelete='cascade')
     subject_id = fields.Many2one('akademik.subject', string='Subject', required=True)
     credits = fields.Integer(string='Credits', related='subject_id.credits', readonly=True)
-    jadwal_id = fields.Many2one('akademik.jadwal', string='Class Schedule')
+    schedule_id = fields.Many2one('akademik.jadwal', string='Class Schedule')
 
     # ── Komponen Nilai (untuk MK biasa) ─────────────────────────
-    score_harian = fields.Float(string='Daily Score (30%)', default=0, digits=(5, 2))
-    score_uts = fields.Float(string='Mid-Term Score (30%)', default=0, digits=(5, 2))
-    score_uas = fields.Float(string='Final Exam Score (40%)', default=0, digits=(5, 2))
+    daily_score = fields.Float(string='Daily Score (30%)', default=0, digits=(5, 2))
+    midterm_score = fields.Float(string='Mid-Term Score (30%)', default=0, digits=(5, 2))
+    final_exam_score = fields.Float(string='Final Exam Score (40%)', default=0, digits=(5, 2))
 
     # ── Nilai khusus Tesis (dari modul akademik_tesis) ────────────
-    score_tesis = fields.Float(
+    thesis_score = fields.Float(
         string='Thesis Score', default=0, digits=(5, 2),
         help='Automatically filled from thesis final defense score. For Thesis subject only.')
 
@@ -33,18 +33,18 @@ class AkademikKrsLine(models.Model):
     dosen_access_ok = fields.Boolean(
         string='Can Edit Score', compute='_compute_dosen_access_ok')
 
-    @api.depends('score_harian', 'score_uts', 'score_uas', 'score_tesis', 'is_thesis')
+    @api.depends('daily_score', 'midterm_score', 'final_exam_score', 'thesis_score', 'is_thesis')
     def _compute_score(self):
         for record in self:
             if record.is_thesis:
                 # Tesis: nilai langsung dari sidang, bukan dari 3 komponen
-                record.score = record.score_tesis
+                record.score = record.thesis_score
             else:
                 # MK biasa: bobot harian 30% + UTS 30% + UAS 40%
                 record.score = (
-                    record.score_harian * 0.30 +
-                    record.score_uts    * 0.30 +
-                    record.score_uas    * 0.40
+                    record.daily_score * 0.30 +
+                    record.midterm_score    * 0.30 +
+                    record.final_exam_score    * 0.40
                 )
 
     @api.depends('score')
@@ -62,7 +62,7 @@ class AkademikKrsLine(models.Model):
             else:
                 record.grade = 'E'
 
-    @api.depends('jadwal_id')
+    @api.depends('schedule_id')
     def _compute_dosen_access_ok(self):
         """True jika user adalah dosen pengajar jadwal ini, atau officer."""
         user = self.env.user
@@ -70,16 +70,16 @@ class AkademikKrsLine(models.Model):
         for record in self:
             if is_officer:
                 record.dosen_access_ok = True
-            elif record.jadwal_id and record.jadwal_id.dosen_id:
+            elif record.schedule_id and record.schedule_id.lecturer_id:
                 record.dosen_access_ok = (
-                    record.jadwal_id.dosen_id.user_id.id == user.id)
+                    record.schedule_id.lecturer_id.user_id.id == user.id)
             else:
                 record.dosen_access_ok = False
 
-    @api.onchange('jadwal_id')
-    def _onchange_jadwal_id(self):
-        if self.jadwal_id:
-            self.subject_id = self.jadwal_id.subject_id
+    @api.onchange('schedule_id')
+    def _onchange_schedule_id(self):
+        if self.schedule_id:
+            self.subject_id = self.schedule_id.subject_id
 
     @api.depends('subject_id')
     def _compute_is_thesis(self):
@@ -89,36 +89,36 @@ class AkademikKrsLine(models.Model):
             else:
                 record.is_thesis = False
 
-    @api.constrains('score_harian', 'score_uts', 'score_uas')
+    @api.constrains('daily_score', 'midterm_score', 'final_exam_score')
     def _check_score_range(self):
         for record in self:
             for field_name, val in [
-                ('Nilai Harian', record.score_harian),
-                ('Nilai UTS', record.score_uts),
-                ('Nilai UAS', record.score_uas),
+                ('Nilai Harian', record.daily_score),
+                ('Nilai UTS', record.midterm_score),
+                ('Nilai UAS', record.final_exam_score),
             ]:
                 if not (0 <= val <= 100):
                     raise models.ValidationError(
                         f"{field_name} harus antara 0 dan 100 (nilai: {val})")
 
-    @api.constrains('jadwal_id')
+    @api.constrains('schedule_id')
     def _check_schedule_conflict(self):
         for record in self:
-            if not record.jadwal_id:
+            if not record.schedule_id:
                 continue
 
             domain = [
                 ('krs_id.student_id', '=', record.krs_id.student_id.id),
                 ('id', '!=', record.id),
-                ('jadwal_id', '!=', False),
+                ('schedule_id', '!=', False),
                 ('krs_id.active', '=', True)
             ]
             other_lines = self.sudo().search(domain)
 
             for line in other_lines:
                 # sudo() needed: student cannot see other students' jadwal directly
-                sch_a = record.jadwal_id.sudo()
-                sch_b = line.jadwal_id.sudo()
+                sch_a = record.schedule_id.sudo()
+                sch_b = line.schedule_id.sudo()
 
                 if sch_b.day == sch_a.day:
                     # Time overlap: (StartA < EndB) and (EndA > StartB)
@@ -128,9 +128,9 @@ class AkademikKrsLine(models.Model):
                         )
 
             # sudo() needed: student cannot see other students' KRS lines
-            current_enrolled = self.sudo().search_count([('jadwal_id', '=', record.jadwal_id.id)])
-            sch_sudo = record.jadwal_id.sudo()
-            limit = sch_sudo.ruangan_id.capacity if sch_sudo.ruangan_id else 0
+            current_enrolled = self.sudo().search_count([('schedule_id', '=', record.schedule_id.id)])
+            sch_sudo = record.schedule_id.sudo()
+            limit = sch_sudo.room_id.capacity if sch_sudo.room_id else 0
 
             if current_enrolled > limit:
                 raise models.ValidationError(f"Class '{sch_sudo.name}' is Full! Capacity: {limit}")

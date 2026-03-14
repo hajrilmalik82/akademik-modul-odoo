@@ -86,12 +86,12 @@ class AkademikApiController(http.Controller):
             lines.append({
                 'index': i + 1,
                 'subject': line.subject_id.name if line.subject_id else '—',
-                'schedule': line.jadwal_id.name if line.jadwal_id else '',
+                'schedule': line.schedule_id.name if line.schedule_id else '',
                 'credits': line.credits,
                 'is_thesis': line.is_thesis,
-                'score_harian': round(line.score_harian, 1),
-                'score_uts': round(line.score_uts, 1),
-                'score_uas': round(line.score_uas, 1),
+                'daily_score': round(line.daily_score, 1),
+                'midterm_score': round(line.midterm_score, 1),
+                'final_exam_score': round(line.final_exam_score, 1),
                 'score': round(line.score, 1),
                 'grade': line.grade or '—',
             })
@@ -121,8 +121,8 @@ class AkademikApiController(http.Controller):
             'day': j.day,
             'start_time': j.start_time,
             'end_time': j.end_time,
-            'room': j.ruangan_id.name if j.ruangan_id else '—',
-            'lecturer': j.dosen_id.name if j.dosen_id else 'TBA',
+            'room': j.room_id.name if j.room_id else '—',
+            'lecturer': j.lecturer_id.name if j.lecturer_id else 'TBA',
             'enrolled': j.enrolled_count,
             'remaining': j.remaining_quota,
         } for j in jadwal_list]
@@ -135,7 +135,7 @@ class AkademikApiController(http.Controller):
         tesis = request.env['akademik.tesis'].search([
             ('student_id', '=', p.id)], limit=1)
         dosen_list = request.env['hr.employee'].search([
-            ('is_dosen', '=', True),
+            ('is_lecturer', '=', True),
             ('study_program_id', '=', p.study_program_id.id),
         ])
 
