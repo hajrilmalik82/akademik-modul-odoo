@@ -9,7 +9,7 @@ class AkademikPortalController(CustomerPortal):
     Uses sudo() for all model reads — security enforced via domain filters.
     This is the standard Odoo portal pattern."""
 
-    @http.route('/my', auth='user', website=True)
+    @http.route(['/my', '/my/home'], type='http', auth='user', website=True)
     def home(self, **kwargs):
         """Redirect students to /my/akademik/ on login."""
         partner = request.env.user.partner_id

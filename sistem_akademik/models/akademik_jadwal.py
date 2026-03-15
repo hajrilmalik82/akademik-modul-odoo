@@ -36,7 +36,7 @@ class AkademikJadwal(models.Model):
     end_time = fields.Float(string='End Time', required=True)
 
     room_id = fields.Many2one('akademik.ruangan', string='Room', required=True)
-    lecturer_id = fields.Many2one('hr.employee', string='Lecturer', domain="[('is_dosen', '=', True)]")
+    lecturer_id = fields.Many2one('hr.employee', string='Lecturer', domain="[('is_lecturer', '=', True)]")
 
     # One2many to KRS Line to count enrolled students and for domain filtering
     line_ids = fields.One2many('akademik.krs.line', 'schedule_id', string='KRS Lines')
@@ -69,8 +69,8 @@ class AkademikJadwal(models.Model):
         if not employee:
             raise models.ValidationError("Your user is not linked to any Employee/Lecturer data.")
 
-        if not employee.is_dosen:
-             raise models.ValidationError("You are not registered as a Lecturer.")
+        if not employee.is_lecturer:
+            raise models.ValidationError("Hanya pengguna dengan peran Dosen yang bisa mengklaim jadwal.")
 
         # Check Prodi Match
         if self.study_program_id and employee.study_program_id:
@@ -87,8 +87,8 @@ class AkademikJadwal(models.Model):
         self.ensure_one()
         employee = self.env['hr.employee'].search([('user_id', '=', self.env.user.id)], limit=1)
 
-        if not employee or not employee.is_dosen:
-             raise models.ValidationError("You are not authorized.")
+        if not employee or not employee.is_lecturer:
+            raise models.ValidationError("Anda harus login sebagai Dosen terkait untuk melepaskan jadwal ini.")
 
         if self.lecturer_id != employee:
             raise models.ValidationError("You cannot release a schedule that is not yours.")

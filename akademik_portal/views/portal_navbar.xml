@@ -31,4 +31,10 @@
             </t>
         </xpath>
     </template>
+
+    <template id="akademik_my_account_link" inherit_id="portal.my_account_link" name="Direct to Security for Students">
+        <xpath expr="//a[@href='/my/home']" position="attributes">
+            <attribute name="href">/my/security</attribute>
+        </xpath>
+    </template>
 </odoo>
