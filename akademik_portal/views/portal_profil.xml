@@ -36,7 +36,7 @@
                     
                     <div class="ms-md-auto text-end">
                         <span t-att-class="'badge fs-6 shadow-sm border border-white border-opacity-25 ' + {'active':'bg-success','graduated':'bg-info','dropout':'bg-danger','draft':'bg-secondary'}.get(partner.status,'bg-secondary')">
-                            <t t-esc="dict(draft='Draft',active='Aktif',graduated='Lulus',dropout='Drop Out').get(partner.status, partner.status or '—')"/>
+                            <t t-esc="dict(draft='Draft',active='Active',graduated='Graduated',dropout='Drop Out').get(partner.status, partner.status or '—')"/>
                         </span>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="card border-0 shadow-sm rounded-3">
                         <div class="card-header bg-white py-3 border-bottom-0">
                             <h5 class="mb-0 fw-bold d-flex align-items-center gap-2">
-                                <span class="text-primary">📋</span> Data Diri
+                                <span class="text-primary">📋</span> Personal Data
                             </h5>
                         </div>
                         <div class="card-body p-0">
@@ -56,7 +56,7 @@
                                 <table class="table table-sm mb-0">
                                     <tbody>
                                         <tr>
-                                            <th class="text-muted fw-normal ps-4 py-3 border-top-0" style="width:35%">Nama Lengkap</th>
+                                            <th class="text-muted fw-normal ps-4 py-3 border-top-0" style="width:35%">Full Name</th>
                                             <td class="fw-semibold py-3 border-top-0" t-esc="partner.name"/>
                                         </tr>
                                         <tr>
@@ -64,11 +64,11 @@
                                             <td class="py-3" t-esc="partner.nim or '—'"/>
                                         </tr>
                                         <tr>
-                                            <th class="text-muted fw-normal ps-4 py-3">Program Studi</th>
+                                            <th class="text-muted fw-normal ps-4 py-3">Study Program</th>
                                             <td class="py-3" t-esc="partner.study_program_id.study_program_name or '—'"/>
                                         </tr>
                                         <tr>
-                                            <th class="text-muted fw-normal ps-4 py-3">Tahun Masuk</th>
+                                            <th class="text-muted fw-normal ps-4 py-3">Entry Year</th>
                                             <td class="py-3" t-esc="partner.entry_year_id.academic_year if partner.entry_year_id else '—'"/>
                                         </tr>
                                         <tr>
@@ -76,14 +76,14 @@
                                             <td class="py-3 text-break" t-esc="partner.email or '—'"/>
                                         </tr>
                                         <tr>
-                                            <th class="text-muted fw-normal ps-4 py-3">Telepon</th>
+                                            <th class="text-muted fw-normal ps-4 py-3">Phone</th>
                                             <td class="py-3" t-esc="partner.phone or '—'"/>
                                         </tr>
                                         <tr>
                                             <th class="text-muted fw-normal ps-4 py-3">Status</th>
                                             <td class="py-3">
                                                 <span t-att-class="'badge rounded-pill ' + {'active':'bg-success','graduated':'bg-info','dropout':'bg-danger','draft':'bg-secondary'}.get(partner.status,'bg-secondary')">
-                                                    <t t-esc="dict(draft='Draft',active='Aktif',graduated='Lulus',dropout='Drop Out').get(partner.status,'—')"/>
+                                                    <t t-esc="dict(draft='Draft',active='Active',graduated='Graduated',dropout='Drop Out').get(partner.status,'—')"/>
                                                 </span>
                                             </td>
                                         </tr>
@@ -100,14 +100,14 @@
                     <div class="card border-0 shadow-sm rounded-3 mb-4">
                         <div class="card-header bg-white py-3 border-bottom-0">
                             <h5 class="mb-0 fw-bold d-flex align-items-center gap-2">
-                                <span class="text-primary">📅</span> KRS Terakhir
+                                <span class="text-primary">📅</span> Latest KRS
                             </h5>
                         </div>
                         <div class="card-body">
                             <t t-if="latest_krs">
                                 <div class="mb-4">
                                     <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <span class="text-muted small">Tahun Akademik</span>
+                                        <span class="text-muted small">Academic Year</span>
                                         <span class="fw-bold" t-esc="latest_krs.academic_year_id.academic_year or '—'"/>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center mb-1">
@@ -115,7 +115,7 @@
                                         <span class="fw-bold badge bg-light text-dark">Semester <t t-esc="latest_krs.semester"/></span>
                                     </div>
                                     <div class="d-flex justify-content-between align-items-center">
-                                        <span class="text-muted small">Total Beban</span>
+                                        <span class="text-muted small">Total Credits</span>
                                         <span class="badge bg-primary px-3">
                                             <t t-esc="sum(latest_krs.line_ids.mapped('credits'))"/> SKS
                                         </span>
@@ -123,12 +123,12 @@
                                 </div>
                                 <a t-attf-href="/my/akademik/krs/#{latest_krs.id}/"
                                    class="btn btn-outline-primary w-100 rounded-pill fw-bold">
-                                    Lihat Detail KRS →
+                                    View KRS Detail →
                                 </a>
                             </t>
                             <t t-else="">
                                 <div class="text-center py-3">
-                                    <p class="text-muted mb-0">Belum ada KRS terdaftar.</p>
+                                    <p class="text-muted mb-0">No registered KRS.</p>
                                 </div>
                             </t>
                         </div>
@@ -138,7 +138,7 @@
                     <div class="card border-0 shadow-sm rounded-3">
                         <div class="card-header bg-white py-3 border-bottom-0">
                             <h5 class="mb-0 fw-bold d-flex align-items-center gap-2">
-                                <span class="text-primary">🎓</span> Status Tesis
+                                <span class="text-primary">🎓</span> Thesis Status
                             </h5>
                         </div>
                         <div class="card-body">
@@ -146,7 +146,7 @@
                                 <h6 class="fw-bold mb-1" t-esc="tesis.title"/>
                                 <p class="text-muted small mb-3">
                                     <i class="fa fa-user-circle me-1"/>
-                                    Pembimbing: <strong t-esc="tesis.supervisor_id.name if tesis.supervisor_id else '—'"/>
+                                    Supervisor: <strong t-esc="tesis.supervisor_id.name if tesis.supervisor_id else '—'"/>
                                 </p>
                                 
                                 <div class="d-flex justify-content-between align-items-center mb-2">
@@ -159,14 +159,14 @@
                                 </div>
                                 
                                 <a href="/my/akademik/tesis/" class="btn btn-outline-info w-100 rounded-pill fw-bold">
-                                    Detail Tesis →
+                                    Thesis Detail →
                                 </a>
                             </t>
                             <t t-else="">
                                 <div class="text-center py-3">
-                                    <p class="text-muted mb-3">Belum ada pengajuan tesis.</p>
+                                    <p class="text-muted mb-3">No thesis submission yet.</p>
                                     <a href="/my/akademik/tesis/" class="btn btn-primary rounded-pill px-4 fw-bold">
-                                        Ajukan Sekarang
+                                        Submit Now
                                     </a>
                                 </div>
                             </t>

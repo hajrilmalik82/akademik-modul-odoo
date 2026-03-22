@@ -1,0 +1,376 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* akademik_portal
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-03-15 10:54+0000\n"
+"PO-Revision-Date: 2026-03-15 10:54+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_my_home_akademik
+msgid "/my/akademik/"
+msgstr "/my/akademik/"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid ""
+"<i class=\"fa fa-info-circle me-1\"/> Choose a lecturer who has competence "
+"in accordance with your research topic."
+msgstr ""
+"<i class=\"fa fa-info-circle me-1\"/> Pilihlah dosen yang memiliki kompetensi "
+"sesuai dengan topik penelitian Anda."
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid ""
+"<i class=\"fa fa-user-circle me-1\"/>\n"
+"                                    Supervisor:"
+msgstr ""
+"<i class=\"fa fa-user-circle me-1\"/>\n"
+"                                    Pembimbing:"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "<option value=\"\">— Select Supervisor —</option>"
+msgstr "<option value=\"\">— Pilih Pembimbing —</option>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+msgid "<small class=\"text-muted d-block\">Subjects</small>"
+msgstr "<small class=\"text-muted d-block\">Mata Kuliah</small>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+msgid "<small class=\"text-muted d-block\">Total Credits</small>"
+msgstr "<small class=\"text-muted d-block\">Total Beban</small>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+msgid "<span class=\"fs-1 d-block mb-2\">📄</span>"
+msgstr "<span class=\"fs-1 d-block mb-2\">📄</span>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "<span class=\"fs-1\">👤</span>"
+msgstr "<span class=\"fs-1\">👤</span>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "<span class=\"fs-1\">💡</span>"
+msgstr "<span class=\"fs-1\">💡</span>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+msgid "<span class=\"fs-4\">←</span>"
+msgstr "<span class=\"fs-4\">←</span>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_akademik_top_menu
+msgid "<span class=\"nav-link text-muted px-2 disabled\">|</span>"
+msgstr "<span class=\"nav-link text-muted px-2 disabled\">|</span>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "<span class=\"opacity-75 d-none d-sm-inline\">|</span>"
+msgstr "<span class=\"opacity-75 d-none d-sm-inline\">|</span>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "<span class=\"text-muted small\">Academic Year</span>"
+msgstr "<span class=\"text-muted small\">Tahun Akademik</span>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "<span class=\"text-muted small\">Semester</span>"
+msgstr "<span class=\"text-muted small\">Semester</span>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "<span class=\"text-muted small\">Total Credits</span>"
+msgstr "<span class=\"text-muted small\">Total Beban</span>"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "<span class=\"text-primary\">🎓</span> Thesis Status"
+msgstr "<span class=\"text-primary\">🎓</span> Status Tesis"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "<span class=\"text-primary\">📅</span> Latest KRS"
+msgstr "<span class=\"text-primary\">📅</span> KRS Terakhir"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "<span class=\"text-primary\">📋</span> Personal Data"
+msgstr "<span class=\"text-primary\">📋</span> Data Diri"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_my_home_akademik
+msgid "Academic Portal"
+msgstr "Portal Akademik"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "Current Thesis Status"
+msgstr "Status Tesis Saat Ini"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+msgid "Daily"
+msgstr "Harian"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "Email"
+msgstr "Email"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_jadwal
+msgid "Enrolled"
+msgstr "Terdaftar"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "Entry Year"
+msgstr "Tahun Masuk"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+msgid "Final"
+msgstr "UAS"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "Full Name"
+msgstr "Nama Lengkap"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+msgid "Grade"
+msgstr "Nilai"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_akademik_top_menu
+msgid "KRS"
+msgstr "KRS"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_jadwal
+msgid "Lecturer"
+msgstr "Dosen"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+msgid "MK"
+msgstr "MK"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+msgid "Midterm"
+msgstr "UTS"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "NIM"
+msgstr "NIM"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+msgid "No"
+msgstr "No"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+msgid "No KRS yet"
+msgstr "Belum ada KRS"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "No registered KRS."
+msgstr "Belum ada KRS terdaftar."
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "No thesis submission yet."
+msgstr "Belum ada pengajuan tesis."
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "Phone"
+msgstr "Telepon"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid ""
+"Please fill out the form below to submit your thesis title and supervisor."
+msgstr ""
+"Silakan isi formulir di bawah ini untuk mengajukan judul tesis dan dosen "
+"pembimbing Anda."
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_akademik_top_menu
+msgid "Profile"
+msgstr "Profil"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_jadwal
+msgid "Quota"
+msgstr "Kuota"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "Ready to start your Thesis?"
+msgstr "Siap untuk mulai Tesis?"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_jadwal
+msgid "Room"
+msgstr "Ruangan"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "SKS"
+msgstr "SKS"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "Select Supervisor"
+msgstr "Pilih Pembimbing"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "Semester"
+msgstr "Semester"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "Status"
+msgstr "Status"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "Study Program"
+msgstr "Program Studi"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_jadwal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+msgid "Subject"
+msgstr "Mata Kuliah"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "Submit Now"
+msgstr "Ajukan Sekarang"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "Supervisor:"
+msgstr "Pembimbing:"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_akademik_top_menu
+msgid "Thesis"
+msgstr "Tesis"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "Thesis Detail →"
+msgstr "Detail Tesis →"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "Thesis Submission Form"
+msgstr "Form Pengajuan Tesis"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "Thesis Title"
+msgstr "Judul Tesis"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_jadwal
+msgid "Time"
+msgstr "Waktu"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+msgid "Total"
+msgstr "Total"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_detail
+msgid "Total:"
+msgstr "Total:"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+msgid "View Content &amp; Grades"
+msgstr "Lihat Konten &amp; Nilai"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "View KRS Detail →"
+msgstr "Lihat Detail KRS →"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "Write down the thesis title you are proposing..."
+msgstr "Tuliskan judul tesis yang Anda ajukan..."
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+msgid "Your Study Plan Card data is not yet available in the system."
+msgstr "Data Kartu Rencana Studi Anda belum tersedia di sistem."
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_profil
+msgid "foto"
+msgstr "foto"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_jadwal
+msgid "remaining"
+msgstr "sisa"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_jadwal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "← Back to Profile"
+msgstr "← Kembali ke Profil"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "🎓 Submit Thesis Now"
+msgstr "🎓 Ajukan Tesis Sekarang"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_tesis
+msgid "🎓 Thesis Submission"
+msgstr "🎓 Pengajuan Tesis"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_akademik_top_menu
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_jadwal
+msgid "📅 Class Schedule"
+msgstr "📅 Jadwal Perkuliahan"
+
+#. module: akademik_portal
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_akademik_top_menu
+#: model_terms:ir.ui.view,arch_db:akademik_portal.portal_krs_list
+msgid "📋 KRS List"
+msgstr "📋 Daftar KRS"

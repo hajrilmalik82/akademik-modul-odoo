@@ -12,7 +12,7 @@
             <t t-nocache="nim check is user-specific"
                t-if="not request.env.user._is_public() and request.env.user.partner_id.nim">
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold px-3" href="/my/akademik/">Profil</a>
+                    <a class="nav-link fw-semibold px-3" href="/my/akademik/">Profile</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle fw-semibold px-3" href="#"
@@ -23,7 +23,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold px-3" href="/my/akademik/tesis/">Tesis</a>
+                    <a class="nav-link fw-semibold px-3" href="/my/akademik/tesis/">Thesis</a>
                 </li>
                 <li class="nav-item d-none d-lg-block">
                     <span class="nav-link text-muted px-2 disabled">|</span>

@@ -7,21 +7,21 @@
         <t t-call="portal.portal_layout">
             <t t-set="no_breadcrumbs" t-value="True"/>
             <div class="mb-4">
-                <a href="/my/akademik/" class="btn btn-link btn-sm text-decoration-none ps-0">← Kembali ke Profil</a>
-                <h3 class="fw-bold mt-2">🎓 Pengajuan Tesis</h3>
+                <a href="/my/akademik/" class="btn btn-link btn-sm text-decoration-none ps-0">← Back to Profile</a>
+                <h3 class="fw-bold mt-2">🎓 Thesis Submission</h3>
             </div>
 
             <t t-if="tesis">
                 <div class="card border-0 shadow-sm rounded-3 mb-5 overflow-hidden">
                     <div class="card-header bg-info py-3 border-0">
-                        <h5 class="mb-0 fw-bold text-white">Status Tesis Saat Ini</h5>
+                        <h5 class="mb-0 fw-bold text-white">Current Thesis Status</h5>
                     </div>
                     <div class="card-body p-4">
                         <div class="row align-items-center">
                             <div class="col-md-8">
                                 <h4 class="fw-bold text-info mb-2" t-esc="tesis.title"/>
                                 <p class="text-muted mb-4 fs-5">
-                                    Dosen Pembimbing: <strong class="text-dark" t-esc="tesis.supervisor_id.name if tesis.supervisor_id else '—'"/>
+                                    Supervisor: <strong class="text-dark" t-esc="tesis.supervisor_id.name if tesis.supervisor_id else '—'"/>
                                 </p>
                                 
                                 <div class="d-flex align-items-center gap-3 mb-2">
@@ -45,38 +45,38 @@
                 <div class="alert alert-primary border-0 shadow-sm rounded-3 py-4 mb-5 d-flex align-items-center gap-4 px-4 bg-opacity-10 bg-primary">
                     <span class="fs-1">💡</span>
                     <div>
-                        <h5 class="fw-bold mb-1">Siap untuk mulai Tesis?</h5>
-                        <p class="mb-0 opacity-75">Silakan isi formulir di bawah ini untuk mengajukan judul tesis dan dosen pembimbing Anda.</p>
+                        <h5 class="fw-bold mb-1">Ready to start your Thesis?</h5>
+                        <p class="mb-0 opacity-75">Please fill out the form below to submit your thesis title and supervisor.</p>
                     </div>
                 </div>
 
                 <div class="card border-0 shadow-sm rounded-3 overflow-hidden">
                     <div class="card-header bg-white py-3 border-bottom-0">
-                        <h5 class="mb-0 fw-bold">Form Pengajuan Tesis</h5>
+                        <h5 class="mb-0 fw-bold">Thesis Submission Form</h5>
                     </div>
                     <div class="card-body p-4">
                         <form action="/my/akademik/tesis/submit" method="post">
                             <input type="hidden" name="csrf_token"
                                    t-att-value="request.csrf_token()"/>
                             <div class="mb-3">
-                                <label class="form-label fw-bold">Judul Tesis</label>
+                                <label class="form-label fw-bold">Thesis Title</label>
                                 <textarea name="title" class="form-control rounded-3 py-3" rows="3"
-                                          placeholder="Tuliskan judul tesis yang Anda ajukan..." required="1"></textarea>
+                                          placeholder="Write down the thesis title you are proposing..." required="1"></textarea>
                             </div>
                             <div class="mb-4">
-                                <label class="form-label fw-bold">Pilih Dosen Pembimbing</label>
+                                <label class="form-label fw-bold">Select Supervisor</label>
                                 <select name="supervisor_id" class="form-select rounded-3 py-2 shadow-sm">
-                                    <option value="">— Pilih Pembimbing —</option>
+                                    <option value="">— Select Supervisor —</option>
                                     <t t-foreach="dosen_list" t-as="dosen">
                                         <option t-att-value="dosen.id" t-esc="dosen.name"/>
                                     </t>
                                 </select>
                                 <div class="form-text mt-2 text-muted">
-                                    <i class="fa fa-info-circle me-1"/> Pilihlah dosen yang memiliki kompetensi sesuai dengan topik penelitian Anda.
+                                    <i class="fa fa-info-circle me-1"/> Choose a lecturer who has competence in accordance with your research topic.
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm fw-bold">
-                                🎓 Ajukan Tesis Sekarang
+                                🎓 Submit Thesis Now
                             </button>
                         </form>
                     </div>
