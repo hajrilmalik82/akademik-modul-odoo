@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class ResPartner(models.Model):
@@ -77,7 +77,7 @@ class ResPartner(models.Model):
         Portal users access the system via /my/ and cannot enter the Odoo backend."""
         if not self.env.user.has_group('sistem_akademik.group_akademik_officer'):
             raise models.ValidationError(
-                "Only Academic Officers can generate student user accounts.")
+                _("Only Academic Officers can generate student user accounts."))
 
         for record in self:
             if not record.is_student:
@@ -85,11 +85,16 @@ class ResPartner(models.Model):
 
             if record.user_ids:
                 raise models.ValidationError(
-                    f"Student '{record.name}' already has a user account.")
+                    _(f"Student '{record.name}' already has a user account."))
 
             if not record.email:
                 raise models.ValidationError(
-                    f"Please fill in the email for '{record.name}' first.")
+                    _(f"Please fill in the email for '{record.name}' first."))
+
+            # Mencegah database integrity collision crash (Clean Code: Anggun menangkap Error)
+            existing_user = self.env['res.users'].sudo().search([('login', '=', record.email)])
+            if existing_user:
+                raise models.ValidationError(_(f"Email '{record.email}' is already registered to another user."))
 
             user_vals = {
                 'name': record.name,

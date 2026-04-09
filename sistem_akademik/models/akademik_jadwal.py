@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class AkademikJadwal(models.Model):
@@ -67,18 +67,18 @@ class AkademikJadwal(models.Model):
         employee = self.env['hr.employee'].search([('user_id', '=', self.env.user.id)], limit=1)
 
         if not employee:
-            raise models.ValidationError("Your user is not linked to any Employee/Lecturer data.")
+            raise models.ValidationError(_("Your user is not linked to any Employee/Lecturer data."))
 
         if not employee.is_lecturer:
-            raise models.ValidationError("Hanya pengguna dengan peran Dosen yang bisa mengklaim jadwal.")
+            raise models.ValidationError(_("Only users with the Lecturer role can claim schedules."))
 
         # Check Prodi Match
         if self.study_program_id and employee.study_program_id:
             if self.study_program_id != employee.study_program_id:
-                raise models.ValidationError(f"You cannot claim schedule from other Study Program ({self.study_program_id.name}). Your Homebase is {employee.study_program_id.name}.")
+                raise models.ValidationError(_(f"You cannot claim schedule from other Study Program ({self.study_program_id.name}). Your Homebase is {employee.study_program_id.name}."))
 
         if self.lecturer_id:
-            raise models.ValidationError(f"This schedule is already taken by {self.lecturer_id.name}.")
+            raise models.ValidationError(_(f"This schedule is already taken by {self.lecturer_id.name}."))
 
         self.lecturer_id = employee.id
         return True
@@ -88,10 +88,10 @@ class AkademikJadwal(models.Model):
         employee = self.env['hr.employee'].search([('user_id', '=', self.env.user.id)], limit=1)
 
         if not employee or not employee.is_lecturer:
-            raise models.ValidationError("Anda harus login sebagai Dosen terkait untuk melepaskan jadwal ini.")
+            raise models.ValidationError(_("You must be logged in as the related Lecturer to release this schedule."))
 
         if self.lecturer_id != employee:
-            raise models.ValidationError("You cannot release a schedule that is not yours.")
+            raise models.ValidationError(_("You cannot release a schedule that is not yours."))
 
         self.lecturer_id = False
         return True

@@ -25,9 +25,10 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <t t-set="color_map" t-value="{'monday':'007bff','tuesday':'6f42c1','wednesday':'e83e8c','thursday':'fd7e14','friday':'28a745','saturday':'ffc107','sunday':'6c757d'}"/>
                             <t t-foreach="jadwal_list" t-as="jadwal">
                                 <tr t-att-data-day="jadwal.day" class="border-start border-4" 
-                                    t-attf-style="border-color: #{{ {'monday':'007bff','tuesday':'6f42c1','wednesday':'e83e8c','thursday':'fd7e14','friday':'28a745','saturday':'ffc107','sunday':'6c757d'}.get(jadwal.day or '', '6c757d') }} !important;">
+                                    t-att-style="'border-color: #' + color_map.get(jadwal.day or '', '6c757d') + ' !important;'">
                                     <td class="ps-4">
                                         <div class="fw-bold" t-esc="jadwal.subject_id.name or '—'"/>
                                         <div class="badge bg-light text-dark border text-capitalize fw-normal">

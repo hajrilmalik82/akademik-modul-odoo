@@ -36,7 +36,7 @@
                                     <field name="subject_id" readonly="1" force_save="1"/>
                                     <field name="credits" sum="Total SKS"/>
                                     <field name="is_thesis" column_invisible="1"/>
-                                    <field name="dosen_access_ok" column_invisible="1"/>
+                                    <field name="is_lecturer_access" column_invisible="1"/>
                                     <field name="daily_score" readonly="1"/>
                                     <field name="midterm_score"    readonly="1"/>
                                     <field name="final_exam_score"    readonly="1"/>
@@ -46,7 +46,7 @@
                                             icon="fa-pencil-square-o"
                                             string="Input Nilai"
                                             class="btn-primary"
-                                            invisible="is_thesis or not dosen_access_ok"/>
+                                            invisible="is_thesis or not is_lecturer_access"/>
                                     <field name="grade"/>
                                 </tree>
                             </field>

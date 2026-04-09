@@ -1,4 +1,4 @@
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 
 
 class AkademikKrsLine(models.Model):
@@ -30,8 +30,8 @@ class AkademikKrsLine(models.Model):
     is_thesis = fields.Boolean(compute='_compute_is_thesis', string='Is Thesis')
 
     # ── Access helper (untuk lock field di view) ──────────────────
-    dosen_access_ok = fields.Boolean(
-        string='Can Edit Score', compute='_compute_dosen_access_ok')
+    is_lecturer_access = fields.Boolean(
+        string='Can Edit Score', compute='_compute_is_lecturer_access')
 
     @api.depends('daily_score', 'midterm_score', 'final_exam_score', 'thesis_score', 'is_thesis')
     def _compute_score(self):
@@ -63,18 +63,18 @@ class AkademikKrsLine(models.Model):
                 record.grade = 'E'
 
     @api.depends('schedule_id')
-    def _compute_dosen_access_ok(self):
+    def _compute_is_lecturer_access(self):
         """True jika user adalah dosen pengajar jadwal ini, atau officer."""
         user = self.env.user
         is_officer = user.has_group('sistem_akademik.group_akademik_officer')
         for record in self:
             if is_officer:
-                record.dosen_access_ok = True
+                record.is_lecturer_access = True
             elif record.schedule_id and record.schedule_id.lecturer_id:
-                record.dosen_access_ok = (
+                record.is_lecturer_access = (
                     record.schedule_id.lecturer_id.user_id.id == user.id)
             else:
-                record.dosen_access_ok = False
+                record.is_lecturer_access = False
 
     @api.onchange('schedule_id')
     def _onchange_schedule_id(self):
@@ -99,7 +99,7 @@ class AkademikKrsLine(models.Model):
             ]:
                 if not (0 <= val <= 100):
                     raise models.ValidationError(
-                        f"{field_name} harus antara 0 dan 100 (nilai: {val})")
+                        _(f"{field_name} must be between 0 and 100 (value: {val})"))
 
     @api.constrains('schedule_id')
     def _check_schedule_conflict(self):
@@ -124,7 +124,7 @@ class AkademikKrsLine(models.Model):
                     # Time overlap: (StartA < EndB) and (EndA > StartB)
                     if (sch_a.start_time < sch_b.end_time) and (sch_a.end_time > sch_b.start_time):
                         raise models.ValidationError(
-                            f"Schedule Conflict! Class '{sch_a.name}' overlaps with '{sch_b.name}' on {sch_a.day} at {sch_a.start_time}-{sch_a.end_time}."
+                            _(f"Schedule Conflict! Class '{sch_a.name}' overlaps with '{sch_b.name}' on {sch_a.day} at {sch_a.start_time}-{sch_a.end_time}.")
                         )
 
             # sudo() needed: student cannot see other students' KRS lines
@@ -133,7 +133,7 @@ class AkademikKrsLine(models.Model):
             limit = sch_sudo.room_id.capacity if sch_sudo.room_id else 0
 
             if current_enrolled > limit:
-                raise models.ValidationError(f"Class '{sch_sudo.name}' is Full! Capacity: {limit}")
+                raise models.ValidationError(_(f"Class '{sch_sudo.name}' is Full! Capacity: {limit}"))
 
     def action_open_score_wizard(self):
         self.ensure_one()
@@ -145,8 +145,8 @@ class AkademikKrsLine(models.Model):
             'target': 'new',
             'context': {
                 'default_krs_line_id': self.id,
-                'default_score_harian': self.score_harian,
-                'default_score_uts':    self.score_uts,
-                'default_score_uas':    self.score_uas,
+                'default_daily_score': self.daily_score,
+                'default_midterm_score': self.midterm_score,
+                'default_final_exam_score': self.final_exam_score,
             },
         }
